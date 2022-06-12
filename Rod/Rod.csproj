@@ -71,6 +71,22 @@
     <Content Include="App_Data\RodDb_log.ldf">
       <DependentUpon>RodDb.mdf</DependentUpon>
     </Content>
+    <Content Include="css\editProfile.css" />
+    <Content Include="css\followersAndfollowing.css" />
+    <Content Include="css\helpCenter.css" />
+    <Content Include="css\home.css" />
+    <Content Include="css\login.css" />
+    <Content Include="css\masterPage.css" />
+    <Content Include="css\profile.css" />
+    <Content Include="css\question.css" />
+    <Content Include="css\questionForm.css" />
+    <Content Include="css\questions.css" />
+    <Content Include="css\registration.css" />
+    <Content Include="css\searchResult.css" />
+    <Content Include="css\tagged.css" />
+    <Content Include="css\tags.css" />
+    <Content Include="css\topUsers.css" />
+    <Content Include="css\viewUserProfile.css" />
     <Content Include="EditProfile.aspx" />
     <Content Include="Followers.aspx" />
     <Content Include="Following.aspx" />
@@ -82,7 +98,7 @@
     <Content Include="Question.aspx" />
     <Content Include="QuestionForm.aspx" />
     <Content Include="Questions.aspx" />
-    <Content Include="Restigration.aspx" />
+    <Content Include="Registration.aspx" />
     <Content Include="SearchResult.aspx" />
     <Content Include="Tagged.aspx" />
     <Content Include="Tags.aspx" />
@@ -165,12 +181,12 @@
     <Compile Include="Questions.aspx.designer.cs">
       <DependentUpon>Questions.aspx</DependentUpon>
     </Compile>
-    <Compile Include="Restigration.aspx.cs">
-      <DependentUpon>Restigration.aspx</DependentUpon>
+    <Compile Include="Registration.aspx.cs">
+      <DependentUpon>Registration.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="Restigration.aspx.designer.cs">
-      <DependentUpon>Restigration.aspx</DependentUpon>
+    <Compile Include="Registration.aspx.designer.cs">
+      <DependentUpon>Registration.aspx</DependentUpon>
     </Compile>
     <Compile Include="SearchResult.aspx.cs">
       <DependentUpon>SearchResult.aspx</DependentUpon>
@@ -226,7 +242,6 @@
     </None>
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="css\" />
     <Folder Include="js\" />
   </ItemGroup>
   <PropertyGroup>
