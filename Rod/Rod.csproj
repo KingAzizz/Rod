@@ -67,9 +67,9 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Content Include="App_Data\RodDB.mdf" />
-    <Content Include="App_Data\RodDB_log.ldf">
-      <DependentUpon>RodDB.mdf</DependentUpon>
+    <Content Include="App_Data\RodDb.mdf" />
+    <Content Include="App_Data\RodDb_log.ldf">
+      <DependentUpon>RodDb.mdf</DependentUpon>
     </Content>
     <Content Include="EditProfile.aspx" />
     <Content Include="Followers.aspx" />
@@ -224,6 +224,10 @@
     <None Include="Web.Release.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="css\" />
+    <Folder Include="js\" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
