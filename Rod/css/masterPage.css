@@ -1,3 +1,123 @@
-﻿body {
-    background-color: red;
+﻿* {
+    margin: 0;
+    padding: 0;
+}
+
+.navbar {
+    border-bottom: 10px solid #0000;
+    box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
+    height: 50;
+}
+
+.container {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    margin: 0 auto;
+    align-items: center;
+}
+
+a {
+    text-decoration: none;
+}
+
+
+.logo {
+    padding: 9px;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    background-color: transparent;
+    margin: 10px 10px 0 10px;
+}
+
+    .logo > span {
+        font-size: 1.9rem;
+        color: #4F6BFF;
+    }
+
+.questionLink {
+    display: flex;
+    list-style: none;
+    margin-left: 30px;
+}
+
+    .questionLink > li {
+        font-size: 1.3rem;
+        margin-top: 13px;
+        text-align: center;
+        display: flex;
+        gap: 7px;
+    }
+
+.searchContainer {
+    width: calc(100% - 50px);
+    display: flex;
+    justify-content: flex-end;
+    margin-left: calc(22% - 120px);
+    margin-top: 10px;
+}
+
+.searchInputDiv {
+    display: flex;
+    align-items: center;
+    position: relative;
+}
+
+.searchInput {
+    background-color: #ffff;
+    border: 1px solid #4F6BFF;
+    width: calc(55vw - 50px);
+    height: 20px;
+    padding: 9px;
+    border-radius: 30px;
+}
+
+    .searchInput::placeholder {
+        text-align: center;
+    }
+
+.searchIcon {
+    position: absolute;
+    margin-left: 7px;
+}
+
+.navLinks {
+    width: 100%;
+    display: flex;
+    list-style: none;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+    margin-top: 13px;
+}
+
+.profileImageLink {
+    width: 30px;
+    height: 30px;
+    display: flex;
+}
+
+.profileImage {
+    width: 30px;
+    border-radius: 50%;
+}
+
+.icon {
+    font-size: 1.8rem;
+}
+
+@media screen and (max-width: 525px) {
+    .searchContainer {
+        margin-left: 0;
+    }
+
+    .searchInputDiv > input {
+        display: none;
+    }
+
+    .searchIcon {
+        /* change the position to right until it hit element */
+        position: relative;
+    }
 }
