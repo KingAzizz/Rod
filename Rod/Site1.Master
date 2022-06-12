@@ -12,8 +12,49 @@
 </head>
 <body>
     <form id="form1" runat="server">
-        <h1>here we begin</h1>
-        <i class="fa-solid fa-earth-asia"></i>
+
+
+    <nav class="navbar">
+        <div class="container">
+            <a href="#" class="hamburgerMenu"></a>
+            <asp:HyperLink ID="hamburgerMenu" CssClass="hamburgerMenu" runat="server"></asp:HyperLink>
+            <div class="mobileMenu"></div>
+            <asp:HyperLink CssClass="logo" NavigateUrl="~/Home.aspx" runat="server">
+                  <span>رد</span>
+            </asp:HyperLink>
+            
+            <ul class="questionLink">
+                <li> 
+                   <i class="fa-solid fa-earth-africa"></i> الاسئلة
+                </li>
+            </ul>
+        
+        <div class="searchContainer">
+            <div class="searchInputDiv">
+                <i class="fa-solid fa-magnifying-glass searchIcon"></i>
+                <asp:TextBox ID="searchText" runat="server" CssClass="searchInput" placeholder="ابحث عن السؤال"></asp:TextBox>
+            </div>
+        </div>
+
+           <ul class="navLinks">
+            <li>
+               <a href="#" class="searchMobile">
+            </a>
+            </li>
+            <li><i class="fa-solid fa-inbox icon"></i></li>
+            <li><i class="fa-solid fa-moon icon"></i></li>
+            <li>
+          
+                <asp:HyperLink ID="profileImageLink" runat="server" CssClass="profileImageLink" NavigateUrl="#">
+                <div class="profileImageDiv">
+                    <asp:Image ID="profileImage" CssClass="profileImage" runat="server" ImageUrl="https://i.pinimg.com/736x/bd/3e/9f/bd3e9f7b876785aa21d49ad5e8b0076a.jpg" />
+                </div>
+                </asp:HyperLink>
+           
+            </li>
+        </ul>
+    </div>
+    </nav>
         <div>
             <asp:ContentPlaceHolder ID="ContentPlaceHolder1" runat="server">
             </asp:ContentPlaceHolder>
