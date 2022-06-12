@@ -10,7 +10,7 @@
 
 namespace Rod
 {
-    public partial class Restigration
+    public partial class Registration
     {
     }
 }

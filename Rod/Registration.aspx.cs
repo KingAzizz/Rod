@@ -7,7 +7,7 @@ using System.Web.UI.WebControls;
 
 namespace Rod
 {
-    public partial class Restigration : System.Web.UI.Page
+    public partial class Registration : System.Web.UI.Page
     {
         protected void Page_Load(object sender, EventArgs e)
         {
