@@ -157,7 +157,136 @@
             width: 60%;
         }
 
+        /*if user logged in Home Page Styling*/
+.homeLoggedIn {
+    margin: 0;
+    padding: 0;
+    position: relative;
+}
 
+.sidenav {
+    height: 100%;
+   position:fixed;
+    margin-top: 62px;
+    border-right: 2px solid black;
+    z-index: 1;
+    top: 0;
+    left: 0;
+    background-color: #ffff;
+    overflow-x: hidden;
+    padding-top: 80px;
+}
+
+    .sidenav a {
+        padding: 6px 6px 6px 32px;
+        text-decoration: none;
+        font-size: 25px;
+        color: #818181;
+        display: block;
+        position: relative;
+    }
+
+#selected {
+    color: black;
+}
+
+    #selected::before {
+        content: "";
+        width: 8px;
+        height: 30px;
+        background-color: #F48123;
+        right: 0;
+        position: absolute;
+    }
+
+
+
+
+.sidenav a:hover {
+    color: black;
+}
+
+.content {
+    margin-left: 211px;
+    display: flex;
+    flex-direction: row;
+    box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+    padding: 20px;
+}
+
+    .content > div:nth-child(1) {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .content > div:nth-child(1) {
+        display: flex;
+        margin-top: 40px;
+        margin-right: calc(50% - 50px);
+        margin-left: 30px;
+    }
+
+        .content > div:nth-child(1) > tr {
+            position: relative;
+        }
+
+        .content > div:nth-child(1) td {
+            border-top: 10px solid black;
+            position: relative;
+        }
+
+            .content > div:nth-child(1) td:first-child {
+                border-top: 10px solid #4F6BFF;
+                position: relative;
+            }
+
+
+        .content > div:nth-child(1) button {
+            width: 100%;
+            text-align: center;
+            height: 90%;
+            border: none;
+            background-color: #ffff;
+            cursor: pointer;
+            position: absolute;
+            top: 0;
+            left: 0;
+            font-size: 20px;
+        }
+
+    .content > div > button {
+        border-radius: 500px;
+        outline: none;
+        border: none;
+        background-color: #4F6BFF;
+        width: 150px;
+        font-size: 20px;
+        padding: 10px;
+        color: #ffff;
+        border-radius: 10px;
+        margin-top: 30px;
+    }
+
+    .content > div:nth-child(2) {
+        margin-top: 10px;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        margin-left: 90px;
+    }
+
+@media screen and (max-height: 450px) {
+    .sidenav {
+        padding-top: 15px;
+    }
+
+        .sidenav a {
+            font-size: 18px;
+        }
+}
 
 @media screen and (max-width: 695px) {
     .homeImage1 {
