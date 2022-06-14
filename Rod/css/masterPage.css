@@ -6,7 +6,7 @@
 .navbar {
     border-bottom: 10px solid #0000;
     box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
-    height: 50;
+    height: 50px;
 }
 
 .container {
@@ -40,6 +40,7 @@ a {
     display: flex;
     list-style: none;
     margin-left: 30px;
+    
 }
 
     .questionLink > li {
@@ -80,6 +81,7 @@ a {
 .searchIcon {
     position: absolute;
     margin-left: 7px;
+    color:black;
 }
 
 .navLinks {
@@ -96,6 +98,7 @@ a {
     width: 30px;
     height: 30px;
     display: flex;
+    align-items:center;
 }
 
 .profileImage {
@@ -105,9 +108,11 @@ a {
 
 .icon {
     font-size: 1.8rem;
+    color:black;
 }
 
-@media screen and (max-width: 525px) {
+
+@media screen and (max-width: 555px) {
     .searchContainer {
         margin-left: 0;
     }
@@ -117,7 +122,11 @@ a {
     }
 
     .searchIcon {
-        /* change the position to right until it hit element */
         position: relative;
+        font-size: 23px;
+        margin-right: 7px;
+    }
+    .navLinks{
+        width:160px;
     }
 }
