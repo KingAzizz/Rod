@@ -4,7 +4,7 @@
     <link href="./css/home.css" rel="stylesheet" type="text/css" />
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
-    <section class="homeNoLoggin">
+    <section class="homeNoLoggin" id="HideIfUserLoggedIn" runat="server">
         <div class="introContent">
             
             <asp:Image ID="homeImage" runat="server" CssClass="homeImage1" ImageUrl="./images/homeIIIustr.jpg" />
@@ -56,4 +56,41 @@
                 </div>
         </section>
     </section>
+
+     <section class="homeLoggedIn" id="homeLoggedIn" runat="server">
+        <nav class="sidenav">
+            <ul>
+                <li>
+                   <asp:HyperLink ID="selected" runat="server" NavigateUrl="~/Home.aspx">الصفحة الرئيسية</asp:HyperLink>
+                </li>
+                <li>
+                     <asp:HyperLink ID="TagsLink" runat="server" NavigateUrl="~/Tags.aspx">الأقسام</asp:HyperLink>
+                    </li>
+                <li>
+                     <asp:HyperLink ID="HyperLink1" runat="server" NavigateUrl="~/TopUsers.aspx">
+                         المستخدمين المميزيين
+                     </asp:HyperLink>
+                    </li>
+            </ul>
+        </nav>
+        <section class="content">
+            <div>
+                <table>
+                    <tr>
+                        <td><button>الشهر</button></td>
+                        <td><button>الشائع</button></td>
+                        <td><button>الأسبوع</button></td>
+                    </tr>
+            
+                </table>
+            </div>
+            <div>
+                <h1>أفضل ألاسئلة</h1>
+                <button>إسأل</button>
+
+            </div>
+           
+        </section>
+    </section>
+
 </asp:Content>
