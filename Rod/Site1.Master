@@ -16,16 +16,18 @@
 
     <nav class="navbar">
         <div class="container">
-            <a href="#" class="hamburgerMenu"></a>
-            <asp:HyperLink ID="hamburgerMenu" CssClass="hamburgerMenu" runat="server"></asp:HyperLink>
-            <div class="mobileMenu"></div>
+
             <asp:HyperLink CssClass="logo" NavigateUrl="~/Home.aspx" runat="server">
                   <span>رد</span>
             </asp:HyperLink>
             
             <ul class="questionLink">
                 <li> 
-                   <i class="fa-solid fa-earth-africa"></i> الاسئلة
+                 
+                    <i class="fa-solid fa-earth-africa"></i>
+                    <asp:HyperLink ID="questionsLink" runat="server" NavigateUrl="~/Questions.aspx" ForeColor="Black">
+                         الاسئلة
+                    </asp:HyperLink>
                 </li>
             </ul>
         
@@ -37,12 +39,14 @@
         </div>
 
            <ul class="navLinks">
-            <li>
-               <a href="#" class="searchMobile">
-            </a>
-            </li>
-            <li><i class="fa-solid fa-inbox icon"></i></li>
+           
             <li><i class="fa-solid fa-moon icon"></i></li>
+
+            <li id="loginLink" runat="server">
+                <asp:HyperLink ID="inboxLink" runat="server" NavigateUrl="#"><i class="fa-solid fa-inbox icon"></i></asp:HyperLink>
+                </li>
+                
+             
             <li>
           
                 <asp:HyperLink ID="profileImageLink" runat="server" CssClass="profileImageLink" NavigateUrl="#">
