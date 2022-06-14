@@ -11,7 +11,16 @@ namespace Rod
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-
+            if (Session["loggedIn"] == null)
+            {
+                HideIfUserLoggedIn.Visible = true;
+                homeLoggedIn.Visible = false;
+            }
+            else
+            {
+                homeLoggedIn.Visible = true;
+                HideIfUserLoggedIn.Visible = false;
+            }
         }
     }
 }
