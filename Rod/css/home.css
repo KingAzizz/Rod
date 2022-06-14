@@ -1,2 +1,179 @@
-﻿body {
+﻿.homeNoLoggin {
+    margin-top: 80px;
+}
+
+.introContent {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    gap: 90px;
+}
+
+.homeImage1 {
+    width: 400px;
+    position: relative;
+}
+
+.RodJoin {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 500px;
+    background-color: #98a9ff;
+    border-radius: 10px;
+    padding:10px;
+}
+
+    .RodJoin > h1 {
+        color: black;
+        margin-top: 30px;
+        font-size: 40px;
+    }
+
+    .RodJoin > p {
+        color: black;
+        margin-top: 30px;
+        font-size: 20px;
+        font-weight: 100;
+        text-align: center;
+    }
+
+    .RodJoin > a:not(:last-child) {
+        color: white;
+        text-align: center;
+        margin-top: 20px;
+        font-size: 20px;
+        font-weight: 100;
+        background-color: #4F6BFF;
+        width: 242px;
+        padding: 4px;
+        border-radius: 10px;
+    }
+
+    .RodJoin > a:nth-child(4) {
+        color: black;
+        text-align: center;
+        margin-top: 30px;
+        font-size: 19px;
+        font-weight: 100;
+        text-decoration: underline;
+    }
+
+.aboutUs {
+    display: flex;
+    justify-content: center;
+    margin: 70px;
+}
+
+    .aboutUs > div > div > h1 {
+        font-size: 50px;
+        color: #666666;
+        margin-bottom: 20px;
+        text-align: center;
+    }
+
+    .aboutUs > div > p {
+        margin-top: 50px;
+        text-align: center;
+        height: 10px;
+        font-size: 20px;
+        width: 580px;
+    }
+
+        .aboutUs > div > p > span {
+            font-size: 30px;
+            font-weight: 100;
+            color: #4F6BFF;
+        }
+
+.founders {
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+}
+
+    .founders > h1 {
+        font-size: 50px;
+        color: #666666;
+        margin-bottom: 20px;
+        text-align: center;
+        margin-top: 120px;
+        height: 100px;
+    }
+
+    .founders > div {
+        display: flex;
+        justify-content: center;
+        width: 100%;
+    }
+
+    .founders > table, td {
+        border: 1px solid black;
+        color: #4F6BFF;
+        padding: 30px;
+        text-align: center;
+        border-radius: 10px;
+        box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
+    }
+
+    .founders > td {
+        padding: 30px;
+    }
+
+.whyRod {
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    margin-top: 120px;
+    margin-bottom: 70px;
+}
+
+    .whyRod > h1 {
+        font-size: 50px;
+        color: #666666;
+        margin-bottom: 20px;
+        height: 100px;
+        text-align: center;
+    }
+
+        .whyRod > h1 > span {
+            font-size: 50px;
+            font-weight: 100;
+            color: #4F6BFF;
+        }
+
+    .whyRod > div {
+        display: flex;
+        width: 100%;
+        justify-content: center;
+    }
+
+        .whyRod > div > p {
+            font-size: 20px;
+            font-weight: 100;
+            text-align: center;
+            width: 60%;
+        }
+
+
+
+@media screen and (max-width: 695px) {
+    .homeImage1 {
+        display: none;
+    }
+
+    .RodJoin {
+        width: 300px;
+        padding: 10px;
+    }
+
+    .aboutUs > div > p {
+        margin-top: 50px;
+        text-align: center;
+        height: 10px;
+        font-size: 20px;
+        width: 100vw;
+    }
 }
