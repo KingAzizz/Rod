@@ -93,6 +93,7 @@
     <Content Include="Global.asax" />
     <Content Include="HelpCenter.aspx" />
     <Content Include="Home.aspx" />
+    <Content Include="images\homeIIIustr.jpg" />
     <Content Include="Login.aspx" />
     <Content Include="Profile.aspx" />
     <Content Include="Question.aspx" />
