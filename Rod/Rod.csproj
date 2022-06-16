@@ -94,6 +94,7 @@
     <Content Include="HelpCenter.aspx" />
     <Content Include="Home.aspx" />
     <Content Include="images\homeIIIustr.jpg" />
+    <Content Include="js\home.js" />
     <Content Include="Login.aspx" />
     <Content Include="Profile.aspx" />
     <Content Include="Question.aspx" />
@@ -242,9 +243,7 @@
       <DependentUpon>Web.config</DependentUpon>
     </None>
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="js\" />
-  </ItemGroup>
+  <ItemGroup />
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
     <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>
