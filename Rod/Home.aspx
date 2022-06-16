@@ -2,6 +2,9 @@
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
     <title>الصفحة الرئيسية</title>
     <link href="./css/home.css" rel="stylesheet" type="text/css" />
+    <script src="./js/home.js" defer></script>
+   
+  
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
     <section class="homeNoLoggin" id="HideIfUserLoggedIn" runat="server">
@@ -58,7 +61,9 @@
     </section>
 
      <section class="homeLoggedIn" id="homeLoggedIn" runat="server">
-        <nav class="sidenav">
+         <div class="hamburgerMenu"> 
+             <button class="hamburgerButton" id="triggerSideNav" type="button" ><i class="fa fa-bars"></i></button> </div>
+        <nav class="sidenav" id="sidenav" runat="server">
             <ul>
                 <li>
                    <asp:HyperLink ID="selected" runat="server" NavigateUrl="~/Home.aspx">الصفحة الرئيسية</asp:HyperLink>
@@ -75,18 +80,16 @@
         </nav>
         <section class="content">
             <div>
-                <table>
-                    <tr>
-                        <td><button>الشهر</button></td>
-                        <td><button>الشائع</button></td>
-                        <td><button>الأسبوع</button></td>
-                    </tr>
-            
-                </table>
+                
+                 <asp:Button ID="month" runat="server" Text="الشهر" />
+                  <asp:Button ID="common" runat="server" Text="الشائع" />
+                  <asp:Button ID="week" runat="server" Text="الأسبوع" />
+
             </div>
             <div>
                 <h1>أفضل ألاسئلة</h1>
-                <button>إسأل</button>
+                <button id="askQuestion" runat="server">إسأل</button>
+             
 
             </div>
            
