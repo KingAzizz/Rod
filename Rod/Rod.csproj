@@ -67,10 +67,6 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Content Include="App_Data\RodDb.mdf" />
-    <Content Include="App_Data\RodDb_log.ldf">
-      <DependentUpon>RodDb.mdf</DependentUpon>
-    </Content>
     <Content Include="css\editProfile.css" />
     <Content Include="css\followersAndfollowing.css" />
     <Content Include="css\helpCenter.css" />
