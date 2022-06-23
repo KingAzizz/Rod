@@ -83,7 +83,7 @@
                 
            <asp:Button ID="monthFilter" runat="server" Text="الشهر" OnClick="MonthFilter" />
            <asp:Button ID="commonFilter" runat="server" OnClick="CommonFilter" Text="الشائع" />
-           <asp:Button ID="weekFilter" runat="server" Text="الأسبوع" />
+           <asp:Button ID="weekFilter" runat="server" Text="الأسبوع" onClick="WeekFilter"  />
 
             </div>
             <div>
