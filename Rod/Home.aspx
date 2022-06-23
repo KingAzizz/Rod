@@ -81,9 +81,9 @@
         <section class="content">
             <div>
                 
-                 <asp:Button ID="month" runat="server" Text="الشهر" />
-                  <asp:Button ID="common" runat="server" Text="الشائع" />
-                  <asp:Button ID="week" runat="server" Text="الأسبوع" />
+                 <asp:Button ID="monthFilter" runat="server" Text="الشهر" OnClick="MonthFilter" />
+                  <asp:Button ID="commonFilter" runat="server" Text="الشائع" />
+                  <asp:Button ID="weekFilter" runat="server" Text="الأسبوع" />
 
             </div>
             <div>

@@ -96,31 +96,31 @@ namespace Rod
         protected global::System.Web.UI.WebControls.HyperLink HyperLink1;
 
         /// <summary>
-        /// month control.
+        /// monthFilter control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button month;
+        protected global::System.Web.UI.WebControls.Button monthFilter;
 
         /// <summary>
-        /// common control.
+        /// commonFilter control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button common;
+        protected global::System.Web.UI.WebControls.Button commonFilter;
 
         /// <summary>
-        /// week control.
+        /// weekFilter control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button week;
+        protected global::System.Web.UI.WebControls.Button weekFilter;
 
         /// <summary>
         /// askQuestion control.
