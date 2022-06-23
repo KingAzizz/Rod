@@ -252,7 +252,7 @@
         .content > div:nth-child(1) input {
             width: 100%;
             text-align: center;
-            height: 90%;
+            height: 40%;
             border: none;
             background-color: #ffff;
             color:black;
@@ -435,11 +435,7 @@
             align-items: center;
         }
 
-            .content > div:nth-child(1) > button {
-                position: relative;
-                height: 10px;
-                top: -15px;
-            }
+          
 
         .content > div:nth-child(2) {
             margin-left: 0px;
