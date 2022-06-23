@@ -112,7 +112,8 @@ namespace Rod
         protected void MonthFilter(object sender, EventArgs e)
         {
             sectionQuestions.InnerHtml = "";
-
+            commonFilter.Style.Remove("border-top");
+            weekFilter.Style.Remove("border-top");
             monthFilter.Style.Add("border-top", "3px solid #4F6BFF");
 
             string cs = @"Server=tcp:roddatabase.database.windows.net,1433;Initial Catalog=Rod;Persist Security Info=False;User ID=rodADMIN;Password=rodipa2022@;MultipleActiveResultSets=False;Encrypt=True;TrustServerCertificate=False;Connection Timeout=30;";
@@ -161,6 +162,7 @@ namespace Rod
         {
             sectionQuestions.InnerHtml = "";
             monthFilter.Style.Remove("border-top");
+            weekFilter.Style.Remove("border-top");
             commonFilter.Style.Add("border-top", "3px solid #4F6BFF");
 
             string cs = @"Server=tcp:roddatabase.database.windows.net,1433;Initial Catalog=Rod;Persist Security Info=False;User ID=rodADMIN;Password=rodipa2022@;MultipleActiveResultSets=False;Encrypt=True;TrustServerCertificate=False;Connection Timeout=30;";
@@ -182,6 +184,57 @@ namespace Rod
                 while (dr.Read())
                 {
                     
+                    sectionQuestions.InnerHtml += " " +
+                   " <div class='question'>" +
+                     "<div class='votesAnswers'>" +
+
+                      "<h3><span>" + dr.GetValue(32).ToString() + "</span> التقييم</h3>" +
+                    "<div class='answersContainer'>" +
+                    "<h3><span>" + dr.GetValue(31).ToString() + "</span> الأجابات</h3>" +
+                     "</div>  </div>" +
+
+
+                   " <div class='questionTitle'>" +
+                       " <p>" + dr.GetValue(26).ToString() + "</p> </div>" +
+
+                   " <div class='usernameQuestionDetails'>" +
+                    "<h2><span>" + dr.GetValue(1).ToString() + "</span>   <span>" + dr.GetValue(15).ToString() + "</span></h2>" +
+                   " <p>" + RelativeDate(Convert.ToDateTime(dr.GetValue(29))) + "</p></div></div>";
+                }
+            }
+
+
+            con.Close();
+
+        }
+
+        protected void WeekFilter(object sender, EventArgs e)
+        {
+            sectionQuestions.InnerHtml = "";
+            monthFilter.Style.Remove("border-top");
+            commonFilter.Style.Remove("border-top");
+            weekFilter.Style.Add("border-top", "3px solid #4F6BFF");
+
+            string cs = @"Server=tcp:roddatabase.database.windows.net,1433;Initial Catalog=Rod;Persist Security Info=False;User ID=rodADMIN;Password=rodipa2022@;MultipleActiveResultSets=False;Encrypt=True;TrustServerCertificate=False;Connection Timeout=30;";
+
+            SqlConnection con = new SqlConnection(cs);
+
+            con.Open();
+
+            string viewByWeek = @"SELECT TOP 40 * FROM [User] INNER JOIN [Post] ON [User].id = [Post].userId Where convert(date, [Post].creationDate , 103)< cast(GETDATE() as date) and[Post].creationDate > DATEADD(DAY, -199, convert(date, GETDATE(), 103))
+                ORDER BY[Post].creationDate ASC; ";
+
+
+
+            SqlCommand cmd = new SqlCommand(viewByWeek, con);
+
+            SqlDataReader dr = cmd.ExecuteReader();
+
+            if (dr.HasRows)
+            {
+                while (dr.Read())
+                {
+
                     sectionQuestions.InnerHtml += " " +
                    " <div class='question'>" +
                      "<div class='votesAnswers'>" +
