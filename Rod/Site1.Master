@@ -63,6 +63,20 @@
             <asp:ContentPlaceHolder ID="ContentPlaceHolder1" runat="server">
             </asp:ContentPlaceHolder>
         </div>
+           <footer class="footer">
+        <div>
+            <ul>
+                <li>رد</li>
+                <li>الأسئلة</li>
+                <li>تواصل</li>
+                <li>حول</li>
+                <li><i class="fa-brands fa-twitter"></i></li>
+            </ul>
+        </div>
+        <div>
+            <h1>مكان لجميع المتعلمين</h1>
+        </div>
+    </footer>
     </form>
 </body>
 </html>
