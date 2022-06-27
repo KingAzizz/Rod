@@ -55,6 +55,9 @@ namespace Rod
         }
         protected void Page_Load(object sender, EventArgs e)
         {
+            if (!Page.IsPostBack)
+            {
+
             if (Session["loggedIn"] == null)
             {
                 HideIfUserLoggedIn.Visible = true;
@@ -66,7 +69,7 @@ namespace Rod
                 homeLoggedIn.Visible = true;
                 HideIfUserLoggedIn.Visible = false;
 
-                string cs = @"Server=tcp:roddatabase.database.windows.net,1433;Initial Catalog=Rod;Persist Security Info=False;User ID=rodADMIN;Password=rodipa2022@;MultipleActiveResultSets=False;Encrypt=True;TrustServerCertificate=False;Connection Timeout=30;";
+                string cs = @"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=C:\Users\aziz\source\repos\Rod\Rod\App_Data\Rod.mdf;Integrated Security=True";
 
                 SqlConnection con = new SqlConnection(cs);
 
@@ -107,6 +110,7 @@ namespace Rod
                 con.Close();
 
             }
+            }
         }
 
         protected void MonthFilter(object sender, EventArgs e)
@@ -116,7 +120,7 @@ namespace Rod
             weekFilter.Style.Remove("border-top");
             monthFilter.Style.Add("border-top", "3px solid #4F6BFF");
 
-            string cs = @"Server=tcp:roddatabase.database.windows.net,1433;Initial Catalog=Rod;Persist Security Info=False;User ID=rodADMIN;Password=rodipa2022@;MultipleActiveResultSets=False;Encrypt=True;TrustServerCertificate=False;Connection Timeout=30;";
+            string cs = @"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=C:\Users\aziz\source\repos\Rod\Rod\App_Data\Rod.mdf;Integrated Security=True";
 
             SqlConnection con = new SqlConnection(cs);
 
@@ -165,7 +169,7 @@ namespace Rod
             weekFilter.Style.Remove("border-top");
             commonFilter.Style.Add("border-top", "3px solid #4F6BFF");
 
-            string cs = @"Server=tcp:roddatabase.database.windows.net,1433;Initial Catalog=Rod;Persist Security Info=False;User ID=rodADMIN;Password=rodipa2022@;MultipleActiveResultSets=False;Encrypt=True;TrustServerCertificate=False;Connection Timeout=30;";
+            string cs = @"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=C:\Users\aziz\source\repos\Rod\Rod\App_Data\Rod.mdf;Integrated Security=True";
 
             SqlConnection con = new SqlConnection(cs);
 
@@ -215,7 +219,7 @@ namespace Rod
             commonFilter.Style.Remove("border-top");
             weekFilter.Style.Add("border-top", "3px solid #4F6BFF");
 
-            string cs = @"Server=tcp:roddatabase.database.windows.net,1433;Initial Catalog=Rod;Persist Security Info=False;User ID=rodADMIN;Password=rodipa2022@;MultipleActiveResultSets=False;Encrypt=True;TrustServerCertificate=False;Connection Timeout=30;";
+            string cs = @"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=C:\Users\aziz\source\repos\Rod\Rod\App_Data\Rod.mdf;Integrated Security=True";
 
             SqlConnection con = new SqlConnection(cs);
 
