@@ -34,7 +34,11 @@
         <div class="searchContainer">
             <div class="searchInputDiv">
                 <i class="fa-solid fa-magnifying-glass searchIcon"></i>
+                <asp:Panel runat="server" DefaultButton="searchButton">
+
                 <asp:TextBox ID="searchText" runat="server" CssClass="searchInput" placeholder="ابحث عن السؤال"></asp:TextBox>
+                    <asp:Button ID="searchButton" runat="server" CssClass="hideButton" OnClick="SearchTrigger" />
+                </asp:Panel>
             </div>
         </div>
 
