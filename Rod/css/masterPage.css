@@ -7,6 +7,10 @@ body {
     position: relative;
     margin: 0;
     min-height: 100%;
+    
+}
+.hideButton {
+    display: none;
 }
 
 .navbar {
@@ -72,6 +76,7 @@ a {
 }
 
 .searchInput {
+    direction:rtl;
     background-color: #ffff;
     border: 1px solid #4F6BFF;
     width: calc(55vw - 50px);
@@ -168,7 +173,7 @@ ul{
         margin-left: 0;
     }
 
-    .searchInputDiv > input {
+    .searchInput {
         display: none;
     }
 
