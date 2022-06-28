@@ -1,2 +1,338 @@
-﻿body {
+﻿
+
+
+.searchResult {
+    height: 100vh;
+    margin-left: 211px;
+    min-height: 100%;
+    margin-bottom: 70px;
+    clear: both;
+}
+.searchFilters {
+    margin-top: 2px;
+    margin-left: 211px;
+    display: flex;
+    flex-direction: column;
+    box-shadow: rgb(0 0 0 / 35%) 0px 5px 15px;
+    padding: 20px;
+    flex-wrap: nowrap;
+    gap: 20px;
+    justify-content: center;
+    align-items: center;
+}
+
+    .searchFilters > div:nth-child(1) {
+        display: flex;
+        flex-direction: row;
+        width: 100%;
+        justify-content: space-between;
+    }
+        .searchFilters > div:nth-child(1) > a {
+            background-color: #4F6BFF;
+            color: white;
+            width: 100px;
+            padding: 10px;
+            font-size: 1.2rem;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            border-radius: 12px;
+        }
+
+        .searchFilters > div:nth-child(1) > h1 {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+    .searchFilters > div:nth-child(2) {
+        width: 100%;
+        text-align: end;
+        color:#6A737C;
+    }
+    .searchFilters > div:nth-child(3) {
+        width: 100%;
+        display: flex;
+        justify-content: space-between;
+        flex-direction: row;
+        align-items: center;
+    }
+    .searchFilters > div:nth-child(3) > p {
+       font-size:1.4rem;
+    }
+        .searchFilters > div:nth-child(3) > div {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            position: relative;
+            top:-6px;
+        }
+            .searchFilters > div:nth-child(3) > div > input {
+                width: 100%;
+                text-align: center;
+                height: 30px;   
+                border: none;
+                background-color: #ffff;
+                color: black;
+                cursor: pointer;
+                font-size: 20px;
+                margin: 10px;
+                padding: 8px;
+            }
+
+    .searchFilters > div:nth-child(3) > div > input:hover {
+        color: gray;
+    }
+        
+.question {
+    box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    grid-template-rows: 1fr 1fr 1fr;
+    gap: 0px 0px;
+    grid-auto-flow: row;
+    grid-template-areas:
+        "usernameQuestionDetails questionTitle votesAnswers"
+        "usernameQuestionDetails questionTitle votesAnswers"
+        "usernameQuestionDetails questionTitle votesAnswers";
+    padding: 30px;
+}
+
+.votesAnswers {
+    grid-area: votesAnswers;
+    display: flex;
+    flex-direction: column;
+    text-align: end;
+    justify-content: end;
+    align-items: flex-end;
+    gap: 7px;
+    margin: 10px 9px 0 0;
+    position: relative;
+}
+
+    .votesAnswers > h3 {
+        margin: 0 33px 5px 0;
+        font-size: 1.4rem;
+        width: 100px;
+    }
+
+.answersContainer > h3 {
+    font-size: 1.38rem;
+    margin-left: 14px;
+    color: green;
+}
+
+.votesAnswers > h3:nth-child(1) > span {
+    margin-right: 21px;
+    position: absolute;
+    right: 85px;
+    top: 3px;
+}
+
+.answersContainer > h3 > span {
+    position: absolute;
+    right: 109px;
+}
+
+.answersContainer {
+    border: 2px solid green;
+    padding: 10px;
+    width: 120px;
+    text-align: center;
+}
+
+.questionTitle {
+    grid-area: questionTitle;
+    text-align: end;
+    display: flex;
+    justify-content: flex-end;
+    cursor: pointer;
+    margin: 20px 0 0 0;
+    color: #0173CC;
+    font-size: 1.4625rem;
+    font-weight: 100;
+    text-decoration: underline;
+}
+
+.usernameQuestionDetails {
+    grid-area: usernameQuestionDetails;
+    margin: 20px;
+    display: flex;
+}
+
+    .usernameQuestionDetails > h2 > span:nth-child(1) {
+        color: #0173CC;
+    }
+
+    .usernameQuestionDetails > h2 > span:nth-child(2) {
+        font-size: 1rem;
+    }
+
+    .usernameQuestionDetails > p {
+        color: #0173CC;
+        font-size: 0.7rem;
+        margin-top: 10px;
+        margin: 10px 0 0 10px;
+    }
+.sidenav {
+    transition: 2s;
+    height: 100%;
+    position: fixed;
+    margin-top: 62px;
+    border-right: 2px solid black;
+    z-index: 1;
+    top: 0;
+    left: 0;
+    background-color: #ffff;
+    overflow-x: hidden;
+    padding-top: 80px;
+}
+
+    .sidenav a {
+        padding: 6px 6px 6px 32px;
+        text-decoration: none;
+        font-size: 25px;
+        color: #818181;
+        display: block;
+        position: relative;
+    }
+
+#selected {
+    color: black;
+}
+
+    #selected::before {
+        content: "";
+        width: 8px;
+        height: 30px;
+        background-color: #F48123;
+        right: 0;
+        position: absolute;
+    }
+
+
+
+
+.sidenav a:hover {
+    color: black;
+}
+
+.hamburgerMenu {
+    display: none;
+    z-index: 9999;
+}
+
+.display {
+    display: block !important;
+    transition: 2s ease-in-out;
+}
+
+.hamburgerButton {
+    outline: none;
+    background-color: white;
+    border: none;
+    position: absolute;
+    margin-left: 30px;
+    cursor: pointer;
+    font-size: 21px;
+    z-index: 9999;
+}
+@media screen and (max-height: 450px) {
+    .sidenav {
+        padding-top: 15px;
+    }
+
+        .sidenav a {
+            font-size: 18px;
+        }
+}
+
+@media screen and (max-width: 840px) {
+    .homeImage1 {
+        display: none;
+    }
+
+    .RodJoin {
+        width: 300px;
+        padding: 10px;
+    }
+
+    .aboutUs > div > p {
+        margin-top: 50px;
+        text-align: center;
+        height: 10px;
+        font-size: 17px;
+        width: 90vw;
+    }
+
+    .profileImage {
+        position: relative;
+        right: 5px;
+    }
+
+    .sidenav {
+        display: none;
+    }
+
+    .hamburgerMenu {
+        display: block;
+    }
+
+    .hamburgerButton {
+        top: 70px;
+    }
+
+    .searchFilters {
+        margin-left: 0;
+    }
+
+    
+    .searchResult {
+        margin-left: 0;
+    }
+
+    .questionTitle {
+        text-align: center;
+        font-size: 1.2rem;
+        width: calc(130% - 20px);
+    }
+
+    .usernameQuestionDetails {
+        position: relative;
+        right: 30px;
+    }
+
+    .votesAnswers {
+        width: 100px;
+        margin-left: 30px;
+    }
+
+        .votesAnswers > h3 {
+            font-size: 1rem;
+            margin: 0;
+        }
+
+    .answersContainer > h3 {
+        font-size: 1rem;
+        width: 70px;
+        margin-left: -9px;
+    }
+
+    .votesAnswers > h3:nth-child(1) > span {
+        margin-right: 0;
+        position: relative;
+        right: 0;
+        top: 0;
+    }
+
+    .answersContainer > h3 > span {
+        position: relative;
+        right: 0;
+    }
+
+    .answersContainer {
+        border: 1px solid green;
+        width: 50px;
+        margin-right: -10px;
+    }
 }
