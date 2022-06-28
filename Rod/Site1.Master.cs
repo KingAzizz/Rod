@@ -26,5 +26,9 @@ namespace Rod
 
             }
         }
+        protected void SearchTrigger(object sender, EventArgs e)
+        {
+            Response.Redirect("SearchResult.aspx?searched=" + searchText.Text);
+        }
     }
 }
