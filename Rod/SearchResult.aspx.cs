@@ -62,8 +62,8 @@ namespace Rod
                 SqlConnection con = new SqlConnection(cs);
 
                 con.Open();
-
-                string SearchResult = @"SELECT COUNT(*) OVER(),[User].username,[User].reputation,[Post].title,[Post].creationDate,[Post].upvoteCount,[Post].answerCount
+                
+                string SearchResult = @"SELECT COUNT(*) OVER(),[User].username,[User].reputation,[Post].id,[Post].title,[Post].creationDate,[Post].upvoteCount,[Post].answerCount
                     FROM [User]
                     INNER JOIN [Post]
                     ON [User].id = [Post].userId
@@ -84,22 +84,22 @@ namespace Rod
                         }
                         count = true;
                        
-                       searchResult.InnerHtml +=  " " +
+                        searchResult.InnerHtml +=  " " +
                        " <div class='question'>" +
                          "<div class='votesAnswers'>" +
 
-                          "<h3><span>" + dr.GetValue(5).ToString() + "</span> التقييم</h3>" +
+                          "<h3><span>" + dr.GetValue(6).ToString() + "</span> التقييم</h3>" +
                         "<div class='answersContainer'>" +
-                        "<h3><span>" + dr.GetValue(6).ToString() + "</span> الأجابات</h3>" +
+                        "<h3><span>" + dr.GetValue(7).ToString() + "</span> الأجابات</h3>" +
                          "</div>  </div>" +
 
 
                        " <div class='questionTitle'>" +
-                           " <p>" + dr.GetValue(3).ToString() + "</p> </div>" +
+                           "<a style='color: #0173CC;' href='Question.aspx?question=" + dr.GetValue(3) + "'>" + dr.GetValue(4).ToString() + "</a> </div>" +
 
                        " <div class='usernameQuestionDetails'>" +
                         "<h2><span>" + dr.GetValue(1).ToString() + "</span>   <span>" + dr.GetValue(2).ToString() + "</span></h2>" +
-                       " <p>" + RelativeDate(Convert.ToDateTime(dr.GetValue(4))) + "</p></div></div>";
+                       " <p>" + RelativeDate(Convert.ToDateTime(dr.GetValue(5))) + "</p></div></div>";
                     }
                 }
                 con.Close();
@@ -115,7 +115,7 @@ namespace Rod
             SqlConnection con = new SqlConnection(cs);
 
             con.Open();
-            string SearchResultByNewest = @"SELECT COUNT(*) OVER(),[User].username,[User].reputation,[Post].title,[Post].creationDate,[Post].upvoteCount,[Post].answerCount
+            string SearchResultByNewest = @"SELECT COUNT(*) OVER(),[User].username,[User].reputation,[Post].id,[Post].title,[Post].creationDate,[Post].upvoteCount,[Post].answerCount
                     FROM [User]
                     INNER JOIN [Post]
                     ON [User].id = [Post].userId
@@ -140,18 +140,18 @@ namespace Rod
                     " <div class='question'>" +
                       "<div class='votesAnswers'>" +
 
-                       "<h3><span>" + dr.GetValue(5).ToString() + "</span> التقييم</h3>" +
+                       "<h3><span>" + dr.GetValue(6).ToString() + "</span> التقييم</h3>" +
                      "<div class='answersContainer'>" +
-                     "<h3><span>" + dr.GetValue(6).ToString() + "</span> الأجابات</h3>" +
+                     "<h3><span>" + dr.GetValue(7).ToString() + "</span> الأجابات</h3>" +
                       "</div>  </div>" +
 
 
                     " <div class='questionTitle'>" +
-                        " <p>" + dr.GetValue(3).ToString() + "</p> </div>" +
+                        "<a style='color: #0173CC;' href='Question.aspx?question=" + dr.GetValue(3) + "'>" + dr.GetValue(4).ToString() + "</a> </div>" +
 
                     " <div class='usernameQuestionDetails'>" +
                      "<h2><span>" + dr.GetValue(1).ToString() + "</span>   <span>" + dr.GetValue(2).ToString() + "</span></h2>" +
-                    " <p>" + RelativeDate(Convert.ToDateTime(dr.GetValue(4))) + "</p></div></div>";
+                    " <p>" + RelativeDate(Convert.ToDateTime(dr.GetValue(5))) + "</p></div></div>";
                 }
             }
             con.Close();
@@ -165,7 +165,7 @@ namespace Rod
             SqlConnection con = new SqlConnection(cs);
 
             con.Open();
-            string SearchResultByNewest = @"SELECT COUNT(*) OVER(),[User].username,[User].reputation,[Post].title,[Post].creationDate,[Post].upvoteCount,[Post].answerCount
+            string SearchResultByNewest = @"SELECT COUNT(*) OVER(),[User].username,[User].reputation,[Post].id,[Post].title,[Post].creationDate,[Post].upvoteCount,[Post].answerCount
                     FROM [User]
                     INNER JOIN [Post]
                     ON [User].id = [Post].userId
@@ -190,18 +190,18 @@ namespace Rod
                     " <div class='question'>" +
                       "<div class='votesAnswers'>" +
 
-                       "<h3><span>" + dr.GetValue(5).ToString() + "</span> التقييم</h3>" +
+                       "<h3><span>" + dr.GetValue(6).ToString() + "</span> التقييم</h3>" +
                      "<div class='answersContainer'>" +
-                     "<h3><span>" + dr.GetValue(6).ToString() + "</span> الأجابات</h3>" +
+                     "<h3><span>" + dr.GetValue(7).ToString() + "</span> الأجابات</h3>" +
                       "</div>  </div>" +
 
 
                     " <div class='questionTitle'>" +
-                        " <p>" + dr.GetValue(3).ToString() + "</p> </div>" +
+                        "<a style='color: #0173CC;' href='Question.aspx?question=" + dr.GetValue(3) + "'>" + dr.GetValue(4).ToString() + "</a> </div>" +
 
                     " <div class='usernameQuestionDetails'>" +
                      "<h2><span>" + dr.GetValue(1).ToString() + "</span>   <span>" + dr.GetValue(2).ToString() + "</span></h2>" +
-                    " <p>" + RelativeDate(Convert.ToDateTime(dr.GetValue(4))) + "</p></div></div>";
+                    " <p>" + RelativeDate(Convert.ToDateTime(dr.GetValue(5))) + "</p></div></div>";
                 }
             }
             con.Close();
