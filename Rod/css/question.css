@@ -236,6 +236,7 @@
         .userPostDetails > div:nth-child(2) > div:nth-child(2) > img {
             border-radius: 30px;
             width: 40px;
+            height:40px;
             margin-right: 10px;
         }
 
