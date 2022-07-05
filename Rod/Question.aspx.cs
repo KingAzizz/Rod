@@ -54,7 +54,7 @@ namespace Rod
             }
         }
         protected void Page_Load(object sender, EventArgs e)
-        {
+        {   
             if (!Page.IsPostBack)
             {
                 string cs = @"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=C:\Users\aziz\source\repos\Rod\Rod\App_Data\Rod.mdf;Integrated Security=True";
@@ -84,13 +84,14 @@ namespace Rod
                         
                         if(triggerd != true)
                         {
+                            
                             postTitle.InnerText = dr.GetValue(2).ToString();
                             postBody.InnerText = dr.GetValue(3).ToString();
                             postCreation.InnerText = RelativeDate(Convert.ToDateTime(dr.GetValue(5)));
 
                             postCreationUser.InnerText = RelativeDate(Convert.ToDateTime(dr.GetValue(5))) + "انسأل قبل";
                             postTagsDiv.InnerHtml = "<a href=#TAGGHERE>" + dr.GetValue(4).ToString() + "</a>";
-                            userProfileImagePost.ImageUrl = "https://i.pinimg.com/564x/a1/85/45/a185459b5804d2b96231521f0b333d9b.jpg";
+                            userProfileImagePost.ImageUrl = dr.GetValue(24).ToString();
                             userLinkProfilePost.NavigateUrl = "#";
                             userLinkProfilePost.Text = dr.GetValue(11).ToString();
                             postUpvotedown.InnerText = dr.GetValue(8).ToString();
