@@ -1,2 +1,76 @@
-﻿body {
+﻿.login {
+    min-height: 576px;
+    margin-bottom: 70px;
+    clear: both;
+    direction: rtl;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    background-color: #ebebeb;
+}
+
+    .login > div > h1 {
+        color: #4F6BFF;
+        margin: 10px;
+        font-size: 3rem;
+    }
+
+.invalidCredentialsContainer{
+    display:flex;
+    justify-content:center;
+    align-items:center;
+}
+.loginContainer {
+    background-color: #ffff;
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+    border-radius: 10px;
+    padding: 30px;
+    height: 260px;
+    width: 300px;
+}
+
+    .loginContainer > span:nth-child(5) {
+        color: #4F6BFF;
+        margin-bottom: 10px;
+    }
+
+    .loginContainer > input:not(input:nth-child(9)) {
+        border: 1px #ebebeb;
+        background-color: #ebebeb;
+        border-radius: 10px;
+        padding: 9px;
+        transition: 0.3s;
+    }
+
+    .loginContainer > input:focus-within:not(input:nth-child(9)) {
+        background-color: #ffff;
+    }
+
+.loginBtn {
+    border: none;
+    margin-top: 10px;
+    width: 300px;
+    background-color: #4F6BFF;
+    padding: 10px;
+    border-radius: 10px;
+    color: white;
+    transition: 0.4s;
+    cursor: pointer;
+}
+
+    .loginBtn:hover {
+        background-color: #3555f8;
+    }
+
+@media screen and (max-width: 300px) {
+    .loginContainer {
+        width: 190px;
+    }
+
+        .loginContainer > input:nth-child(5) {
+            width: 190px;
+        }
 }
