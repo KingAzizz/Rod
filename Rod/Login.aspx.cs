@@ -33,6 +33,11 @@ namespace Rod
             SqlDataReader dr = cmd.ExecuteReader();
             if (dr.HasRows)
             {
+                while (dr.Read())
+                {
+                    Session["id"] = dr.GetValue(0);
+                    break;
+                }
                 Session["username"] = username;
                 Session["loggedIn"] = "true";
                 Response.Redirect("~/Home.aspx");
