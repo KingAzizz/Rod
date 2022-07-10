@@ -5,11 +5,52 @@ using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 using System.Data.SqlClient;
+using System.Data;
 
 namespace Rod
 {
     public partial class Question : System.Web.UI.Page
     {
+        
+
+        public static bool Followed(int user1, int user2)
+        {
+          if(HttpContext.Current.Session["id"] != null)
+            {
+                string cs = @"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=C:\Users\aziz\source\repos\Rod\Rod\App_Data\Rod.mdf;Integrated Security=True";
+                SqlConnection con = new SqlConnection(cs);
+                con.Open();
+
+                string checkIfFollow = @"Select * from [Following]
+                where [Following].userId =" + user1 +  "and [followingID] =" + user2;
+                SqlCommand cmd = new SqlCommand(checkIfFollow, con);
+
+                SqlDataReader dr = cmd.ExecuteReader();
+
+              
+
+
+                if (dr.HasRows)
+                {
+                   
+                    con.Close();
+                    return false;
+                }
+                else
+                {
+                    
+                    con.Close();
+                    return true;
+                }
+               
+            }
+            else
+            {
+                HttpContext.Current.Response.Write("u must be logged in");
+            }
+          
+            return true;
+        }
         public static string RelativeDate(DateTime theDate)
         {
             const int SECOND = 1;
@@ -54,9 +95,12 @@ namespace Rod
             }
         }
         protected void Page_Load(object sender, EventArgs e)
-        {   
+        {
+            
+           
             if (!Page.IsPostBack)
             {
+                
                 string cs = @"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=C:\Users\aziz\source\repos\Rod\Rod\App_Data\Rod.mdf;Integrated Security=True";
                 SqlConnection con = new SqlConnection(cs);
                 con.Open();
@@ -84,7 +128,20 @@ namespace Rod
                         
                         if(triggerd != true)
                         {
-                            
+                            if(Convert.ToInt32(Session["id"]) != Convert.ToInt32(dr.GetValue(1)))
+                            {
+
+                            userId.Value = dr.GetValue(1).ToString();
+                            postUserFollower.Visible = Followed(Convert.ToInt32(Session["id"]), Convert.ToInt32(dr.GetValue(1)));
+                            bool userpostUserFollower = postUserFollower.Visible;
+                            unFollowUserPost.Visible = !userpostUserFollower;
+                            }
+                            else
+                            {
+                                postUserFollower.Visible = false;
+                               
+                                unFollowUserPost.Visible = false;
+                            }
                             postTitle.InnerText = dr.GetValue(2).ToString();
                             postBody.InnerText = dr.GetValue(3).ToString();
                             postCreation.InnerText = RelativeDate(Convert.ToDateTime(dr.GetValue(5)));
@@ -95,48 +152,11 @@ namespace Rod
                             userLinkProfilePost.NavigateUrl = "#";
                             userLinkProfilePost.Text = dr.GetValue(11).ToString();
                             postUpvotedown.InnerText = dr.GetValue(8).ToString();
+                            Bind();
                         }
                         triggerd = true;
 
-                        answersPost.InnerHtml +=
-                          @"<section class='postAnswer'>
-                    <div class='vote postVote'>
-                    <div>
-                    <span>
-                        <i class='fa-solid fa-angle-up'></i> <input type = 'button' />
-                    </span>
-                    <span>" + dr.GetValue(39).ToString() + @" </span>
-                    <span>
-                        <i class='fa-solid fa-angle-down'></i> <input type = 'button' />
-                    </ span >
-
-
-                </div>
-
-
-            </div>
-            <div class='questionPost'>
-                <p style='font-size:100%'>" + dr.GetValue(37).ToString() + @"</p>
-                
-            </div>
-          </section>
-          
-          <div class='userPostDetails'>
-              <div>
-                <input type = 'button' value='متابعة'/>
-                <button onclick = 'copyToClipboard(window.location.href)' > نشر </button>
-            </div>
-            <div>
-                <div id='answeCreation'>"+ RelativeDate(Convert.ToDateTime(dr.GetValue(46)))+ @" </div>
-                <div>
-               
-                <img src= '"+dr.GetValue(56).ToString() +@"' alt='no image' />
-                
-                    <a href='#userLink'>"+ dr.GetValue(43).ToString() + @" </a>
-                </div>
-
-            </div>
-          </div>";
+                        
             
                     }
                 }
@@ -144,6 +164,7 @@ namespace Rod
                 {
                     con.Close();
                     con.Open();
+                    Datalist.Visible = false;
                     string viewQuestionIfItDosentHasAnswers = @"SELECT *
                     FROM[Post]
 
@@ -161,6 +182,10 @@ namespace Rod
 
                             if (triggerd != true)
                             {
+                                userId.Value = dr.GetValue(1).ToString();
+                                postUserFollower.Visible = Followed(Convert.ToInt32(Session["id"]), Convert.ToInt32(dr.GetValue(1)));
+                                bool userpostUserFollower = postUserFollower.Visible;
+                                unFollowUserPost.Visible = !userpostUserFollower;
                                 postTitle.InnerText = drAnswerNotFound.GetValue(2).ToString();
                                 postBody.InnerText = drAnswerNotFound.GetValue(3).ToString();
                                 postCreation.InnerText = RelativeDate(Convert.ToDateTime(drAnswerNotFound.GetValue(5)));
@@ -184,35 +209,123 @@ namespace Rod
                 con.Close();
             }
         }
+        protected void Datalist_ItemDataBound(object sender, DataListItemEventArgs e)
+        {
+            Button Button = e.Item.FindControl("followBtn") as Button;
+            if(Button.Visible == false)
+            {
+                e.Item.FindControl("unFollowBtn").Visible = true;
+            }
+          
+        }
+        protected void Datalist_ItemCommand(object source, DataListCommandEventArgs e)
+        {
+            string cs = @"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=C:\Users\aziz\source\repos\Rod\Rod\App_Data\Rod.mdf;Integrated Security=True";
+            SqlConnection con = new SqlConnection(cs);
+
+
+            if (e.CommandName == "Follow")
+            {
+                con.Open();
+
+                string followInsert = @"
+         insert into [Following] ([userId],[followingID]) values("+ Session["id"] +"," +e.CommandArgument + ");" +
+            "insert into [Followers] ([userId],[followerID]) values("+e.CommandArgument +"," + Session["id"]+");";
+                SqlCommand cmd = new SqlCommand(followInsert, con);
+                cmd.ExecuteNonQuery();
+                e.Item.FindControl("followBtn").Visible = false;
+                e.Item.FindControl("unFollowBtn").Visible = true;
+                con.Close();
+                
+
+            }
+            if(e.CommandName == "Unfollow")
+            {
+                con.Open();
+
+                string unFollowDelete = @"
+                delete from [Following] where [userId] ="+ Session["id"] + @" and [followingID] ="+ e.CommandArgument + @";
+                delete from [Followers] where [userId] =" + e.CommandArgument + @"and [followerID] =" + Session["id"] +" ;";
+                SqlCommand cmd = new SqlCommand(unFollowDelete, con);
+                cmd.ExecuteNonQuery();
+                e.Item.FindControl("unFollowBtn").Visible = false;
+                e.Item.FindControl("followBtn").Visible = true;
+                con.Close();
+            }
+        }
+        public void Bind()
+        {
+            string cs = @"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=C:\Users\aziz\source\repos\Rod\Rod\App_Data\Rod.mdf;Integrated Security=True";
+            SqlConnection con = new SqlConnection(cs);
+            string answersQuery = @"SELECT  Post.*, Answer.*,
+            [User].id as userPostId,
+            [User].username as post_username,
+            useranswer.username as answer_username,
+            Answer.id as userAnswerId,
+            Answer.upvoteCount as answer_upvoteCount,
+            Answer.downvoteCount as answer_downvoteCount,
+            Answer.creationDate as answer_creationDate,
+            useranswer.profileImage as answer_profileImage
+
+            FROM[Post]
+            JOIN[User]  ON[Post].userId = [User].id
+            JOIN Answer ON[Post].id = [Answer].postId
+            JOIN[User] as UserAnswer on Answer.userId = [UserAnswer].id
+            where[Post].id =" + Request.QueryString["question"].ToString();
+            SqlCommand cmd = new SqlCommand(answersQuery, con);
+            SqlDataAdapter da = new SqlDataAdapter(cmd);
+            
+            DataSet ds = new DataSet();
+            da.Fill(ds, "Post");
+            Datalist.DataSource = ds.Tables[0];
+            Datalist.DataBind();
+          
+        }
+
+        protected void PostUserFollower_Click(object sender, EventArgs e)
+        {
+            if(Session["id"] != null)
+            {
+
+            string cs = @"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=C:\Users\aziz\source\repos\Rod\Rod\App_Data\Rod.mdf;Integrated Security=True";
+            SqlConnection con = new SqlConnection(cs);
+            con.Open();
+
+            string followInsert = @"
+         insert into [Following] ([userId],[followingID]) values(" + Session["id"] + "," + Convert.ToInt32(userId.Value) + ");" +
+        "insert into [Followers] ([userId],[followerID]) values(" + Convert.ToInt32(userId.Value) + "," + Session["id"] + ");";
+            SqlCommand cmd = new SqlCommand(followInsert, con);
+            cmd.ExecuteNonQuery();
+                
+                postUserFollower.Visible = false;
+           
+                unFollowUserPost.Visible = true;
+                con.Close();
+            }
+        }
+
+        protected void UnFollowUserPost_Click(object sender, EventArgs e)
+        {
+            if(Session["id"] != null)
+            {
+
+            string cs = @"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=C:\Users\aziz\source\repos\Rod\Rod\App_Data\Rod.mdf;Integrated Security=True";
+            SqlConnection con = new SqlConnection(cs);
+            con.Open();
+            
+
+            string unFollowDelete = @"
+                delete from [Following] where [userId] =" + Session["id"] + @" and [followingID] =" + Convert.ToInt32(userId.Value) + @";
+                delete from [Followers] where [userId] =" + Convert.ToInt32(userId.Value) + @"and [followerID] =" + Session["id"] + " ;";
+            SqlCommand cmd = new SqlCommand(unFollowDelete, con);
+            cmd.ExecuteNonQuery();
+            postUserFollower.Visible = true;
+
+            unFollowUserPost.Visible = false;
+            con.Close();
+            }
+        }
     }
 }
 
 
-/* */
-
-
-
-
-
-
-
-
-/*  "<section class='post'>" +
-                         "<div class='vote postVote'>" +
-                        "<div>" +
-                        "<span>" +
-                        "<i class='fa-solid fa-angle-up'></i> <input type = 'button' /> </span>" +
-
-                    "<span>" + dr.GetValue(39).ToString() + " </ span >" +
-                    "<span> <i class='fa-solid fa-angle-down'></i> <input type = 'button' />  </span></div>  </div>" +
-
-             "<div class='questionPost'>" +
-                "<p style='width:600px;'>" + dr.GetValue(37).ToString() + "</p></div></section>" +
-          "<div class='userPostDetails'>" +
-            "<div>" +
-              "<input type = 'button' value='متابعة'/><button onclick = 'copyToClipboard(window.location.href)' > نشر </ button ></div>" +
-          "<div>" +
-              "<div> انسأل قبل 2 شهر</div>" +
-              "<div>" +
-              "<img src = './pro.jpeg' alt='user profile image' />" +
-              "<a href = '#' >" + dr.GetValue(39).ToString() + " </a></div></div>" + "</div>";*/
