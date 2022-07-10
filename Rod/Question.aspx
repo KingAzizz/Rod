@@ -66,7 +66,9 @@
 
           <div class="userPostDetails">
               <div>
-                <input type="button" value="متابعة"/>
+                  <asp:Button ID="postUserFollower" runat="server" Text="متابعة" onClick="PostUserFollower_Click" />
+                  <asp:HiddenField ID="userId" runat="server" />
+                  <asp:Button ID="unFollowUserPost" runat="server" Text="الغاء المتابعة" OnClick="UnFollowUserPost_Click"  />
                 <button  onclick="copyToClipboard(window.location.href)">نشر</button>
                   <button>الأجابة</button>
             </div>
@@ -88,9 +90,60 @@
             <p>الأجابات</p>
           </div>
           <section class="postAnswer" id="answersPost" runat="server">
-            
+           
+              <asp:DataList ID="Datalist" runat="server"  OnItemDataBound="Datalist_ItemDataBound"
+                onItemCommand ="Datalist_ItemCommand">
+              <ItemTemplate>
+                  <section class='postAnswer'>
+                    <div class='vote postVote'>
+                    <div>
+                    <span>
+                        <i class='fa-solid fa-angle-up'></i> <input type = 'button' />
+                    </span>
+                    <span><%#Eval("answer_upvoteCount") %> </span>
+                    <span>
+                        <i class='fa-solid fa-angle-down'></i> <input type = 'button' />
+                    </ span >
+
+
+                </div>
+
+
+            </div>
+            <div class='questionPost'>
+                <p style='font-size:100%'><%# Eval("answerText") %></p>
+                
+            </div>
+          </section>
           
-    </section>
+          <div class='userPostDetails'>
+              <div>
+              
+                  <asp:Button ID="followBtn" runat="server" Text="متابعة" CommandName="Follow" CommandArgument='<%# Eval("userAnswerId")  %>' Visible='<%#Followed(Convert.ToInt32(Session["id"]) ,Convert.ToInt32(Eval("userAnswerId")) )  %>' />
+                  <asp:Button ID="unFollowBtn" runat="server" Text="الغاء المتابعة" Visible=false CommandName="Unfollow" CommandArgument='<%# Eval("userAnswerId")  %>'  />
+               
+                  
+                <button onclick = 'copyToClipboard(window.location.href)' > نشر </button>
+            </div>
+            <div>
+                <div id='answeCreation'>
+                    <%# RelativeDate(Convert.ToDateTime(Eval("answer_creationDate"))) %>
+                </div>
+                <div>
+               
+                
+                    <asp:Image ID="answerImages" runat="server" ImageUrl='<%# Eval("answer_profileImage") %>' AlternateText="no image" />
+                    <asp:HyperLink ID="answerProfileLink" runat="server" Text='<%#Eval("answer_username") %>'></asp:HyperLink>
+                    
+                </div>
+
+            </div>
+          </div>
+              </ItemTemplate>
+                
+            </asp:DataList>
+          
+         </section>
          </section>
     
 </asp:Content>

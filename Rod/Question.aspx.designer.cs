@@ -105,6 +105,33 @@ namespace Rod
         protected global::System.Web.UI.HtmlControls.HtmlGenericControl postTagsDiv;
 
         /// <summary>
+        /// postUserFollower control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button postUserFollower;
+
+        /// <summary>
+        /// userId control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.HiddenField userId;
+
+        /// <summary>
+        /// unFollowUserPost control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button unFollowUserPost;
+
+        /// <summary>
         /// postCreationUser control.
         /// </summary>
         /// <remarks>
@@ -139,5 +166,14 @@ namespace Rod
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.HtmlControls.HtmlGenericControl answersPost;
+
+        /// <summary>
+        /// Datalist control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.DataList Datalist;
     }
 }
