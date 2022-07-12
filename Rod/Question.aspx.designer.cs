@@ -78,6 +78,24 @@ namespace Rod
         protected global::System.Web.UI.HtmlControls.HtmlGenericControl postCreation;
 
         /// <summary>
+        /// upvoteIconPost control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl upvoteIconPost;
+
+        /// <summary>
+        /// upVoted control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button upVoted;
+
+        /// <summary>
         /// postUpvotedown control.
         /// </summary>
         /// <remarks>
@@ -85,6 +103,24 @@ namespace Rod
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.HtmlControls.HtmlGenericControl postUpvotedown;
+
+        /// <summary>
+        /// downvoteIconPost control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl downvoteIconPost;
+
+        /// <summary>
+        /// downVoted control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button downVoted;
 
         /// <summary>
         /// postBody control.
@@ -121,6 +157,15 @@ namespace Rod
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.HiddenField userId;
+
+        /// <summary>
+        /// postId control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.HiddenField postId;
 
         /// <summary>
         /// unFollowUserPost control.

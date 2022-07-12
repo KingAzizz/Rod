@@ -44,11 +44,11 @@
             <div class="vote postVote">
                 <div>
                     <span>
-                        <i class="fa-solid fa-angle-up"></i> <input type="button"/>
+                        <i class="fa-solid fa-angle-up" id="upvoteIconPost" runat="server"></i> <asp:Button ID="upVoted" runat="server" OnClick="UpVoted_Click" />
                     </span>
                     <span id="postUpvotedown" runat="server">0</span>
                     <span>
-                        <i class="fa-solid fa-angle-down"></i> <input type="button" />
+                        <i class="fa-solid fa-angle-down" id="downvoteIconPost" runat="server"></i> <asp:Button ID="downVoted" runat="server" OnClick="DownVoted_Click" />
                     </span>
                                         
                 </div>
@@ -68,6 +68,7 @@
               <div>
                   <asp:Button ID="postUserFollower" runat="server" Text="متابعة" onClick="PostUserFollower_Click" />
                   <asp:HiddenField ID="userId" runat="server" />
+                  <asp:HiddenField ID="postId" runat="server" />
                   <asp:Button ID="unFollowUserPost" runat="server" Text="الغاء المتابعة" OnClick="UnFollowUserPost_Click"  />
                 <button  onclick="copyToClipboard(window.location.href)">نشر</button>
                   <button>الأجابة</button>
@@ -84,10 +85,13 @@
           </div>
           <!--question POST End HERE-->
 
-      
+        <div id="alertDiv">
+            <h1>you cant upvote a post you already voted up for</h1>
+        </div>
 
           <div class="answers">
             <p>الأجابات</p>
+                
           </div>
           <section class="postAnswer" id="answersPost" runat="server">
            
@@ -95,14 +99,18 @@
                 onItemCommand ="Datalist_ItemCommand">
               <ItemTemplate>
                   <section class='postAnswer'>
+                      <asp:HiddenField ID="answerPostID" runat="server" Value='<%#Eval("Answer_PostId") %>' />
                     <div class='vote postVote'>
                     <div>
                     <span>
-                        <i class='fa-solid fa-angle-up'></i> <input type = 'button' />
+                        <i id="upvoteIcon" runat="server" class='fa-solid fa-angle-up'></i> 
+                        <asp:Button ID="upVote" runat="server" CommandName="Upvote" CommandArgument='<%#Eval("Answer_PostId") %>'  />
+                        
                     </span>
-                    <span><%#Eval("answer_upvoteCount") %> </span>
+                      
+                    <span id="totalVotes" runat="server"><%#Eval("totalVote") %> </span>
                     <span>
-                        <i class='fa-solid fa-angle-down'></i> <input type = 'button' />
+                        <i id="downvoteIcon" runat="server" class='fa-solid fa-angle-down'></i> <asp:Button ID="downVote" runat="server" CommandName="Downvote" CommandArgument='<%#Eval("Answer_PostId") %>'  />
                     </ span >
 
 
