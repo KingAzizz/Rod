@@ -6,6 +6,16 @@
     grid-template-columns: -webkit-max-content 1fr;
     grid-template-columns: max-content fr;
 }
+#alertDiv {
+    display: none;
+    position: absolute;
+    left: 0;
+    right: 0;
+    margin-left: auto;
+    margin-right: auto;
+    width: 100px;
+    background-color:#ffff;
+}
 .display {
     display: block !important;
     transition: 2s ease-in-out;
