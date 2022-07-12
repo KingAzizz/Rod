@@ -22,35 +22,35 @@ namespace Rod
             double delta = Math.Abs(ts.TotalSeconds);
 
             if (delta < 1 * MINUTE)
-                return ts.Seconds == 1 ? " قبل ثانية " : " ثانية " + ts.Seconds + " قبل ";
+                return ts.Seconds == 1 ? " قبل ثانية " : " قبل " + ts.Seconds + " ثانية ";
 
             if (delta < 2 * MINUTE)
                 return " قبل دقيقة ";
 
             if (delta < 45 * MINUTE)
-                return " دقيقة " + ts.Minutes + " قبل  ";
+                return " قبل " + ts.Minutes + " دقايق  ";
 
             if (delta < 90 * MINUTE)
                 return "قبل ساعة";
 
             if (delta < 24 * HOUR)
-                return " ساعه " + ts.Hours + " قبل  ";
+                return " قبل " + ts.Hours + " ساعات ";
 
             if (delta < 48 * HOUR)
                 return "امس";
 
             if (delta < 30 * DAY)
-                return " قبل يوم " + ts.Days;
+                return "قبل " + ts.Days + " يوم ";
 
             if (delta < 12 * MONTH)
             {
                 int months = Convert.ToInt32(Math.Floor((double)ts.Days / 30));
-                return months <= 1 ? " شهر واحد " : " شهور " + months + " قبل  ";
+                return months <= 1 ? " شهر واحد " : " قبل " + months + " شهور  ";
             }
             else
             {
                 int years = Convert.ToInt32(Math.Floor((double)ts.Days / 365));
-                return years <= 1 ? "قبل سنة" : " سنوات " + years + " قبل  ";
+                return years <= 1 ? "قبل سنة" : " قبل " + years + " سنوات  ";
             }
         }
         protected void Page_Load(object sender, EventArgs e)
