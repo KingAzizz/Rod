@@ -128,17 +128,19 @@ namespace Rod
                             if (Convert.ToInt32(Session["id"]) != Convert.ToInt32(dr.GetValue(1)))
                             {
 
-                            userId.Value = dr.GetValue(1).ToString();
+                            
                             postUserFollower.Visible = Followed(Convert.ToInt32(Session["id"]), Convert.ToInt32(dr.GetValue(1)));
                             bool userpostUserFollower = postUserFollower.Visible;
                             unFollowUserPost.Visible = !userpostUserFollower;
+                                deletePost.Visible = false;
                             }
                             else
                             {
+                                deletePost.Visible = true;
                                 postUserFollower.Visible = false;
-                               
                                 unFollowUserPost.Visible = false;
                             }
+                            userId.Value = dr.GetValue(1).ToString();
                             postId.Value = dr.GetValue(0).ToString();
                             postTitle.InnerText = dr.GetValue(2).ToString();
                             postBody.InnerText = dr.GetValue(3).ToString();
@@ -213,17 +215,19 @@ namespace Rod
                                 if (Convert.ToInt32(Session["id"]) != Convert.ToInt32(dr.GetValue(1)))
                                 {
                                    
-                                    userId.Value = dr.GetValue(1).ToString();
+                                   
                                     postUserFollower.Visible = Followed(Convert.ToInt32(Session["id"]), Convert.ToInt32(dr.GetValue(1)));
                                     bool userpostUserFollower = postUserFollower.Visible;
                                     unFollowUserPost.Visible = !userpostUserFollower;
+                                    deletePost.Visible = false;
                                 }
                                 else
                                 {
                                     postUserFollower.Visible = false;
-
+                                    deletePost.Visible = true;
                                     unFollowUserPost.Visible = false;
                                 }
+                                userId.Value = dr.GetValue(1).ToString();
                                 postId.Value = drAnswerNotFound.GetValue(0).ToString();
                                 postTitle.InnerText = drAnswerNotFound.GetValue(2).ToString();
                                 postBody.InnerText = drAnswerNotFound.GetValue(3).ToString();
@@ -252,6 +256,16 @@ namespace Rod
         {
             if (Session["id"] != null)
             {
+                HiddenField hiddenUserId = e.Item.FindControl("answerUserId") as HiddenField;
+            if (Session["id"].ToString() == hiddenUserId.Value.ToString())
+            {
+                e.Item.FindControl("deleteAnswer").Visible = true;
+            }
+            else
+            {
+                e.Item.FindControl("deleteAnswer").Visible = false;
+            }
+           
                 HiddenField hiddenAnswerId = e.Item.FindControl("answerPostID") as HiddenField;
            
             Button Button = e.Item.FindControl("followBtn") as Button;
@@ -332,6 +346,7 @@ namespace Rod
 
 
             }
+
             if(e.CommandName == "Unfollow")
             {
                 if(Session["id"] != null)
@@ -566,6 +581,70 @@ namespace Rod
                 }
 
 
+            }
+
+            if(e.CommandName == "Delete")
+            {
+                if(Session["id"] != null)
+                {
+
+                
+                HiddenField hiddenUserId = e.Item.FindControl("answerUserId") as HiddenField;
+                    HtmlGenericControl answerTextP = e.Item.FindControl("answerTextP") as HtmlGenericControl;
+                if (Session["id"].ToString() == hiddenUserId.Value.ToString())
+                {
+                        con.Open();
+
+                        string deleteUserAnswer = @"delete from [Answer]
+                        where [id] = @answerId and [userId] = @userId";
+
+                        SqlCommand cmd = new SqlCommand(deleteUserAnswer, con);
+
+                        cmd.Parameters.AddWithValue("@answerId", e.CommandArgument);
+                        cmd.Parameters.AddWithValue("@userId", Session["id"]);
+                        cmd.ExecuteNonQuery();
+                        answerTextP.Attributes.Add("style", "text-decoration: line-through");
+                        ScriptManager.RegisterStartupScript(this, GetType(), "displayalertmessage", @"
+                        let alertDiv = document.getElementById('alertDiv');
+                        let alertText = document.getElementById('alertText');
+                        alertDiv.style.display = 'block';
+                        alertText.innerText = 'تم الحذف بنجاح';
+                        alertDiv.classList.add('fadeAway');
+                        setTimeout(() => {
+                        alertDiv.style.display = 'none';
+                        alertText.innerText = '';
+                        alertDiv.classList.remove('fadeAway');
+                        }, 4000)", true);
+                    }
+                    else
+                    {
+                        ScriptManager.RegisterStartupScript(this, GetType(), "displayalertmessage", @"
+                        let alertDiv = document.getElementById('alertDiv');
+                        let alertText = document.getElementById('alertText');
+                        alertDiv.style.display = 'block';
+                        alertText.innerText = 'لست مصرح بالحذف';
+                        alertDiv.classList.add('fadeAway');
+                        setTimeout(() => {
+                        alertDiv.style.display = 'none';
+                        alertText.innerText = '';
+                        alertDiv.classList.remove('fadeAway');
+                        }, 4000)", true);
+                    }
+                }
+                else
+                {
+                    ScriptManager.RegisterStartupScript(this, GetType(), "displayalertmessage", @"
+                        let alertDiv = document.getElementById('alertDiv');
+                        let alertText = document.getElementById('alertText');
+                        alertDiv.style.display = 'block';
+                        alertText.innerText = 'بيانات المستخدم غير موجودة';
+                        alertDiv.classList.add('fadeAway');
+                        setTimeout(() => {
+                        alertDiv.style.display = 'none';
+                        alertText.innerText = '';
+                        alertDiv.classList.remove('fadeAway');
+                        }, 4000)", true);
+                }
             }
         }
         public void Bind()
@@ -880,6 +959,42 @@ namespace Rod
                     alertDiv.classList.remove('fadeAway');
                     }, 4000)", true);
             }
+        }
+
+        protected void DeletePost(object sender, EventArgs e)
+        {
+            if(Session["id"].ToString() == userId.Value.ToString())
+            {
+
+            string cs = @"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=C:\Users\aziz\source\repos\Rod\Rod\App_Data\Rod.mdf;Integrated Security=True";
+            SqlConnection con = new SqlConnection(cs);
+
+            con.Open();
+
+            string deleteUserPost = @"delete from [Post] where [id] = @postId and [userId] = @userId";
+
+            SqlCommand cmd = new SqlCommand(deleteUserPost, con);
+
+            cmd.Parameters.AddWithValue("@postId", postId.Value);
+            cmd.Parameters.AddWithValue("@userId", userId.Value);
+            cmd.ExecuteNonQuery();
+                Response.Redirect("~/Home.aspx");
+            }
+            else
+            {
+                ScriptManager.RegisterStartupScript(this, GetType(), "displayalertmessage", @"
+                    let alertDiv = document.getElementById('alertDiv');
+                    let alertText = document.getElementById('alertText');
+                    alertDiv.style.display = 'block';
+                    alertText.innerText = 'لست مصرح بالحذف';
+                    alertDiv.classList.add('fadeAway');
+                    setTimeout(() => {
+                    alertDiv.style.display = 'none';
+                    alertText.innerText = '';
+                    alertDiv.classList.remove('fadeAway');
+                    }, 4000)", true);
+            }
+
         }
     }
 }
