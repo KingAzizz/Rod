@@ -1,6 +1,4 @@
 ﻿
-
-
 .postAnswer {
     display: grid;
     grid-template-columns: -webkit-max-content 1fr;
@@ -100,7 +98,7 @@
         }
 }
 .questionContainer {
-    height: 100vh;
+    height: fit-content;
     min-height: 100vh;
     padding-bottom: 110vh;
     clear: both;
