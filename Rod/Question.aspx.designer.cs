@@ -177,6 +177,15 @@ namespace Rod
         protected global::System.Web.UI.WebControls.Button unFollowUserPost;
 
         /// <summary>
+        /// deletePost control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlButton deletePost;
+
+        /// <summary>
         /// postCreationUser control.
         /// </summary>
         /// <remarks>

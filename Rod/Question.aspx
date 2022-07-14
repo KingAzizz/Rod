@@ -72,6 +72,9 @@
                   <asp:Button ID="unFollowUserPost" runat="server" Text="الغاء المتابعة" OnClick="UnFollowUserPost_Click"  />
                 <button  onclick="copyToClipboard(window.location.href)">نشر</button>
                   <button>الأجابة</button>
+                  <button id="deletePost" runat="server" onserverclick="DeletePost" style="color:darkred;">
+                      <i class="fa-solid fa-trash"></i>
+                  </button>
             </div>
             <div>
                 <div id="postCreationUser" runat="server"></div>
@@ -98,8 +101,9 @@
               <asp:DataList ID="Datalist" runat="server"  OnItemDataBound="Datalist_ItemDataBound"
                 onItemCommand ="Datalist_ItemCommand">
               <ItemTemplate>
+                  <asp:HiddenField ID="answerPostID" runat="server" Value='<%#Eval("Answer_PostId") %>' />
+                      <asp:HiddenField ID="answerUserId" runat="server" Value='<%# Eval("userAnswerId")  %>' />
                   <section class='postAnswer'>
-                      <asp:HiddenField ID="answerPostID" runat="server" Value='<%#Eval("Answer_PostId") %>' />
                     <div class='vote postVote'>
                     <div>
                     <span>
@@ -118,8 +122,8 @@
 
 
             </div>
-            <div class='questionPost'>
-                <p style='font-size:100%'><%# Eval("answerText") %></p>
+            <div class='questionPost' style="width: 73vw;">
+                <p style='font-size:100%' id="answerTextP" runat="server"><%# Eval("answerText") %></p>
                 
             </div>
           </section>
@@ -129,9 +133,10 @@
               
                   <asp:Button ID="followBtn" runat="server" Text="متابعة" CommandName="Follow" CommandArgument='<%# Eval("userAnswerId")  %>' Visible='<%#Followed(Convert.ToInt32(Session["id"]) ,Convert.ToInt32(Eval("userAnswerId")) )  %>' />
                   <asp:Button ID="unFollowBtn" runat="server" Text="الغاء المتابعة" Visible=false CommandName="Unfollow" CommandArgument='<%# Eval("userAnswerId")  %>'  />
-               
-                  
                 <button onclick = 'copyToClipboard(window.location.href)' > نشر </button>
+                  <asp:LinkButton ID="deleteAnswer" runat="server" ForeColor="DarkRed" CommandName="Delete" CommandArgument='<%# Eval("Answer_PostId")  %>' Visible="false">   
+                      <i class="fa-solid fa-trash"></i>
+                  </asp:LinkButton>
             </div>
             <div>
                 <div id='answeCreation'>
