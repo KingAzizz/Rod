@@ -86,7 +86,7 @@
           <!--question POST End HERE-->
 
         <div id="alertDiv">
-            <h1>you cant upvote a post you already voted up for</h1>
+            <h1 id="alertText"></h1>
         </div>
 
           <div class="answers">
