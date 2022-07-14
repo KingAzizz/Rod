@@ -7,14 +7,28 @@
     grid-template-columns: max-content fr;
 }
 #alertDiv {
-    display: none;
-    position: absolute;
-    left: 0;
-    right: 0;
-    margin-left: auto;
-    margin-right: auto;
-    width: 100px;
-    background-color:#ffff;
+  display:none;
+    position: fixed;
+    left: 62%;
+    padding:10px;
+    transform: translate(-50%, 0);
+    border-radius: 10px;
+    background-color: #ffff;
+    color: #4F6BFF;
+    width: fit-content;
+}
+.fadeAway {
+    animation-name: fadeaway;
+    animation-duration: 4s;
+}
+@keyframes fadeaway {
+    0% {
+        opacity:1;
+    }
+
+    100% {
+        opacity: 0;
+    }
 }
 .display {
     display: block !important;
