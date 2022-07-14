@@ -44,10 +44,10 @@ namespace Rod
             }
             else
             {
-                HttpContext.Current.Response.Write("u must be logged in");
+                return true;
             }
           
-            return true;
+           
         }
         public static string RelativeDate(DateTime theDate)
         {
@@ -158,6 +158,10 @@ namespace Rod
 
                     }
                     con.Close();
+                    if(Session["id"] != null)
+                    {
+
+                   
                     con.Open();
                     string checkIfUserAlreadyVoted = @"select * from [Vote]
                          where [postId] =" + postId.Value + "and [userId] =" + Session["id"] + ";";
@@ -178,6 +182,7 @@ namespace Rod
                                 downvoteIconPost.Attributes.Add("style", "color:orange");
                             }
                         }
+                    }
                     }
 
                 }
@@ -245,13 +250,18 @@ namespace Rod
         }
         protected void Datalist_ItemDataBound(object sender, DataListItemEventArgs e)
         {
-            HiddenField hiddenAnswerId = e.Item.FindControl("answerPostID") as HiddenField;
+            if (Session["id"] != null)
+            {
+                HiddenField hiddenAnswerId = e.Item.FindControl("answerPostID") as HiddenField;
            
             Button Button = e.Item.FindControl("followBtn") as Button;
             if(Button.Visible == false)
             {
                 e.Item.FindControl("unFollowBtn").Visible = true;
             }
+           
+
+           
             string cs = @"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=C:\Users\aziz\source\repos\Rod\Rod\App_Data\Rod.mdf;Integrated Security=True";
             SqlConnection con = new SqlConnection(cs);
             con.Open();
@@ -277,7 +287,7 @@ namespace Rod
                 }
             }
             con.Close();
-         
+            }
 
         }
         protected void Datalist_ItemCommand(object source, DataListCommandEventArgs e)
@@ -291,6 +301,9 @@ namespace Rod
             int votes = Convert.ToInt32(totalVotes.InnerText);
             if (e.CommandName == "Follow")
             {
+                if(Session["id"] != null)
+                {
+
                 con.Open();
 
                 string followInsert = @"
@@ -301,11 +314,29 @@ namespace Rod
                 e.Item.FindControl("followBtn").Visible = false;
                 e.Item.FindControl("unFollowBtn").Visible = true;
                 con.Close();
-                
+                }
+                else
+                {
+                    ScriptManager.RegisterStartupScript(this, GetType(), "displayalertmessage", @"
+                    let alertDiv = document.getElementById('alertDiv');
+                    let alertText = document.getElementById('alertText');
+                    alertDiv.style.display = 'block';
+                    alertText.innerText = 'لايمكنك المتابعة اذ لم تكن مسجل دخول';
+                    alertDiv.classList.add('fadeAway');
+                    setTimeout(() => {
+                    alertDiv.style.display = 'none';
+                    alertText.innerText = '';
+                    alertDiv.classList.remove('fadeAway');
+                    }, 4000)", true);
+                }
+
 
             }
             if(e.CommandName == "Unfollow")
             {
+                if(Session["id"] != null)
+                {
+
                 con.Open();
 
                 string unFollowDelete = @"
@@ -316,6 +347,21 @@ namespace Rod
                 e.Item.FindControl("unFollowBtn").Visible = false;
                 e.Item.FindControl("followBtn").Visible = true;
                 con.Close();
+                }
+                else
+                {
+                    ScriptManager.RegisterStartupScript(this, GetType(), "displayalertmessage", @"
+                    let alertDiv = document.getElementById('alertDiv');
+                    let alertText = document.getElementById('alertText');
+                    alertDiv.style.display = 'block';
+                    alertText.innerText = 'لايمكنك الغاء المتابعة اذ لم تكن مسجل دخول';
+                    alertDiv.classList.add('fadeAway');
+                    setTimeout(() => {
+                    alertDiv.style.display = 'none';
+                    alertText.innerText = '';
+                    alertDiv.classList.remove('fadeAway');
+                    }, 4000)", true);
+                }
             }
 
             if(e.CommandName == "Upvote")
@@ -401,6 +447,20 @@ namespace Rod
                     con.Close();
                         
                     }
+                }
+                else
+                {
+                    ScriptManager.RegisterStartupScript(this, GetType(), "displayalertmessage", @"
+                    let alertDiv = document.getElementById('alertDiv');
+                    let alertText = document.getElementById('alertText');
+                    alertDiv.style.display = 'block';
+                    alertText.innerText = 'لايمكنك التصويت اذ لم تكن مسجل دخول';
+                    alertDiv.classList.add('fadeAway');
+                    setTimeout(() => {
+                    alertDiv.style.display = 'none';
+                    alertText.innerText = '';
+                    alertDiv.classList.remove('fadeAway');
+                    }, 4000)", true);
                 }
             }
 
@@ -490,6 +550,20 @@ namespace Rod
 
                     }
                 }
+                else
+                {
+                    ScriptManager.RegisterStartupScript(this, GetType(), "displayalertmessage", @"
+                    let alertDiv = document.getElementById('alertDiv');
+                    let alertText = document.getElementById('alertText');
+                    alertDiv.style.display = 'block';
+                    alertText.innerText = 'لايمكنك التصويت اذ لم تكن مسجل دخول';
+                    alertDiv.classList.add('fadeAway');
+                    setTimeout(() => {
+                    alertDiv.style.display = 'none';
+                    alertText.innerText = '';
+                    alertDiv.classList.remove('fadeAway');
+                    }, 4000)", true);
+                }
 
 
             }
@@ -545,6 +619,20 @@ namespace Rod
                 unFollowUserPost.Visible = true;
                 con.Close();
             }
+            else
+            {
+                ScriptManager.RegisterStartupScript(this, GetType(), "displayalertmessage", @"
+                    let alertDiv = document.getElementById('alertDiv');
+                    let alertText = document.getElementById('alertText');
+                    alertDiv.style.display = 'block';
+                    alertText.innerText = 'لايمكنك المتابعة اذ لم تكن مسجل دخول';
+                    alertDiv.classList.add('fadeAway');
+                    setTimeout(() => {
+                    alertDiv.style.display = 'none';
+                    alertText.innerText = '';
+                    alertDiv.classList.remove('fadeAway');
+                    }, 4000)", true);
+            }
         }
 
         protected void UnFollowUserPost_Click(object sender, EventArgs e)
@@ -566,6 +654,20 @@ namespace Rod
 
             unFollowUserPost.Visible = false;
             con.Close();
+            }
+            else
+            {
+                ScriptManager.RegisterStartupScript(this, GetType(), "displayalertmessage", @"
+                    let alertDiv = document.getElementById('alertDiv');
+                    let alertText = document.getElementById('alertText');
+                    alertDiv.style.display = 'block';
+                    alertText.innerText = 'لايمكنك الغاء المتابعة اذ لم تكن مسجل دخول';
+                    alertDiv.classList.add('fadeAway');
+                    setTimeout(() => {
+                    alertDiv.style.display = 'none';
+                    alertText.innerText = '';
+                    alertDiv.classList.remove('fadeAway');
+                    }, 4000)", true);
             }
         }
 
@@ -656,6 +758,20 @@ namespace Rod
                     con.Close();
 
                 }
+            }
+            else
+            {
+                ScriptManager.RegisterStartupScript(this, GetType(), "displayalertmessage", @"
+                    let alertDiv = document.getElementById('alertDiv');
+                    let alertText = document.getElementById('alertText');
+                    alertDiv.style.display = 'block';
+                    alertText.innerText = 'لايمكنك التصويت اذ لم تكن مسجل دخول';
+                    alertDiv.classList.add('fadeAway');
+                    setTimeout(() => {
+                    alertDiv.style.display = 'none';
+                    alertText.innerText = '';
+                    alertDiv.classList.remove('fadeAway');
+                    }, 4000)", true);
             }
         }
 
@@ -749,6 +865,20 @@ namespace Rod
                     con.Close();
 
                 }
+            }
+            else
+            {
+                ScriptManager.RegisterStartupScript(this, GetType(), "displayalertmessage", @"
+                    let alertDiv = document.getElementById('alertDiv');
+                    let alertText = document.getElementById('alertText');
+                    alertDiv.style.display = 'block';
+                    alertText.innerText = 'لايمكنك التصويت اذ لم تكن مسجل دخول';
+                    alertDiv.classList.add('fadeAway');
+                    setTimeout(() => {
+                    alertDiv.style.display = 'none';
+                    alertText.innerText = '';
+                    alertDiv.classList.remove('fadeAway');
+                    }, 4000)", true);
             }
         }
     }
