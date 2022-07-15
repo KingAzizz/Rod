@@ -16,6 +16,11 @@ namespace Rod
             {
                 Response.Redirect("~/Home.aspx");
             }
+            if(Request.Cookies["userCredentials"] != null)
+            {
+                usernameTxt.Text = Request.Cookies["userCredentials"]["username"];
+                
+            }
         }
         protected void Login_Click(object sender, EventArgs e)
         {
@@ -36,8 +41,17 @@ namespace Rod
                 while (dr.Read())
                 {
                     Session["id"] = dr.GetValue(0);
+                    if (rememberMe.Checked)
+                    {
+                        HttpCookie cookie = new HttpCookie("userCredentials");
+                        cookie.Values.Add("username", dr.GetValue(1).ToString());
+                        cookie.Expires = DateTime.Now.AddDays(15);
+                        Response.Cookies.Add(cookie);
+                    }
                     break;
                 }
+                    
+               
                 Session["username"] = username;
                 Session["loggedIn"] = "true";
                 Response.Redirect("~/Home.aspx");
