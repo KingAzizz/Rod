@@ -37,7 +37,7 @@
         margin-bottom: 10px;
     }
 
-    .loginContainer > input:not(input:nth-child(9)) {
+    .loginContainer > input:not(input:nth-child(10)) {
         border: 1px #ebebeb;
         background-color: #ebebeb;
         border-radius: 10px;
@@ -45,9 +45,12 @@
         transition: 0.3s;
     }
 
-    .loginContainer > input:focus-within:not(input:nth-child(9)) {
+    .loginContainer > input:focus-within:not(input:nth-child(10)) {
         background-color: #ffff;
     }
+#ContentPlaceHolder1_rememberMe {
+    margin-left: 10px;
+}
 
 .loginBtn {
     border: none;
