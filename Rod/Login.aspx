@@ -19,10 +19,12 @@
             
             <asp:Label ID="password" runat="server">كلمة المرور</asp:Label>
             
-             <asp:TextBox ID="passwordTxt" runat="server"></asp:TextBox>
+             <asp:TextBox ID="passwordTxt" runat="server" TextMode="Password"></asp:TextBox>
 
             <asp:RequiredFieldValidator ID="reqpassword" runat="server" ControlToValidate="passwordTxt" ErrorMessage="حقل كلمة المرور فارغ" ForeColor="red"></asp:RequiredFieldValidator>
-
+            <div>
+            <asp:CheckBox ID="rememberMe" runat="server" Text="تذكرني" />
+            </div>
             <asp:Button ID="loginBtn" CssClass="loginBtn" runat="server" Text="دخول" OnClick="Login_Click" />
             
         </div>
