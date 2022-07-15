@@ -88,12 +88,12 @@ namespace Rod
                 {
                     while (dr.Read())
                     {
-                        
-                        sectionQuestions.InnerHtml += " " +
+                            int totalVotePost = Convert.ToInt32(dr.GetValue(32)) + Convert.ToInt32(dr.GetValue(33));
+                            sectionQuestions.InnerHtml += " " +
                        " <div class='question'>" +
                          "<div class='votesAnswers'>" +
 
-                          "<h3><span>" + dr.GetValue(32).ToString() + "</span> التقييم</h3>" +
+                          "<h3><span>" + totalVotePost.ToString() + "</span> التقييم</h3>" +
                         "<div class='answersContainer'>" +
                         "<h3><span>" + dr.GetValue(31).ToString() + "</span> الأجابات</h3>" +
                          "</div>  </div>" +
