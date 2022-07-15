@@ -95,6 +95,7 @@
     <Content Include="Home.aspx" />
     <Content Include="images\homeIIIustr.jpg" />
     <Content Include="js\home.js" />
+    <Content Include="js\master.js" />
     <Content Include="js\question.js" />
     <Content Include="Login.aspx" />
     <Content Include="Profile.aspx" />
