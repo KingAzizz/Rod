@@ -60,15 +60,6 @@ namespace Rod
         protected global::System.Web.UI.WebControls.Button searchButton;
 
         /// <summary>
-        /// loginLink control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlGenericControl loginLink;
-
-        /// <summary>
         /// inboxLink control.
         /// </summary>
         /// <remarks>
@@ -78,13 +69,31 @@ namespace Rod
         protected global::System.Web.UI.WebControls.HyperLink inboxLink;
 
         /// <summary>
-        /// profileImageLink control.
+        /// loginLink control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.HyperLink profileImageLink;
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl loginLink;
+
+        /// <summary>
+        /// loginHyLink control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.HyperLink loginHyLink;
+
+        /// <summary>
+        /// profile control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl profile;
 
         /// <summary>
         /// profileImage control.
@@ -94,6 +103,24 @@ namespace Rod
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Image profileImage;
+
+        /// <summary>
+        /// userProfile control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.HyperLink userProfile;
+
+        /// <summary>
+        /// logout control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button logout;
 
         /// <summary>
         /// ContentPlaceHolder1 control.
