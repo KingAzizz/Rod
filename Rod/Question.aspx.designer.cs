@@ -69,6 +69,15 @@ namespace Rod
         protected global::System.Web.UI.HtmlControls.HtmlGenericControl postTitle;
 
         /// <summary>
+        /// askformLink control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.HyperLink askformLink;
+
+        /// <summary>
         /// postCreation control.
         /// </summary>
         /// <remarks>

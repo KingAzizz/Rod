@@ -1,8 +1,8 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Site1.Master" AutoEventWireup="true" CodeBehind="Question.aspx.cs" Inherits="Rod.Question" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
-     <script defer src="./js/question.js"></script>
-    <script defer src="./js/home.js"></script>
-    <link href="./css/question.css" rel="stylesheet" type="text/css">
+     <script defer src='<%= Page.ResolveUrl("~/js/question.js")%>' charset="utf-8"></script>
+    <script defer src='<%= Page.ResolveUrl("~/js/home.js")%>' charset="utf-8"></script>
+    <link href='<%= Page.ResolveUrl("~/css/question.css")%>'rel="stylesheet" type="text/css">
      <script src="https://kit.fontawesome.com/f933819f72.js" crossorigin="anonymous"></script>
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
@@ -31,7 +31,7 @@
             <div class="questionHead">
                 <h1 id="postTitle" runat="server"></h1>
                 <div>
-                    <a href="#">اسأل</a>
+                    <asp:HyperLink ID="askformLink" runat="server" NavigateUrl="~/QuestionForm.aspx" Text="اسأل"></asp:HyperLink>
                 </div>
                 
             </div>
