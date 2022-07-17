@@ -92,9 +92,26 @@ namespace Rod
                 return years <= 1 ? "قبل سنة" : " قبل " + years + " سنوات  ";
             }
         }
+
         protected void Page_Load(object sender, EventArgs e)
         {
-            
+
+            var id = Page.RouteData.Values["id"];
+
+            int num = -1;
+            if (id != null)
+            {
+                if (!int.TryParse(id.ToString(), out num))
+                {
+                    Response.Write("Not an integer");
+
+                    
+                }
+                
+                
+
+                  
+                
            
             if (!Page.IsPostBack)
             {
@@ -109,7 +126,7 @@ namespace Rod
 
                     JOIN [User]
                       ON [Post].userId = [User].id 
-                       where [Post].id =" + Request.QueryString["question"].ToString();
+                       where [Post].id =" + id.ToString();
 
                 SqlCommand cmd = new SqlCommand(viewQuestionIfItHasAnswers, con);
 
@@ -198,7 +215,7 @@ namespace Rod
 
                     JOIN[User]
                       ON[Post].userId = [User].id
-                      where[Post].id ="+ Request.QueryString["question"].ToString();
+                      where[Post].id ="+ id.ToString();
                     SqlCommand cmdAnswerNotFound = new SqlCommand(viewQuestionIfItDosentHasAnswers, con);
 
                     SqlDataReader drAnswerNotFound = cmdAnswerNotFound.ExecuteReader();
@@ -250,6 +267,11 @@ namespace Rod
                 }
 
                 con.Close();
+            }
+            }
+            else
+            {
+                Response.Redirect("~/Home.aspx");
             }
         }
         protected void Datalist_ItemDataBound(object sender, DataListItemEventArgs e)
@@ -649,9 +671,20 @@ namespace Rod
         }
         public void Bind()
         {
-            string cs = @"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=C:\Users\aziz\source\repos\Rod\Rod\App_Data\Rod.mdf;Integrated Security=True";
-            SqlConnection con = new SqlConnection(cs);
-            string answersQuery = @"SELECT  Post.*, Answer.*,
+            var id = Page.RouteData.Values["id"];
+
+            int num = -1;
+            if (id != null)
+            {
+                if (!int.TryParse(id.ToString(), out num))
+                {
+                    Response.Redirect("~Home.aspx");
+
+
+                }
+                string cs = @"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=C:\Users\aziz\source\repos\Rod\Rod\App_Data\Rod.mdf;Integrated Security=True";
+                SqlConnection con = new SqlConnection(cs);
+                string answersQuery = @"SELECT  Post.*, Answer.*,
             [User].id as userPostId,
             [User].username as post_username,
             useranswer.username as answer_username,
@@ -667,14 +700,15 @@ namespace Rod
             JOIN[User]  ON[Post].userId = [User].id
             JOIN Answer ON[Post].id = [Answer].postId
             JOIN[User] as UserAnswer on Answer.userId = [UserAnswer].id
-            where[Post].id =" + Request.QueryString["question"].ToString();
-            SqlCommand cmd = new SqlCommand(answersQuery, con);
-            SqlDataAdapter da = new SqlDataAdapter(cmd);
-            
-            DataSet ds = new DataSet();
-            da.Fill(ds, "Post");
-            Datalist.DataSource = ds.Tables[0];
-            Datalist.DataBind();
+            where[Post].id =" + id.ToString();
+                SqlCommand cmd = new SqlCommand(answersQuery, con);
+                SqlDataAdapter da = new SqlDataAdapter(cmd);
+
+                DataSet ds = new DataSet();
+                da.Fill(ds, "Post");
+                Datalist.DataSource = ds.Tables[0];
+                Datalist.DataBind();
+            }
           
         }
 
