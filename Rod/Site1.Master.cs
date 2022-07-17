@@ -53,7 +53,7 @@ namespace Rod
         }
         protected void SearchTrigger(object sender, EventArgs e)
         {
-            Response.Redirect("SearchResult.aspx?searched=" + searchText.Text);
+            Response.Redirect("~/SearchResult.aspx?searched=" + searchText.Text);
         }
         protected void Logout(object sender, EventArgs e)
         {
