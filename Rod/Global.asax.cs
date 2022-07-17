@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
+using System.Web.Routing;
 using System.Web.Security;
 using System.Web.SessionState;
 
@@ -12,6 +13,12 @@ namespace Rod
 
         protected void Application_Start(object sender, EventArgs e)
         {
+            RegisterRoutes(RouteTable.Routes);
+        }
+        public static void RegisterRoutes(RouteCollection routes)
+        {
+            routes.MapPageRoute("postId", "question/{id}", "~/question.aspx");
+            routes.MapPageRoute("editPostId", "question/edit/{id}", "~/EditQuestion.aspx");
 
         }
 
