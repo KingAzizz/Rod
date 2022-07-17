@@ -95,7 +95,7 @@ namespace Rod
 
 
                        " <div class='questionTitle'>" +
-                           "<a style='color: #0173CC;' href='Question.aspx?question=" + dr.GetValue(3) + "'>" + dr.GetValue(4).ToString() + "</a> </div>" +
+                           "<a style='color: #0173CC;' href='/question/" + dr.GetValue(3) + "'>" + dr.GetValue(4).ToString() + "</a> </div>" +
 
                        " <div class='usernameQuestionDetails'>" +
                         "<h2><span>" + dr.GetValue(1).ToString() + "</span>   <span>" + dr.GetValue(2).ToString() + "</span></h2>" +
@@ -147,7 +147,7 @@ namespace Rod
 
 
                     " <div class='questionTitle'>" +
-                        "<a style='color: #0173CC;' href='Question.aspx?question=" + dr.GetValue(3) + "'>" + dr.GetValue(4).ToString() + "</a> </div>" +
+                        "<a style='color: #0173CC;' href='/question/" + dr.GetValue(3) + "'>" + dr.GetValue(4).ToString() + "</a> </div>" +
 
                     " <div class='usernameQuestionDetails'>" +
                      "<h2><span>" + dr.GetValue(1).ToString() + "</span>   <span>" + dr.GetValue(2).ToString() + "</span></h2>" +
@@ -197,7 +197,7 @@ namespace Rod
 
 
                     " <div class='questionTitle'>" +
-                        "<a style='color: #0173CC;' href='Question.aspx?question=" + dr.GetValue(3) + "'>" + dr.GetValue(4).ToString() + "</a> </div>" +
+                        "<a style='color: #0173CC;' href='/question/" + dr.GetValue(3) + "'>" + dr.GetValue(4).ToString() + "</a> </div>" +
 
                     " <div class='usernameQuestionDetails'>" +
                      "<h2><span>" + dr.GetValue(1).ToString() + "</span>   <span>" + dr.GetValue(2).ToString() + "</span></h2>" +

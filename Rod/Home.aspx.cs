@@ -100,7 +100,7 @@ namespace Rod
 
 
                        " <div class='questionTitle'>" +
-                           "<a style='color: #0173CC;' href='Question.aspx?question=" + dr.GetValue(24) + "'>" + dr.GetValue(26).ToString() + "</a> </div>" +
+                           "<a style='color: #0173CC;' href='/question/" + dr.GetValue(24) + "'>" + dr.GetValue(26).ToString() + "</a> </div>" +
 
                        " <div class='usernameQuestionDetails'>" +
                         "<h2><span>" + dr.GetValue(1).ToString() + "</span>   <span>" + dr.GetValue(15).ToString() + "</span></h2>" +
@@ -150,7 +150,7 @@ namespace Rod
 
 
                    " <div class='questionTitle'>" +
-                       "<a style='color: #0173CC;' href='Question.aspx?question=" + dr.GetValue(24) + "'>" + dr.GetValue(26).ToString() + "</a> </div>" +
+                       "<a style='color: #0173CC;' href='/question/" + dr.GetValue(24) + "'>" + dr.GetValue(26).ToString() + "</a> </div>" +
 
                    " <div class='usernameQuestionDetails'>" +
                     "<h2><span>" + dr.GetValue(1).ToString() + "</span>   <span>" + dr.GetValue(15).ToString() + "</span></h2>" +
@@ -199,7 +199,7 @@ namespace Rod
 
 
                    " <div class='questionTitle'>" +
-                       "<a style='color: #0173CC;' href='Question.aspx?question=" + dr.GetValue(24) + "'>" + dr.GetValue(26).ToString() + "</a> </div>" +
+                       "<a style='color: #0173CC;' href='/question/" + dr.GetValue(24) + "'>" + dr.GetValue(26).ToString() + "</a> </div>" +
 
                    " <div class='usernameQuestionDetails'>" +
                     "<h2><span>" + dr.GetValue(1).ToString() + "</span>   <span>" + dr.GetValue(15).ToString() + "</span></h2>" +
@@ -250,7 +250,7 @@ namespace Rod
 
 
                    " <div class='questionTitle'>" +
-                       "<a style='color: #0173CC;' href='Question.aspx?question=" + dr.GetValue(24) + "'>" + dr.GetValue(26).ToString() + "</a> </div>" +
+                       "<a style='color: #0173CC;' href='/question/" + dr.GetValue(24) + "'>" + dr.GetValue(26).ToString() + "</a> </div>" +
 
                    " <div class='usernameQuestionDetails'>" +
                     "<h2><span>" + dr.GetValue(1).ToString() + "</span>   <span>" + dr.GetValue(15).ToString() + "</span></h2>" +
