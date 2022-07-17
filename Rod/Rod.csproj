@@ -88,6 +88,7 @@
     <Content Include="css\topUsers.css" />
     <Content Include="css\viewUserProfile.css" />
     <Content Include="EditProfile.aspx" />
+    <Content Include="EditQuestion.aspx" />
     <Content Include="Followers.aspx" />
     <Content Include="Following.aspx" />
     <Content Include="Global.asax" />
@@ -117,6 +118,13 @@
     </Compile>
     <Compile Include="EditProfile.aspx.designer.cs">
       <DependentUpon>EditProfile.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="EditQuestion.aspx.cs">
+      <DependentUpon>EditQuestion.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="EditQuestion.aspx.designer.cs">
+      <DependentUpon>EditQuestion.aspx</DependentUpon>
     </Compile>
     <Compile Include="Followers.aspx.cs">
       <DependentUpon>Followers.aspx</DependentUpon>
