@@ -72,6 +72,7 @@
       <DependentUpon>Rod.mdf</DependentUpon>
     </Content>
     <Content Include="css\editProfile.css" />
+    <Content Include="css\editQuestion.css" />
     <Content Include="css\followersAndfollowing.css" />
     <Content Include="css\helpCenter.css" />
     <Content Include="css\home.css" />
