@@ -23,3 +23,9 @@ function copyToClipboard(text) {
         }
     }
 }
+
+var inputBox = document.getElementById('ContentPlaceHolder1_answerText');
+
+inputBox.onkeyup = function () {
+    document.getElementById('answerTextShow').innerHTML = inputBox.value;
+}
