@@ -233,12 +233,13 @@
 
 
 
-    .userPostDetails > div:nth-child(1) > input, button {
+    .userPostDetails > div:nth-child(1) > input, button, #ContentPlaceHolder1_editButton {
         background-color: inherit;
         margin-left: 20px;
         font-size: 1.2rem;
         border: none;
         cursor: pointer;
+        color: black;
     }
 
     .userPostDetails > div:nth-child(2) {
@@ -285,6 +286,65 @@
     align-items:center;
     font-size:2rem;
 }
+
+
+
+.giveAnswerContainer {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin-top: 30px;
+}
+
+.answerText {
+    position: inherit;
+    font-family: times, serif;
+    font-size: 14px;
+    border: 1px solid #babfc4;
+    border-radius: 5px;
+    width: 51.1%;
+    padding: 10px 10px 230px;
+}
+
+.giveAnswerContainer > label {
+    width: 52%;
+    display: flex;
+    margin-bottom: 7px;
+    font-size: 2rem;
+}
+
+.giveAnswerContainer > div {
+    width: 52%;
+    display: flex;
+    margin: 20px 0 7px 0;
+}
+
+.giveAnswerContainer > div > p {
+        white-space: initial;
+        width: 100%;
+        height: fit-content;
+        word-wrap: break-word
+}
+
+.answerButton {
+    width: 30%;
+    background-color: #4F6BFF;
+    outline: none;
+    border: none;
+    padding: 7px;
+    color: #ffff;
+    border-radius: 7px;
+    cursor: pointer;
+    transition: .4s;
+    font-size: 1.5rem;
+}
+
+.answerButton:hover {
+        background-color: #2547ef;
+}
+
+
 @media screen and (max-width: 840px) {
     .sidenav {
         display: none;
