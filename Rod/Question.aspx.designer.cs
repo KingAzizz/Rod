@@ -186,6 +186,15 @@ namespace Rod
         protected global::System.Web.UI.WebControls.Button unFollowUserPost;
 
         /// <summary>
+        /// editButton control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.HyperLink editButton;
+
+        /// <summary>
         /// deletePost control.
         /// </summary>
         /// <remarks>
@@ -238,5 +247,23 @@ namespace Rod
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.DataList Datalist;
+
+        /// <summary>
+        /// answerText control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox answerText;
+
+        /// <summary>
+        /// answerButton control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button answerButton;
     }
 }

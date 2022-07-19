@@ -71,7 +71,7 @@
                   <asp:HiddenField ID="postId" runat="server" />
                   <asp:Button ID="unFollowUserPost" runat="server" Text="الغاء المتابعة" OnClick="UnFollowUserPost_Click"  />
                 <button  onclick="copyToClipboard(window.location.href)">نشر</button>
-                  <button>الأجابة</button>
+                  <asp:HyperLink ID="editButton" runat="server" Text="تعديل" Visible="false"></asp:HyperLink>
                   <button id="deletePost" runat="server" onserverclick="DeletePost" style="color:darkred;">
                       <i class="fa-solid fa-trash"></i>
                   </button>
@@ -157,6 +157,17 @@
             </asp:DataList>
           
          </section>
+          <section class="giveAnswerContainer">
+            <label>جوابك</label>
+              <asp:TextBox ID="answerText" runat="server" CssClass="answerText"></asp:TextBox>
+            <div>
+                <p id="answerTextShow"></p>
+            </div>
+            <div>
+                <asp:Button ID="answerButton" runat="server" CssClass="answerButton" Text="جاوب" OnClick="Answer" />
+            </div>
+        </section>
+
          </section>
     
 </asp:Content>
