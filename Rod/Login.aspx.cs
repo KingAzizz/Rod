@@ -16,10 +16,14 @@ namespace Rod
             {
                 Response.Redirect("~/Home.aspx");
             }
+            if (!Page.IsPostBack)
+            {
+
             if(Request.Cookies["userCredentials"] != null)
             {
                 usernameTxt.Text = Request.Cookies["userCredentials"]["username"];
                 
+            }
             }
         }
         protected void Login_Click(object sender, EventArgs e)
