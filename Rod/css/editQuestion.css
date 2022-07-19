@@ -1,0 +1,217 @@
+﻿
+.display {
+    display: block !important;
+    transition: 2s ease-in-out;
+}
+.sidenav {
+    height: 100%;
+    position: fixed;
+    margin-top: 62px;
+    border-right: 2px solid black;
+    z-index: 1;
+    top: 0;
+    left: 0;
+    background-color: #ffff;
+    overflow-x: hidden;
+    padding-top: 80px;
+}
+
+    .sidenav a {
+        padding: 6px 6px 6px 32px;
+        text-decoration: none;
+        font-size: 25px;
+        color: #818181;
+        display: block;
+        position: relative;
+    }
+
+.hamburgerMenu {
+    display: none;
+}
+
+.hamburgerButton {
+    outline: none;
+    background-color: white;
+    border: none;
+    position: absolute;
+    margin-left: 30px;
+    cursor: pointer;
+    font-size: 21px;
+}
+
+#selectedNav {
+    color: black;
+}
+
+#selected::before {
+    content: "";
+    width: 8px;
+    height: 30px;
+    background-color: #F48123;
+    right: 0;
+    position: absolute;
+}
+
+
+
+
+.sidenav a:hover {
+    color: black;
+}
+
+@media screen and (max-height: 450px) {
+    .sidenav {
+        padding-top: 15px;
+    }
+
+        .sidenav a {
+            font-size: 18px;
+        }
+}
+
+
+
+.editContainer {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    margin: 40px 0 0 211px;
+}
+
+label {
+    width: 50%;
+    display: flex;
+    margin-bottom: 7px;
+}
+
+.titleInput {
+    width: 50%;
+    padding: 5px;
+    border: 1px solid #babfc4;
+    border-radius: 5px;
+    margin-bottom: 30px;
+}
+
+.bodyInput {
+    width: 51.1%;
+    height: 300px;
+    border: 1px solid #babfc4;
+    border-radius: 5px;
+    margin-bottom: 30px;
+}
+
+.editContainer > div {
+    width: 90%;
+    padding: 10px;
+}
+
+.editContainer > p {
+    width: 90%;
+    padding: 10px;
+}
+
+.tags {
+    padding: 0px 9.1px;
+    box-sizing: border-box;
+    margin-top: 0px;
+    margin-bottom: 0px;
+    width: 100%;
+    cursor: text;
+    background-color: #ffff;
+    position: relative;
+    overflow: hidden;
+    white-space: normal;
+    height: auto !important;
+    min-height: 37px !important;
+    padding-top: 8px !important;
+    padding-bottom: 8px !important;
+    border: 1px solid #babfc4;
+    border-radius: 3px;
+    margin-bottom: 30px;
+}
+
+    .tags > input {
+        padding-left: 4px !important;
+        margin: 0;
+        height: 29px;
+        box-sizing: content-box;
+        border: none !important;
+        box-shadow: none !important;
+        outline: 0 !important;
+        padding: 0 !important;
+        margin: 0 3px;
+        background-color: transparent !important;
+        height: 25px;
+    }
+
+.tagContainer {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-width: 0;
+    padding-left: 4px;
+    padding-right: 4px;
+    border-style: solid;
+    border-width: 1px;
+    border-radius: 3px;
+    font-size: var(--fs-caption);
+    line-height: 1.84615385;
+    text-decoration: none;
+    vertical-align: middle;
+    white-space: nowrap;
+    border-color: transparent;
+    background-color: #e1ecf4;
+    color: #39739d;
+}
+
+    .tagContainer > span {
+        margin: 5px;
+    }
+
+.editButtons {
+    margin-bottom: 30px;
+}
+
+    .editButtons > input:nth-child(1) {
+        outline: none;
+        border: none;
+        width: 110px;
+        padding: 9px;
+        border-radius: 5px;
+        height: 40px;
+        font-size: 1.3rem;
+        background-color: #4F6BFF;
+        color: #ffff;
+        margin-left: 20px;
+        cursor:pointer;
+    }
+
+    .editButtons > input:nth-child(2) {
+        outline: none;
+        border: none;
+        background-color: inherit;
+        border-radius: 5px;
+        height: 40px;
+        font-size: 1.3rem;
+        color: #4F6BFF;
+    }
+
+@media screen and (max-width: 840px) {
+    .sidenav {
+        display: none;
+    }
+
+    .hamburgerMenu {
+        display: block;
+        position: relative;
+    }
+
+    .hamburgerButton {
+        top: 30px;
+    }
+    .editContainer {
+        margin-left: 0;
+    }
+
+}
