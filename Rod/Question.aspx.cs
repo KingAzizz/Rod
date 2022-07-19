@@ -103,7 +103,7 @@ namespace Rod
             {
                 if (!int.TryParse(id.ToString(), out num))
                 {
-                    Response.Write("Not an integer");
+                    Response.Redirect("~/Home.aspx");
 
                     
                 }
@@ -153,6 +153,8 @@ namespace Rod
                             }
                             else
                             {
+                                editButton.Visible = true;
+                                editButton.NavigateUrl = "~/question/edit/" + id.ToString();
                                 deletePost.Visible = true;
                                 postUserFollower.Visible = false;
                                 unFollowUserPost.Visible = false;
@@ -618,12 +620,16 @@ namespace Rod
                         con.Open();
 
                         string deleteUserAnswer = @"delete from [Answer]
-                        where [id] = @answerId and [userId] = @userId";
+                        where [id] = @answerId and [userId] = @userId;
+                        update [Post]
+                        set [answerCount] = answerCount - 1
+                        where id = @postId;";
 
                         SqlCommand cmd = new SqlCommand(deleteUserAnswer, con);
 
                         cmd.Parameters.AddWithValue("@answerId", e.CommandArgument);
                         cmd.Parameters.AddWithValue("@userId", Session["id"]);
+                        cmd.Parameters.AddWithValue("@postId", postId.Value);
                         cmd.ExecuteNonQuery();
                         answerTextP.Attributes.Add("style", "text-decoration: line-through");
                         ScriptManager.RegisterStartupScript(this, GetType(), "displayalertmessage", @"
@@ -1012,6 +1018,7 @@ namespace Rod
             cmd.Parameters.AddWithValue("@postId", postId.Value);
             cmd.Parameters.AddWithValue("@userId", userId.Value);
             cmd.ExecuteNonQuery();
+                con.Close();
                 Response.Redirect("~/Home.aspx");
             }
             else
@@ -1029,6 +1036,49 @@ namespace Rod
                     }, 4000)", true);
             }
 
+        }
+
+        protected void Answer(object sender, EventArgs e)
+        {
+            if(Session["id"] != null)
+            {
+
+            
+            string cs = @"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=C:\Users\aziz\source\repos\Rod\Rod\App_Data\Rod.mdf;Integrated Security=True";
+            SqlConnection con = new SqlConnection(cs);
+
+            DateTime myDateTime = DateTime.Now;
+            string sqlFormattedDate = myDateTime.ToString("yyyy -MM-dd HH:mm:ss.fff");
+            con.Open();
+
+            string answerInsert = @"insert into [Answer] ([postId], [userId],[answerText],[creationDate])
+                                    values(@postId,@userId,@answerText,@creationDate);
+                                    update [Post]
+                                    set [answerCount] = answerCount + 1
+                                    where id = @postId;";
+            SqlCommand cmd = new SqlCommand(answerInsert, con);
+            cmd.Parameters.AddWithValue("@postId", postId.Value);
+            cmd.Parameters.AddWithValue("@userId", Session["id"]);
+            cmd.Parameters.AddWithValue("@answerText", answerText.Text);
+            cmd.Parameters.AddWithValue("@creationDate", sqlFormattedDate);
+
+            cmd.ExecuteNonQuery();
+            con.Close();
+            }
+            else
+            {
+            ScriptManager.RegisterStartupScript(this, GetType(), "displayalertmessage", @"
+             let alertDiv = document.getElementById('alertDiv');
+             let alertText = document.getElementById('alertText');
+             alertDiv.style.display = 'block';
+             alertText.innerText = 'لاتستطيع الأجابة ان لم تكن مسجل دخول';
+             alertDiv.classList.add('fadeAway');
+             setTimeout(() => {
+             alertDiv.style.display = 'none';
+             alertText.innerText = '';
+             alertDiv.classList.remove('fadeAway');
+             }, 4000)", true);
+            }
         }
     }
 }
