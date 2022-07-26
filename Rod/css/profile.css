@@ -1,2 +1,321 @@
-﻿body {
+﻿.sidenav {
+    transition: 2s;
+    height: 100%;
+    position: fixed;
+    margin-top: 62px;
+    z-index: 1;
+    top: 0;
+    left: 0;
+    background-color: inherit;
+    overflow-x: hidden;
+    padding-top: 80px;
+}
+
+    .sidenav a {
+        padding: 6px 6px 6px 32px;
+        text-decoration: none;
+        font-size: 25px;
+        color: #818181;
+        display: block;
+        position: relative;
+    }
+    .display{
+        display: block !important;
+    }
+
+#selected {
+    color: black;
+}
+
+    #selected::before {
+        content: "";
+        width: 8px;
+        height: 30px;
+        background-color: #F48123;
+        right: 0;
+        position: absolute;
+    }
+
+
+
+
+.sidenav a:hover {
+    color: black;
+}
+
+.hamburgerMenu {
+    display: none;
+    z-index: 9999;
+    position: relative;
+}
+
+.display {
+    display: block !important;
+    transition: 2s ease-in-out;
+}
+
+.hamburgerButton {
+    outline: none;
+    background-color: inherit;
+    border: none;
+    position: absolute;
+    margin-left: 30px;
+    cursor: pointer;
+    font-size: 21px;
+    z-index: 9999;
+}
+
+
+.profileContainer {
+    margin-left: 211px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: fit-content;
+    min-height: 100vh;
+    clear: both;
+}
+
+.userDetails {
+    width: 100%;
+    display: flex;
+    justify-content: flex-end;
+    margin-top: 33px;
+}
+
+    .userDetails > div:nth-child(2) {
+        width: 60%;
+    }
+
+    .userDetails > div > a {
+        background-color: #4F6BFF;
+        padding: 7px;
+        color: #ffff;
+        border-radius: 7px;
+    }
+
+    .userDetails > div > div > a {
+        color: black;
+        margin-left: 5px;
+    }
+
+    .userDetails > div > div > p {
+        display: inline;
+        margin-left: 10px;
+    }
+
+.userImage {
+    margin-left: 30px;
+}
+
+    .userImage > img {
+        width: 100px;
+        height: 100px;
+        border-radius: 50%;
+        position: relative;
+        
+    }
+
+.userFollow {
+    width: 50%;
+    display: flex;
+    justify-content: space-around;
+    margin: 30px 120px 0 0;
+}
+
+.aboutUser {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 30px 0 0 0;
+}
+
+    .aboutUser > div:nth-child(1) {
+        width: 50%;
+    }
+
+        .aboutUser > div:nth-child(1) > p {
+            white-space: initial;
+            width: 50%;
+            height: fit-content;
+            word-wrap: break-word;
+        }
+
+    .aboutUser > div:nth-child(2) {
+        text-align: center;
+    }
+
+        .aboutUser > div:nth-child(2) > div {
+            border: 1px solid #babfc4;
+            border-radius: 5px;
+            padding: 30px;
+        }
+
+            .aboutUser > div:nth-child(2) > div > div:nth-child(1) {
+                display: flex;
+                justify-content: space-between;
+                gap: 30px;
+            }
+
+            .aboutUser > div:nth-child(2) > div > div > p {
+                display: flex;
+                flex-direction: column;
+            }
+
+            .aboutUser > div:nth-child(2) > div > div:nth-child(2) {
+                display: flex;
+                justify-content: space-between;
+                gap: 30px;
+                margin-top: 10px;
+            }
+
+.userBadges {
+    width: 100%;
+    margin-top: 30px;
+    text-align: center;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+
+    .userBadges > div {
+        display: flex;
+        justify-content: center;
+        border: 1px solid #babfc4;
+        border-radius: 5px;
+        margin-top: 15px;
+        width: 80%;
+    }
+
+.badgeImage {
+    width: 80px;
+}
+
+.questionsAnswers {
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    margin: 30px 0 30px 0
+}
+
+    .questionsAnswers > div {
+        width: 40%;
+    }
+
+        .questionsAnswers > div > div:nth-child(2) {
+            border: 1px solid #babfc4;
+            border-radius: 5px;
+            width: 100%;
+        }
+
+        .questionsAnswers > div > div > label {
+            font-size: 1.9rem;
+        }
+#ContentPlaceHolder1_QuestionsDataList{
+    width:100%;
+}
+#ContentPlaceHolder1_AnswersDataList {
+    width: 100%;
+}
+.questionContainerD {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    height: 8vh;
+    border: 1px solid #babfc4;
+    border-radius: 5px;
+}
+
+           .votes {
+                color: #ffff;
+                background-color: green;
+                height: 40px;
+                border-radius: 7px;
+                margin-right: 7px;
+                width: 10%;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+            }
+
+            .questionTitleUser {
+                color: #4F6BFF;
+                font-size: 1.2rem;
+                text-overflow: ellipsis;
+                white-space: nowrap;
+                overflow: hidden;
+                width: 60%;
+            }
+
+                .questionTitleUser > a {
+                    width: 20%;
+                }
+
+             .date {
+                margin-left: 8px;
+            }
+
+@media screen and (max-height: 450px) {
+    .sidenav {
+        padding-top: 15px;
+    }
+
+        .sidenav a {
+            font-size: 18px;
+        }
+}
+
+@media screen and (max-width: 980px) {
+
+    .sidenav {
+        display: none;
+        background-color: #4F6BFF;
+    }
+    .sidenav a {
+
+        color:white;
+    }
+
+    .hamburgerMenu {
+        display: block;
+    }
+
+    .hamburgerButton {
+        top: 40px;
+    }
+
+    .profileContainer {
+        margin-left: 0;
+    }
+
+    .secondRow {
+        width: 50%;
+        display: flex;
+        justify-content: space-around;
+        margin-right: 0;
+    }
+
+    .editProfileContainer {
+        width: 100%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-direction: column;
+        gap: 20px;
+    }
+
+    .questionsAnswers > div {
+        width: 70%;
+    }
+
+    .questionsAnswers {
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+    }
 }
