@@ -37,7 +37,7 @@
            <asp:Button ID="newestFilter" runat="server" Text="الجديد" onClick="NewestFilter" />
            <asp:Button ID="highRatingFilter" runat="server"  Text="الأعلى تقييمآ" OnClick="HighRatingFilter" />
                    </div>
-               <p id="resultCount" runat="server">نتيجة 500</p>
+               <p id="resultCount" runat="server">نتيجة</p>
           
             </div>
            
