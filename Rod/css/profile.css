@@ -27,20 +27,6 @@
         display: block !important;
     }
 
-#selected {
-    color: black;
-}
-
-    #selected::before {
-        content: "";
-        width: 8px;
-        height: 30px;
-        background-color: #F48123;
-        right: 0;
-        position: absolute;
-    }
-
-
 
 
 .sidenav input:hover {
@@ -262,7 +248,6 @@
                 margin-left: 8px;
             }
 .tabsContent {
-    padding: 20px;
     box-shadow: rgb(0 0 0 / 15%) 1.95px 1.95px 2.6px;
 }
 .tabsLabel {
