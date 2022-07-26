@@ -9,7 +9,7 @@
     </asp:ContentPlaceHolder>
     <script src="https://kit.fontawesome.com/f933819f72.js" crossorigin="anonymous"></script>
     <link href="./css/masterPage.css" rel="stylesheet" type="text/css" />
-    <script src="./js/master.js" defer></script>
+    <script defer src='<%= Page.ResolveUrl("~/js/master.js")%>' charset="utf-8"></script>
 </head>
 <body>
     <form id="form1" runat="server">
@@ -39,7 +39,7 @@
                 <asp:Panel runat="server" DefaultButton="searchButton">
 
                 <asp:TextBox ID="searchText" runat="server" CssClass="searchInput" placeholder="ابحث عن السؤال"></asp:TextBox>
-                    <asp:Button ID="searchButton" runat="server" CssClass="hideButton" OnClick="SearchTrigger" />
+                    <asp:Button ID="searchButton" runat="server" CausesValidation="false" CssClass="hideButton" OnClick="SearchTrigger" />
                 </asp:Panel>
             </div>
         </div>
