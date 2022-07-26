@@ -8,15 +8,15 @@
        <div class="hamburgerMenu"> <button class="hamburgerButton" id="triggerSideNav" type="button"><i class="fa fa-bars"></i></button> </div>
     <nav class="sidenav" id="sidenav">
         <ul>
-            <li><a href="#home" id="selectedNav">الملف الشخصي</a></li>
-            <li><a href="#home">الأسئلة</a></li>
-            <li><a href="#home">الأجابات</a></li>
-            <li><a href="#home">الأقسام</a></li>
-            <li><a href="#home">الأوسمة</a></li>
+            <li><asp:Button ID="profileNav" runat="server" Text="الملف الشخصي" OnClick="profileNav_Click" /></li>
+            <li><asp:Button ID="questionNav" runat="server" Text="الأسئلة" OnClick="questionNav_Click" /></li>
+            <li><asp:Button ID="answerNav" runat="server" Text="الأجابات" /></li>
+            <li><asp:Button ID="tagNav" runat="server" Text="الأقسام" /></li>
+            <li><asp:Button ID="badgeNav" runat="server" Text="الأوسمة" /></li>
         </ul>
     </nav>
  
-    <section class="profileContainer" dir="rtl">
+    <section class="profileContainer" id="profileContainer" runat="server" dir="rtl">
         <div class="userDetails">
             <div class="userImage"><asp:Image ID="userProfileImage" runat="server" AlternateText="no image"  /></div>
             <div>
@@ -42,6 +42,31 @@
                 <a href="#" >تعديل الملف الشخصي</a>
             </div>
         </div>
+        <section id="tab" runat="server" style="width:100%">
+                     <div><label class="tabsLabel" id="tabsLabel" runat="server" visible="false"></label></div>
+            <asp:DataList ID="questionTabDatalist" CssClass="tabsContent" runat="server" Visible="false">
+                <ItemTemplate>
+                <asp:HiddenField ID="howManyPostHd" runat="server" Value='<%#Eval("howManyPost") %>' />
+               
+                         <div id="questionsDivD" runat="server">
+            
+
+                <section class="questionContainerD">
+                    <div class="votes"><%# Eval("totalVote") %></div>
+                    <div class="questionTitleUser">
+                        <asp:HyperLink ID="questionTitleText" runat="server"><%# Eval("title") %></asp:HyperLink>
+                    </div>
+                    <div class="date"><%# GetMonthDay(Eval("creationDate").ToString()) %></div>
+                </section>
+                  
+            </div>
+
+          </div>
+                </ItemTemplate>
+            </asp:DataList>
+            <div id="defaultTap" runat="server" style="width:100%">
+
+          
         <div class="userFollow">
             <p>التابعين <span style="font-weight: bold;" id="followers" runat="server"></span></p>
             <p>المتابعين <span style="font-weight: bold;" id="following" runat="server"></span></p>
@@ -121,6 +146,8 @@
             </div>
           </div>
         </div>
+                  </div>
+            </section>
          <!-- second Row end -->
 
     </section>
