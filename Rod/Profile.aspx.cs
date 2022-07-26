@@ -156,7 +156,30 @@ namespace Rod
                             }
 
                         }
-                        Bind();
+                        if(Request.QueryString["tab"] == null)
+                        {
+                          
+                        Bind("default");
+                        }
+                        else
+                        {
+                            defaultTap.Visible = false;
+                            if (Request.QueryString["tab"].ToString() == "questions")
+                            {
+                                Bind("questions");
+                                HiddenField hidden = questionTabDatalist.Items[0].FindControl("howManyPostHd") as HiddenField;
+                               
+                                questionTabDatalist.Visible = true;
+                                tabsLabel.Visible = true;
+                                tabsLabel.InnerText = "[" + hidden.Value +  "] الاسئلة";
+
+
+                                profileContainer.Style["display"]= "block !important";
+                              
+                            }
+                        }
+                        
+                       
                     }
 
                 }
@@ -186,9 +209,12 @@ namespace Rod
 
             }
         }
-        public void Bind()
+        public void Bind(string tab)
         {
-            
+            if(tab == "default")
+            {
+
+       
             string cs = @"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=C:\Users\aziz\source\repos\Rod\Rod\App_Data\Rod.mdf;Integrated Security=True";
                 SqlConnection con = new SqlConnection(cs);
                 string badgesQuery = @"select [name],[description],[badgeImage],[acquiredDate] 
@@ -238,6 +264,42 @@ namespace Rod
                 answersDivD.Visible = false;
             }
             con.Close();
+            }
+            if (tab == "questions")
+            {
+
+
+                string cs = @"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=C:\Users\aziz\source\repos\Rod\Rod\App_Data\Rod.mdf;Integrated Security=True";
+                SqlConnection con = new SqlConnection(cs);
+                string questionsQuery = @"select id,title,body,tag,creationDate,CONVERT(int, upvoteCount) - CONVERT(int, downvoteCount) as totalVote,Count(id) as howManyPost from Post 
+                where userId = @userId
+                group by id,title,body,tag,creationDate, upvoteCount ,downvoteCount";
+                SqlCommand cmd = new SqlCommand(questionsQuery, con);
+                cmd.Parameters.AddWithValue("@userId", Session["id"]);
+                SqlDataAdapter da = new SqlDataAdapter(cmd);
+
+                DataSet ds = new DataSet();
+                da.Fill(ds, "Post");
+                questionTabDatalist.DataSource = ds.Tables[0];
+                questionTabDatalist.DataBind();
+                if (questionTabDatalist.Items.Count == 0)
+                {
+                    Response.Write("no");
+                }
+                con.Close();
+            }
+
+
+        }
+
+        protected void profileNav_Click(object sender, EventArgs e)
+        {
+            Response.Redirect("~/profile.aspx");
+        }
+
+        protected void questionNav_Click(object sender, EventArgs e)
+        {
+            Response.Redirect("~/profile.aspx?tab=questions");
 
         }
     }
