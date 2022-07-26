@@ -11,13 +11,17 @@
     padding-top: 80px;
 }
 
-    .sidenav a {
+    .sidenav input {
         padding: 6px 6px 6px 32px;
         text-decoration: none;
         font-size: 25px;
         color: #818181;
         display: block;
         position: relative;
+        background-color: inherit;
+        outline: none;
+        border: none;
+        cursor:pointer;
     }
     .display{
         display: block !important;
@@ -39,7 +43,7 @@
 
 
 
-.sidenav a:hover {
+.sidenav input:hover {
     color: black;
 }
 
@@ -215,12 +219,10 @@
         .questionsAnswers > div > div > label {
             font-size: 1.9rem;
         }
-#ContentPlaceHolder1_QuestionsDataList{
-    width:100%;
-}
-#ContentPlaceHolder1_AnswersDataList {
+#ContentPlaceHolder1_QuestionsDataList, #ContentPlaceHolder1_AnswersDataList, #ContentPlaceHolder1_questionTabDatalist {
     width: 100%;
 }
+
 .questionContainerD {
     display: flex;
     justify-content: space-between;
@@ -259,6 +261,13 @@
              .date {
                 margin-left: 8px;
             }
+.tabsContent {
+    padding: 20px;
+    box-shadow: rgb(0 0 0 / 15%) 1.95px 1.95px 2.6px;
+}
+.tabsLabel {
+    font-size: 2rem;
+}
 
 @media screen and (max-height: 450px) {
     .sidenav {
@@ -276,7 +285,7 @@
         display: none;
         background-color: #4F6BFF;
     }
-    .sidenav a {
+    .sidenav input {
 
         color:white;
     }
