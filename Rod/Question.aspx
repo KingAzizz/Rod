@@ -103,7 +103,7 @@
               <ItemTemplate>
                   <asp:HiddenField ID="answerPostID" runat="server" Value='<%#Eval("Answer_PostId") %>' />
                       <asp:HiddenField ID="answerUserId" runat="server" Value='<%# Eval("userAnswerId")  %>' />
-                  <section class='postAnswer'>
+                  <section class='postAnswer' id='<%# Eval("Answer_PostId","answerLoc{0}") %>'>
                     <div class='vote postVote'>
                     <div>
                     <span>
