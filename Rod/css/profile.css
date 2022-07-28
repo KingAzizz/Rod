@@ -205,7 +205,7 @@
         .questionsAnswers > div > div > label {
             font-size: 1.9rem;
         }
-#ContentPlaceHolder1_QuestionsDataList, #ContentPlaceHolder1_AnswersDataList, #ContentPlaceHolder1_questionTabDatalist {
+#ContentPlaceHolder1_QuestionsDataList, #ContentPlaceHolder1_AnswersDataList, #ContentPlaceHolder1_questionTabDatalist, #ContentPlaceHolder1_answerTabDatalist {
     width: 100%;
 }
 
@@ -252,8 +252,61 @@
 }
 .tabsLabel {
     font-size: 2rem;
+
+}
+.questionTags {
+    height: 60px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 5px
 }
 
+.tagsSection {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    align-items: center;
+    justify-content: center;
+    align-content: center;
+    justify-items: center;
+    gap: 30px;
+    margin-top: 30px;
+}
+
+.tagFollowedName {
+    background-color: #E1ECF4;
+    color: #39739D;
+    padding: 5px;
+    font-size: 30px;
+    border-radius: 10px;
+    position: relative;
+    top: 16px;
+  
+}
+
+.tagsDivContainer {
+    display: flex;
+    flex-direction: column;
+    box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
+    padding: 10px;
+    position: relative;
+    height: 95px;
+    width: 210px;
+    text-align: center;
+}
+
+.tagUnFollow {
+    font-size: 1.2rem;
+    outline: none;
+    border: none;
+    background-color: #4F6BFF;
+    color: #FFFF;
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    left: 0;
+    cursor: pointer;
+}
 @media screen and (max-height: 450px) {
     .sidenav {
         padding-top: 15px;
@@ -311,5 +364,12 @@
         flex-direction: column;
         justify-content: center;
         align-items: center;
+    }
+    .tagsSection {
+        display: flex;
+       flex-direction:column;
+        align-items: center;
+        justify-content: center;
+        gap: 30px;
     }
 }
