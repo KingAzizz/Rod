@@ -7,6 +7,7 @@ using System.Web.UI.WebControls;
 using System.Data;
 using System.Data.SqlClient;
 using System.Globalization;
+using System.Web.UI.HtmlControls;
 
 namespace Rod
 {
@@ -109,7 +110,7 @@ namespace Rod
                             String mn = datevalue.Month.ToString();
                             String yy = datevalue.Year.ToString();
                           
-                            username.InnerText = "@" + dr.GetValue(1).ToString();
+                            username.InnerText = dr.GetValue(1).ToString() + " @ ";
                             creationDate.InnerText = "عضو من" + yy + "," + mn;
                             displayName.InnerText = dr.GetValue(3).ToString();
                             userAboutMe.InnerText = dr.GetValue(4).ToString();
@@ -177,6 +178,36 @@ namespace Rod
                                 profileContainer.Style["display"]= "block !important";
                               
                             }
+                            if (Request.QueryString["tab"].ToString() == "answers")
+                            {
+                                defaultTap.Visible = false;
+                                Bind("answers");
+                                HiddenField hidden = answerTabDatalist.Items[0].FindControl("howManyPostHd") as HiddenField;
+
+                                answerTabDatalist.Visible = true;
+                                tabsLabel.Visible = true;
+                                tabsLabel.InnerText = "[" + hidden.Value + "] الأجابات";
+
+
+                                profileContainer.Style["display"] = "block !important";
+
+                            }
+                            if (Request.QueryString["tab"].ToString() == "tags")
+                            {
+                                defaultTap.Visible = false;
+                               
+                                Bind("tags");
+                                HiddenField hidden = tagTabListView.Items[0].FindControl("howManyTagsHd") as HiddenField;
+
+                                tagTabListView.Visible = true;
+                                tagsSection.Visible = true;
+                                tabsLabel.Visible = true;//change
+                                tabsLabel.InnerText = "[" + hidden.Value + "] الاقسام";
+
+                                
+                                profileContainer.Style["display"] = "block !important";
+
+                            }
                         }
                         
                        
@@ -211,12 +242,13 @@ namespace Rod
         }
         public void Bind(string tab)
         {
-            if(tab == "default")
+            string cs = @"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=C:\Users\aziz\source\repos\Rod\Rod\App_Data\Rod.mdf;Integrated Security=True";
+            SqlConnection con = new SqlConnection(cs);
+            if (tab == "default")
             {
 
-       
-            string cs = @"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=C:\Users\aziz\source\repos\Rod\Rod\App_Data\Rod.mdf;Integrated Security=True";
-                SqlConnection con = new SqlConnection(cs);
+
+                con.Open();
                 string badgesQuery = @"select [name],[description],[badgeImage],[acquiredDate] 
                 from Badge
                 inner join [BadgesUser]
@@ -236,7 +268,7 @@ namespace Rod
                 con.Close();
 
             con.Open();
-            string questionsQuery = @"select id,title,creationDate,CONVERT(int ,upvoteCount) + CONVERT(int ,downvoteCount) as totalVote from Post where id =" + Session["id"];
+            string questionsQuery = @"select id,title,tag,creationDate,CONVERT(int ,upvoteCount) + CONVERT(int ,downvoteCount) as totalVote from Post where userId =" + Session["id"];
             SqlCommand cmdQuestion = new SqlCommand(questionsQuery, con);
             SqlDataAdapter daQuestion = new SqlDataAdapter(cmdQuestion);
 
@@ -250,7 +282,7 @@ namespace Rod
             }
             con.Close();
             con.Open();
-            string answersQuery = @"select postId,answerText,creationDate, CONVERT(int ,upvoteCount) + CONVERT(int ,downvoteCount) as totalVote
+            string answersQuery = @"select id,postId,answerText,creationDate, CONVERT(int ,upvoteCount) + CONVERT(int ,downvoteCount) as totalVote
             from Answer where userId =" + Session["id"];
             SqlCommand cmdAnswer = new SqlCommand(answersQuery, con);
             SqlDataAdapter daAnswer = new SqlDataAdapter(cmdAnswer);
@@ -264,13 +296,14 @@ namespace Rod
                 answersDivD.Visible = false;
             }
             con.Close();
+   
+
             }
             if (tab == "questions")
             {
-
-
-                string cs = @"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=C:\Users\aziz\source\repos\Rod\Rod\App_Data\Rod.mdf;Integrated Security=True";
-                SqlConnection con = new SqlConnection(cs);
+               
+                con.Open();
+              
                 string questionsQuery = @"select id,title,body,tag,creationDate,CONVERT(int, upvoteCount) - CONVERT(int, downvoteCount) as totalVote,Count(id) as howManyPost from Post 
                 where userId = @userId
                 group by id,title,body,tag,creationDate, upvoteCount ,downvoteCount";
@@ -283,6 +316,57 @@ namespace Rod
                 questionTabDatalist.DataSource = ds.Tables[0];
                 questionTabDatalist.DataBind();
                 if (questionTabDatalist.Items.Count == 0)
+                {
+                    Response.Write("no");
+                }
+                con.Close();
+               
+              
+            }
+            if(tab == "answers")
+            {
+                con.Open();
+
+                string answersQuery = @"
+                select id,postId,Cast(answerText as NVARCHAR(100)) as answerText,creationDate,
+                CONVERT(int, upvoteCount) - CONVERT(int, downvoteCount) as totalVote,
+                (select Count(id) as howManyPost from Answer where userId = @userId) as howManyPost 
+                from Answer 
+                where userId = @userId
+                group by id,postId,Cast(answerText as NVARCHAR(100)),creationDate, upvoteCount ,downvoteCount";
+                SqlCommand cmd = new SqlCommand(answersQuery, con);
+                cmd.Parameters.AddWithValue("@userId", Session["id"]);
+                SqlDataAdapter da = new SqlDataAdapter(cmd);
+
+                DataSet ds = new DataSet();
+                da.Fill(ds, "Answer");
+                answerTabDatalist.DataSource = ds.Tables[0];
+                answerTabDatalist.DataBind();
+                if (answerTabDatalist.Items.Count == 0)
+                {
+                    Response.Write("no");
+                }
+                con.Close();
+            }
+            if(tab == "tags")
+            {
+               con.Open();
+
+                string tagsFollowQuery = @"select tagName,
+              (select Count(id) from TagFollowers where userId = @userId) as howManyTags 
+               from TagFollowers
+               inner join TagInfo on TagInfo.id = tagId
+               where userId = @userId
+               group by tagName";
+                SqlCommand cmd = new SqlCommand(tagsFollowQuery, con);
+                cmd.Parameters.AddWithValue("@userId", Session["id"]);
+                SqlDataAdapter da = new SqlDataAdapter(cmd);
+
+                DataSet ds = new DataSet();
+                da.Fill(ds, "TagFollowers");
+                tagTabListView.DataSource = ds.Tables[0];
+                tagTabListView.DataBind();
+                if (tagTabListView.Items.Count == 0)
                 {
                     Response.Write("no");
                 }
@@ -301,6 +385,16 @@ namespace Rod
         {
             Response.Redirect("~/profile.aspx?tab=questions");
 
+        }
+
+        protected void answerNav_Click(object sender, EventArgs e)
+        {
+            Response.Redirect("~/profile.aspx?tab=answers");
+        }
+
+        protected void tagNav_Click(object sender, EventArgs e)
+        {
+            Response.Redirect("~/profile.aspx?tab=tags");
         }
     }
 }
