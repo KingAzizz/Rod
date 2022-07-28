@@ -10,8 +10,8 @@
         <ul>
             <li><asp:Button ID="profileNav" runat="server" Text="الملف الشخصي" OnClick="profileNav_Click" /></li>
             <li><asp:Button ID="questionNav" runat="server" Text="الأسئلة" OnClick="questionNav_Click" /></li>
-            <li><asp:Button ID="answerNav" runat="server" Text="الأجابات" /></li>
-            <li><asp:Button ID="tagNav" runat="server" Text="الأقسام" /></li>
+            <li><asp:Button ID="answerNav" runat="server" Text="الأجابات" OnClick="answerNav_Click" /></li>
+            <li><asp:Button ID="tagNav" runat="server" Text="الأقسام" OnClick="tagNav_Click" /></li>
             <li><asp:Button ID="badgeNav" runat="server" Text="الأوسمة" /></li>
         </ul>
     </nav>
@@ -43,18 +43,44 @@
             </div>
         </div>
         <section id="tab" runat="server" style="width:100%">
-                     <div><label class="tabsLabel" id="tabsLabel" runat="server" visible="false"></label></div>
+                <div>
+                  <label class="tabsLabel" id="tabsLabel" runat="server" visible="false"></label>
+               </div>
             <asp:DataList ID="questionTabDatalist" CssClass="tabsContent" runat="server" Visible="false">
+                <ItemTemplate>
+                <asp:HiddenField ID="howManyPostHd" runat="server" Value='<%#Eval("howManyPost") %>' />
+                
+                         <div id="questionsDivD" runat="server">
+                <section class="questionContainerD">
+                    <div class="votes"><%# Eval("totalVote") %></div>
+                    <div class="questionTitleUser">
+
+                   <asp:HyperLink ID="questionTitleText" runat="server" NavigateUrl='<%# Eval("id","~/question/{0}") %>'>
+                       <%# Eval("title") %>
+                   </asp:HyperLink>
+                    </div>
+                    <div class="date"><%# GetMonthDay(Eval("creationDate").ToString()) %></div>
+                </section>
+
+                  
+            </div>
+
+          </div>
+                </ItemTemplate>
+            </asp:DataList>
+             <asp:DataList ID="answerTabDatalist" CssClass="tabsContent" runat="server" Visible="false">
                 <ItemTemplate>
                 <asp:HiddenField ID="howManyPostHd" runat="server" Value='<%#Eval("howManyPost") %>' />
                
                          <div id="questionsDivD" runat="server">
-            
-
+                             <!-- routes.MapPageRoute("postId", "question/{id}", "~/question.aspx");-->
                 <section class="questionContainerD">
                     <div class="votes"><%# Eval("totalVote") %></div>
                     <div class="questionTitleUser">
-                        <asp:HyperLink ID="questionTitleText" runat="server"><%# Eval("title") %></asp:HyperLink>
+
+                   <asp:HyperLink ID="questionTitleText" runat="server" NavigateUrl='<%# Eval("postId","~/question/{0}" + Eval("id","#answerLoc{0}")) %>'>
+                       <%# Eval("answerText") %>
+                   </asp:HyperLink>
                     </div>
                     <div class="date"><%# GetMonthDay(Eval("creationDate").ToString()) %></div>
                 </section>
@@ -64,9 +90,21 @@
           </div>
                 </ItemTemplate>
             </asp:DataList>
-            <div id="defaultTap" runat="server" style="width:100%">
 
-          
+             <section class="tagsSection" id="tagsSection" runat="server" visible="false">
+              <asp:ListView ID="tagTabListView" runat="server" Visible="false">
+    <ItemTemplate>
+          <asp:HiddenField ID="howManyTagsHd" runat="server" Value='<%#Eval("howManyTags") %>' />
+
+                <div class="tagsDivContainer">
+                    <span class="tagFollowedName"><%# Eval("tagName") %></span>
+                    <asp:Button ID="unFollowTag" runat="server" CssClass="tagUnFollow" Text="الغاء المتابعة" CommandName="UnFollowTag" />
+                </div>
+    </ItemTemplate>
+</asp:ListView>
+                   </section>
+
+            <div id="defaultTap" runat="server" style="width:100%">
         <div class="userFollow">
             <p>التابعين <span style="font-weight: bold;" id="followers" runat="server"></span></p>
             <p>المتابعين <span style="font-weight: bold;" id="following" runat="server"></span></p>
@@ -117,10 +155,11 @@
                 <section class="questionContainerD">
                     <div class="votes"><%# Eval("totalVote") %></div>
                     <div class="questionTitleUser">
-                        <asp:HyperLink ID="questionTitleText" runat="server"><%# Eval("title") %></asp:HyperLink>
+                        <asp:HyperLink ID="questionTitleText" runat="server" NavigateUrl='<%# Eval("id","~/question/{0}") %>'><%# Eval("title") %></asp:HyperLink>
                     </div>
                     <div class="date"><%# GetMonthDay(Eval("creationDate").ToString()) %></div>
                 </section>
+               
                     </ItemTemplate>
                 </asp:DataList>
             </div>
@@ -137,7 +176,7 @@
 
              <section class="questionContainerD">
                 <div class="votes"><%# Eval("totalVote") %></div>
-                <div class="questionTitleUser"><asp:HyperLink ID="answerTitleText" runat="server"><%# Eval("answerText") %></asp:HyperLink></div>
+                <div class="questionTitleUser"><asp:HyperLink ID="answerTitleText" runat="server" NavigateUrl='<%# Eval("postId","~/question/{0}" + Eval("id","#answerLoc{0}")) %>'><%# Eval("answerText") %></asp:HyperLink></div>
                 <div class="date"><%# GetMonthDay(Eval("creationDate").ToString()) %></div>
              </section>
 

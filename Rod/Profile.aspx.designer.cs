@@ -195,6 +195,33 @@ namespace Rod
         protected global::System.Web.UI.WebControls.DataList questionTabDatalist;
 
         /// <summary>
+        /// answerTabDatalist control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.DataList answerTabDatalist;
+
+        /// <summary>
+        /// tagsSection control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl tagsSection;
+
+        /// <summary>
+        /// tagTabListView control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.ListView tagTabListView;
+
+        /// <summary>
         /// defaultTap control.
         /// </summary>
         /// <remarks>
