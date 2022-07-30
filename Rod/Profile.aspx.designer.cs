@@ -168,6 +168,15 @@ namespace Rod
         protected global::System.Web.UI.HtmlControls.HtmlGenericControl education;
 
         /// <summary>
+        /// editProfile control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.HyperLink editProfile;
+
+        /// <summary>
         /// tab control.
         /// </summary>
         /// <remarks>
@@ -213,13 +222,40 @@ namespace Rod
         protected global::System.Web.UI.HtmlControls.HtmlGenericControl tagsSection;
 
         /// <summary>
-        /// tagTabListView control.
+        /// TagTabListView control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.ListView tagTabListView;
+        protected global::System.Web.UI.WebControls.ListView TagTabListView;
+
+        /// <summary>
+        /// badgesSection control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl badgesSection;
+
+        /// <summary>
+        /// BadgesTabListView control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.ListView BadgesTabListView;
+
+        /// <summary>
+        /// noResult control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label noResult;
 
         /// <summary>
         /// defaultTap control.

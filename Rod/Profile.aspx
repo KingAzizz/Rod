@@ -12,7 +12,7 @@
             <li><asp:Button ID="questionNav" runat="server" Text="الأسئلة" OnClick="questionNav_Click" /></li>
             <li><asp:Button ID="answerNav" runat="server" Text="الأجابات" OnClick="answerNav_Click" /></li>
             <li><asp:Button ID="tagNav" runat="server" Text="الأقسام" OnClick="tagNav_Click" /></li>
-            <li><asp:Button ID="badgeNav" runat="server" Text="الأوسمة" /></li>
+            <li><asp:Button ID="badgeNav" runat="server" Text="الأوسمة" OnClick="badgeNav_Click" /></li>
         </ul>
     </nav>
  
@@ -25,11 +25,11 @@
                 <p style="color:gray;" id="creationDate" runat="server"></p>
                 <div>
                   
-                    <asp:HyperLink ID="twitter" runat="server"><i class="fa-brands fa-twitter"></i></asp:HyperLink>
+                    <asp:HyperLink ID="twitter" runat="server" Target="_blank"><i class="fa-brands fa-twitter"></i></asp:HyperLink>
                    
-                    <asp:HyperLink ID="github" runat="server"><i class="fa-brands fa-github"></i></asp:HyperLink>
+                    <asp:HyperLink ID="github" runat="server" Target="_blank"><i class="fa-brands fa-github"></i></asp:HyperLink>
                    
-                    <asp:HyperLink ID="websiteUrl" runat="server">
+                    <asp:HyperLink ID="websiteUrl" runat="server" Target="_blank">
                         <i class="fa-solid fa-link" style="margin-left: 5px;"></i>
                     </asp:HyperLink>
                     <p id="locationP" runat="server"><i class="fa-solid fa-location-dot"></i> <span id="location" runat="server"></span> </p>
@@ -39,7 +39,7 @@
     
             <div class="editProfileContainer">
                 <button><i class="fa-solid fa-gear"></i></button>
-                <a href="#" >تعديل الملف الشخصي</a>
+                <asp:HyperLink ID="editProfile" runat="server" Text="تعديل الملف الشخصي" NavigateUrl="~/profile/edit"></asp:HyperLink>
             </div>
         </div>
         <section id="tab" runat="server" style="width:100%">
@@ -92,18 +92,30 @@
             </asp:DataList>
 
              <section class="tagsSection" id="tagsSection" runat="server" visible="false">
-              <asp:ListView ID="tagTabListView" runat="server" Visible="false">
+              <asp:ListView ID="TagTabListView" runat="server" Visible="false"         OnItemCommand="TagTabListView_OnItemCommand">
     <ItemTemplate>
           <asp:HiddenField ID="howManyTagsHd" runat="server" Value='<%#Eval("howManyTags") %>' />
 
                 <div class="tagsDivContainer">
                     <span class="tagFollowedName"><%# Eval("tagName") %></span>
-                    <asp:Button ID="unFollowTag" runat="server" CssClass="tagUnFollow" Text="الغاء المتابعة" CommandName="UnFollowTag" />
+                    <asp:Button ID="unFollowTag" runat="server" CssClass="tagUnFollow" Text="الغاء المتابعة" CommandName="UnFollowTag" CommandArgument='<%# Eval("id") %>' />
                 </div>
     </ItemTemplate>
 </asp:ListView>
                    </section>
+             <section class="badgesSection" id="badgesSection" runat="server" visible="false">
+              <asp:ListView ID="BadgesTabListView" runat="server" Visible="false">
+    <ItemTemplate>
+          <asp:HiddenField ID="howManyBadgesHd" runat="server" Value='<%#Eval("howManyBadges") %>' />
 
+         <div class="badgesDivContainer">
+           <img src='<%# Eval("badgeImage") %>' class="badgesImages" alt='<%# Eval("name") %>'>
+           <span class="descriptionBadge"><%# Eval("description") %></span>
+        </div>
+    </ItemTemplate>
+</asp:ListView>
+                   </section>
+            <asp:Label ID="noResult" runat="server" Visible="false" CssClass="noResult">لايوجد نتائج</asp:Label>
             <div id="defaultTap" runat="server" style="width:100%">
         <div class="userFollow">
             <p>التابعين <span style="font-weight: bold;" id="followers" runat="server"></span></p>
