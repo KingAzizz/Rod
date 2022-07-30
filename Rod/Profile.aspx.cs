@@ -42,7 +42,7 @@ namespace Rod
         protected void Page_Load(object sender, EventArgs e)
         {
 
-            Session["id"] = 1;
+           
             if (!Page.IsPostBack)
             {
                 if (Session["id"] != null)
@@ -55,31 +55,33 @@ namespace Rod
                     where Post.userId ="+ Session["id"] + 
                     @"  )
                             BEGIN
-                            SELECT  [User].id,[user].username ,[user].creationDate ,[user].displayName ,CAST([user].aboutMe as nvarchar(1300)) as aboutMe ,[user].education,[user].[location] ,CAST([user].websiteUrl as nvarchar(600)) as websiteUrl,CAST([user].twitterUrl as nvarchar(600)) as twitterUrl,CAST([user].githubUrl as nvarchar(600)) as githubUrl,CAST([user].profileImage as nvarchar(600)) as profileImage,[user].reputation,[user].followers,[user].[following],[user].[views],COUNT([Post].id) as postCount, COUNT([Answer].id) as answerCount
+                            SELECT  [User].id,[User].username ,[User].creationDate ,[User].displayName ,CAST([User].aboutMe as nvarchar(1300)) as aboutMe ,[User].education,[User].[location] ,CAST([User].websiteUrl as nvarchar(600)) as websiteUrl,CAST([user].twitterUrl as nvarchar(600)) as twitterUrl,CAST([user].githubUrl as nvarchar(600)) as githubUrl,CAST([User].profileImage as nvarchar(600)) as profileImage,[User].reputation,[User].followers,[User].[following],[User].[views],COUNT([Post].id) as postCount, COUNT([Answer].id) as answerCount
            
 
                             FROM[User]
                                 JOIN[Post]  ON[Post].userId = [User].id
                                 JOIN Answer ON [Answer].userId= [User].id
-                                where[User].id = " + Session["id"] + @" 
-                                group by  [User].id,[user].username ,[User].creationDate ,[User].displayName ,CAST([User].aboutMe as nvarchar(1300)) ,[User].education,[User].[location] ,CAST([User].websiteUrl as nvarchar(600)),CAST([user].twitterUrl as nvarchar(600)),CAST([User].githubUrl as nvarchar(600)),CAST([User].profileImage as nvarchar(600)),[User].reputation,[user].followers,[User].[following],[user].[views]
+                                where[User].id = " + Session["id"] +
+                                @" 
+                                group by  [User].id,[User].username ,[User].creationDate ,[User].displayName ,CAST([User].aboutMe as nvarchar(1300)) ,[User].education,[User].[location] ,CAST([User].websiteUrl as nvarchar(600)),CAST([User].twitterUrl as nvarchar(600)),CAST([User].githubUrl as nvarchar(600)),CAST([User].profileImage as nvarchar(600)),[User].reputation,[User].followers,[User].[following],[User].[views]
                         END;
                         ELSE IF EXISTS (select * from [Post] where userId =" + Session["id"] + 
                         @" )
                         BEGIN
-                          SELECT  [User].id,[user].username ,[user].creationDate ,[user].displayName ,CAST([user].aboutMe as nvarchar(1300)) as aboutMe ,[user].education,[user].[location] ,CAST([user].websiteUrl as nvarchar(600)) as websiteUrl,CAST([user].twitterUrl as nvarchar(600)) as twitterUrl,CAST([user].githubUrl as nvarchar(600)) as githubUrl,CAST([user].profileImage as nvarchar(600)) as profileImage,[user].reputation,[user].followers,[user].[following],[user].[views],COUNT([Post].id) as postCount
+                          SELECT  [User].id,[User].username ,[User].creationDate ,[User].displayName ,CAST([User].aboutMe as nvarchar(1300)) as aboutMe ,[User].education,[User].[location] ,CAST([User].websiteUrl as nvarchar(600)) as websiteUrl,CAST([User].twitterUrl as nvarchar(600)) as twitterUrl,CAST([User].githubUrl as nvarchar(600)) as githubUrl,CAST([user].profileImage as nvarchar(600)) as profileImage,[user].reputation,[User].followers,[User].[following],[User].[views],COUNT([Post].id) as postCount
         
                             FROM[User]
                                 JOIN[Post]  ON[Post].userId = [User].id
             
-                                where[User].id =" + Session["id"] + @" 
+                                where[User].id =" + Session["id"] + 
+                                @" 
                                 
-                                group by  [User].id,[user].username ,[user].creationDate ,[user].displayName ,CAST([user].aboutMe as nvarchar(1300)) ,[user].education,[user].[location] ,CAST([user].websiteUrl as nvarchar(600)),CAST([user].twitterUrl as nvarchar(600)),CAST([user].githubUrl as nvarchar(600)),CAST([user].profileImage as nvarchar(600)),[user].reputation,[user].followers,[user].[following],[user].[views]
+                                group by  [User].id,[User].username ,[User].creationDate ,[User].displayName ,CAST([User].aboutMe as nvarchar(1300)) ,[User].education,[User].[location] ,CAST([User].websiteUrl as nvarchar(600)),CAST([User].twitterUrl as nvarchar(600)),CAST([User].githubUrl as nvarchar(600)),CAST([User].profileImage as nvarchar(600)),[User].reputation,[User].followers,[User].[following],[User].[views]
                         END
                              ELSE IF EXISTS (select * from [Answer] where userId =" + Session["id"] + 
                              @" )
                         BEGIN
-                          SELECT  [User].id,[user].username ,[user].creationDate ,[user].displayName ,CAST([user].aboutMe as nvarchar(1300)) as aboutMe ,[user].education,[user].[location] ,CAST([user].websiteUrl as nvarchar(600)) as websiteUrl,CAST([user].twitterUrl as nvarchar(600)) as twitterUrl,CAST([user].githubUrl as nvarchar(600)) as githubUrl,CAST([user].profileImage as nvarchar(600)) as profileImage,[user].reputation,[user].followers,[user].[following],[user].[views],COUNT([Answer].id) as answerCount
+                          SELECT  [User].id,[User].username ,[User].creationDate ,[User].displayName ,CAST([User].aboutMe as nvarchar(1300)) as aboutMe ,[User].education,[User].[location] ,CAST([User].websiteUrl as nvarchar(600)) as websiteUrl,CAST([User].twitterUrl as nvarchar(600)) as twitterUrl,CAST([User].githubUrl as nvarchar(600)) as githubUrl,CAST([User].profileImage as nvarchar(600)) as profileImage,[User].reputation,[User].followers,[User].[following],[User].[views],COUNT([Answer].id) as answerCount
         
                             FROM[User]
                                 JOIN[Answer]  ON[Answer].userId = [User].id
@@ -87,12 +89,11 @@ namespace Rod
                                 where[User].id =" + Session["id"] + 
                                 @" 
                                 
-                                group by  [User].id,[user].username ,[user].creationDate ,[user].displayName ,CAST([user].aboutMe as nvarchar(1300)) ,[user].education,[user].[location] ,CAST([user].websiteUrl as nvarchar(600)),CAST([user].twitterUrl as nvarchar(600)),CAST([user].githubUrl as nvarchar(600)),CAST([user].profileImage as nvarchar(600)),[user].reputation,[user].followers,[user].[following],[user].[views]
+                                group by  [User].id,[User].username ,[User].creationDate ,[User].displayName ,CAST([User].aboutMe as nvarchar(1300)) ,[User].education,[User].[location] ,CAST([User].websiteUrl as nvarchar(600)),CAST([User].twitterUrl as nvarchar(600)),CAST([User].githubUrl as nvarchar(600)),CAST([User].profileImage as nvarchar(600)),[User].reputation,[User].followers,[User].[following],[User].[views]
                         END
                         ELSE
                         BEGIN
-                          SELECT id,username,creationDate,displayName,aboutMe,education,[location],websiteUrl,twitterUrl,githubUrl,profileImage,reputation,followers,[following],[views] from [User] where id =" + Session["id"] + @" 
-                        END;";
+                          SELECT id,username,creationDate,displayName,aboutMe,education,[location],websiteUrl,twitterUrl,githubUrl,profileImage,reputation,followers,[following],[views] from [User] where id =" + Session["id"]+ " END;";
 
                     SqlCommand cmd = new SqlCommand(userProfile, con);
 
@@ -110,7 +111,7 @@ namespace Rod
                             String mn = datevalue.Month.ToString();
                             String yy = datevalue.Year.ToString();
                           
-                            username.InnerText = dr.GetValue(1).ToString() + " @ ";
+                            username.InnerText = dr.GetValue(1).ToString() + "@";
                             creationDate.InnerText = "عضو من" + yy + "," + mn;
                             displayName.InnerText = dr.GetValue(3).ToString();
                             userAboutMe.InnerText = dr.GetValue(4).ToString();
@@ -126,16 +127,12 @@ namespace Rod
                             userViews.InnerText = dr.GetValue(14).ToString();
                             userQuestions.InnerText = "0";
                             userAnswers.InnerText = "0";
-                            /*
-                            pageContainer.Style.Add("position", "relative");
-                            pageContainer.Style.Add("bottom", "70px");*/
 
                             if (dr.FieldCount == 17)
                             {
                                 userQuestions.InnerText = dr.GetValue(15).ToString();
                                 userAnswers.InnerText = dr.GetValue(16).ToString();
-                                /*pageContainer.Style.Remove("position");
-                                pageContainer.Style.Remove("bottom");*/
+                               
 
                             }
                             else
@@ -143,16 +140,11 @@ namespace Rod
                                 if (DataRecordExtensions.HasColumn(dr, "postCount"))
                                 {
                                     userQuestions.InnerText = dr.GetValue(15).ToString();
-                                   
-                                    /*expectionCss1.Style.Add("width", "fit-content !important");
-                                    expectionCss2.Style.Add("width", "fit-content !important");*/
                                     questionsDivD.Style.Remove("width");
-
                                 }
                                 if (DataRecordExtensions.HasColumn(dr, "answerCount"))
                                 {
                                     userAnswers.InnerText = dr.GetValue(15).ToString();
-
                                 }
                             }
 
@@ -168,13 +160,9 @@ namespace Rod
                             if (Request.QueryString["tab"].ToString() == "questions")
                             {
                                 Bind("questions");
-                                HiddenField hidden = questionTabDatalist.Items[0].FindControl("howManyPostHd") as HiddenField;
-                               
+                             
                                 questionTabDatalist.Visible = true;
                                 tabsLabel.Visible = true;
-                                tabsLabel.InnerText = "[" + hidden.Value +  "] الاسئلة";
-
-
                                 profileContainer.Style["display"]= "block !important";
                               
                             }
@@ -182,11 +170,10 @@ namespace Rod
                             {
                                 defaultTap.Visible = false;
                                 Bind("answers");
-                                HiddenField hidden = answerTabDatalist.Items[0].FindControl("howManyPostHd") as HiddenField;
-
+                              
                                 answerTabDatalist.Visible = true;
                                 tabsLabel.Visible = true;
-                                tabsLabel.InnerText = "[" + hidden.Value + "] الأجابات";
+                               
 
 
                                 profileContainer.Style["display"] = "block !important";
@@ -197,17 +184,29 @@ namespace Rod
                                 defaultTap.Visible = false;
                                
                                 Bind("tags");
-                                HiddenField hidden = tagTabListView.Items[0].FindControl("howManyTagsHd") as HiddenField;
-
-                                tagTabListView.Visible = true;
+                               
+                                TagTabListView.Visible = true;
                                 tagsSection.Visible = true;
                                 tabsLabel.Visible = true;//change
-                                tabsLabel.InnerText = "[" + hidden.Value + "] الاقسام";
+                            
 
                                 
                                 profileContainer.Style["display"] = "block !important";
 
                             }
+                            if (Request.QueryString["tab"].ToString() == "badges")
+                            {
+                                defaultTap.Visible = false;
+
+                                Bind("badges");
+                              
+                                BadgesTabListView.Visible = true;
+                                badgesSection.Visible = true;
+                                tabsLabel.Visible = true;
+                                profileContainer.Style["display"] = "block !important";
+
+                            }
+
                         }
                         
                        
@@ -244,7 +243,7 @@ namespace Rod
         {
             string cs = @"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=C:\Users\aziz\source\repos\Rod\Rod\App_Data\Rod.mdf;Integrated Security=True";
             SqlConnection con = new SqlConnection(cs);
-            if (tab == "default")
+            if(tab == "default")
             {
 
 
@@ -299,12 +298,14 @@ namespace Rod
    
 
             }
-            if (tab == "questions")
+            if(tab == "questions")
             {
                
                 con.Open();
               
-                string questionsQuery = @"select id,title,body,tag,creationDate,CONVERT(int, upvoteCount) - CONVERT(int, downvoteCount) as totalVote,Count(id) as howManyPost from Post 
+                string questionsQuery = @"select id,title,body,tag,creationDate,CONVERT(int, upvoteCount) - CONVERT(int, downvoteCount) as totalVote,
+                (select Count(id) from Post where userId = @userId)  as howManyPost 
+                from Post 
                 where userId = @userId
                 group by id,title,body,tag,creationDate, upvoteCount ,downvoteCount";
                 SqlCommand cmd = new SqlCommand(questionsQuery, con);
@@ -317,7 +318,12 @@ namespace Rod
                 questionTabDatalist.DataBind();
                 if (questionTabDatalist.Items.Count == 0)
                 {
-                    Response.Write("no");
+                    noResult.Visible = true; 
+                }
+                else
+                {
+                    HiddenField hidden = questionTabDatalist.Items[0].FindControl("howManyPostHd") as HiddenField;
+                    tabsLabel.InnerText = "[" + hidden.Value + "] الاسئلة";
                 }
                 con.Close();
                
@@ -344,7 +350,12 @@ namespace Rod
                 answerTabDatalist.DataBind();
                 if (answerTabDatalist.Items.Count == 0)
                 {
-                    Response.Write("no");
+                    noResult.Visible = true;
+                }
+                else
+                {
+                    HiddenField hidden = answerTabDatalist.Items[0].FindControl("howManyPostHd") as HiddenField;
+                    tabsLabel.InnerText = "[" + hidden.Value + "] الأجابات";
                 }
                 con.Close();
             }
@@ -352,31 +363,85 @@ namespace Rod
             {
                con.Open();
 
-                string tagsFollowQuery = @"select tagName,
+                string tagsFollowQuery = @"select [TagFollowers].id,tagName,
               (select Count(id) from TagFollowers where userId = @userId) as howManyTags 
                from TagFollowers
                inner join TagInfo on TagInfo.id = tagId
                where userId = @userId
-               group by tagName";
+               group by tagName,[TagFollowers].id";
                 SqlCommand cmd = new SqlCommand(tagsFollowQuery, con);
                 cmd.Parameters.AddWithValue("@userId", Session["id"]);
                 SqlDataAdapter da = new SqlDataAdapter(cmd);
 
                 DataSet ds = new DataSet();
                 da.Fill(ds, "TagFollowers");
-                tagTabListView.DataSource = ds.Tables[0];
-                tagTabListView.DataBind();
-                if (tagTabListView.Items.Count == 0)
+                TagTabListView.DataSource = ds.Tables[0];
+                TagTabListView.DataBind();
+                if (TagTabListView.Items.Count == 0)
                 {
-                    Response.Write("no");
+                    noResult.Visible = true;
+                }
+                else
+                {
+                    HiddenField hidden = TagTabListView.Items[0].FindControl("howManyTagsHd") as HiddenField;
+                    tabsLabel.InnerText = "[" + hidden.Value + "] الاقسام";
+                }
+                con.Close();
+            }
+            if(tab == "badges")
+            {
+                con.Open();
+
+                string badgesQuery = @"select [name],Cast([description] as NVARCHAR(100)) as [description],Cast(badgeImage as NVARCHAR(600)) as badgeImage,
+                (select COUNT(id) from BadgesUser where userId = @userId) as howManyBadges
+                    from Badge
+                    inner join BadgesUser on [BadgesUser].badgeId = [Badge].id 
+                    where userId = @userId
+                    group by [name],Cast([description] as NVARCHAR(100)),Cast(badgeImage as NVARCHAR(600))";
+                SqlCommand cmd = new SqlCommand(badgesQuery, con);
+                cmd.Parameters.AddWithValue("@userId", Session["id"]);
+                SqlDataAdapter da = new SqlDataAdapter(cmd);
+
+                DataSet ds = new DataSet();
+                da.Fill(ds, "Badge");
+                BadgesTabListView.DataSource = ds.Tables[0];
+                BadgesTabListView.DataBind();
+                if (BadgesTabListView.Items.Count == 0)
+                {
+                    noResult.Visible = true;
+                }
+                else
+                {
+                    HiddenField hidden = BadgesTabListView.Items[0].FindControl("howManyBadgesHd") as HiddenField;
+                    tabsLabel.InnerText = "[" + hidden.Value + "] الأوسمة";
                 }
                 con.Close();
             }
 
 
         }
+        protected void TagTabListView_OnItemCommand(object sender, ListViewCommandEventArgs e)
+        {
+            string cs = @"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=C:\Users\aziz\source\repos\Rod\Rod\App_Data\Rod.mdf;Integrated Security=True";
+            SqlConnection con = new SqlConnection(cs);
 
-        protected void profileNav_Click(object sender, EventArgs e)
+            if (e.CommandName == "UnFollowTag")
+            {
+                con.Open();
+
+                string unFollow = "delete from [TagFollowers] where id = @tagFollowId and userId = @userId";
+                e.Item.Visible = false;
+                SqlCommand unFollowCommand = new SqlCommand(unFollow, con);
+                unFollowCommand.Parameters.AddWithValue("@tagFollowId", e.CommandArgument);
+                unFollowCommand.Parameters.AddWithValue("@userId", Session["id"]);
+
+                unFollowCommand.ExecuteNonQuery();
+                e.Item.Visible = false;                    
+                con.Close();
+            }
+        }
+
+            protected void profileNav_Click(object sender, EventArgs e)
         {
             Response.Redirect("~/profile.aspx");
         }
@@ -395,6 +460,11 @@ namespace Rod
         protected void tagNav_Click(object sender, EventArgs e)
         {
             Response.Redirect("~/profile.aspx?tab=tags");
+        }
+
+        protected void badgeNav_Click(object sender, EventArgs e)
+        {
+            Response.Redirect("~/profile.aspx?tab=badges");
         }
     }
 }
