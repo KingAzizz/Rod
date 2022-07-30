@@ -22,7 +22,8 @@ namespace Rod
             if(Request.Cookies["userCredentials"] != null)
             {
                 usernameTxt.Text = Request.Cookies["userCredentials"]["username"];
-                
+
+                    rememberMe.Checked = true;
             }
             }
         }
