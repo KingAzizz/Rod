@@ -63,7 +63,7 @@
             <div class="dropdownContent">
                     <ul>
                       <li>
-                       <asp:HyperLink ID="userProfile" runat="server" NavigateUrl="~/Profile.aspx">ملف المستخدم</asp:HyperLink>
+                       <asp:HyperLink ID="userProfile" runat="server" NavigateUrl="~/Profile">ملف المستخدم</asp:HyperLink>
                        </li>
                         <li><asp:Button ID="logout" CssClass="logoutBtn" runat="server" Text="تسجيل خروج" OnClick="Logout"/></li>
                     </ul>
