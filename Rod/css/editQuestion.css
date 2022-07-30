@@ -99,6 +99,10 @@ label {
     border: 1px solid #babfc4;
     border-radius: 5px;
     margin-bottom: 30px;
+    padding: 0.4em;
+    padding-bottom: 190px;
+    width: 400px;
+    height: 10px;
 }
 
 .editContainer > div {
@@ -195,6 +199,7 @@ label {
         height: 40px;
         font-size: 1.3rem;
         color: #4F6BFF;
+        cursor:pointer;
     }
 
 @media screen and (max-width: 840px) {
