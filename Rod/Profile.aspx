@@ -39,7 +39,7 @@
     
             <div class="editProfileContainer">
                 <button><i class="fa-solid fa-gear"></i></button>
-                <asp:HyperLink ID="editProfile" runat="server" Text="تعديل الملف الشخصي" NavigateUrl="~/profile/edit"></asp:HyperLink>
+                <asp:HyperLink ID="editProfile" runat="server" Text="تعديل الملف الشخصي"></asp:HyperLink>
             </div>
         </div>
         <section id="tab" runat="server" style="width:100%">
