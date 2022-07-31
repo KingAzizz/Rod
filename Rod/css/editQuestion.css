@@ -39,22 +39,6 @@
     font-size: 21px;
 }
 
-#selectedNav {
-    color: black;
-}
-
-#selected::before {
-    content: "";
-    width: 8px;
-    height: 30px;
-    background-color: #F48123;
-    right: 0;
-    position: absolute;
-}
-
-
-
-
 .sidenav a:hover {
     color: black;
 }
