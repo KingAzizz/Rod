@@ -41,8 +41,6 @@ namespace Rod
       
         protected void Page_Load(object sender, EventArgs e)
         {
-
-           
             if (!Page.IsPostBack)
             {
                 if (Session["id"] != null)
@@ -101,8 +99,9 @@ namespace Rod
                    
                     if (dr.HasRows)
                     {
-                       
-                      
+                        editProfile.NavigateUrl = "~/profile/edit/" + Session["id"]; 
+
+
                         while (dr.Read())
                         {
                            
@@ -120,7 +119,7 @@ namespace Rod
                             websiteUrl.NavigateUrl = dr.GetValue(7).ToString();
                             twitter.NavigateUrl = dr.GetValue(8).ToString();
                             github.NavigateUrl = dr.GetValue(9).ToString();
-                            userProfileImage.ImageUrl = dr.GetValue(10).ToString();
+                            userProfileImage.ImageUrl = "~/" + dr.GetValue(10).ToString();
                             userReputPoint.InnerText = dr.GetValue(11).ToString();
                             followers.InnerText = dr.GetValue(12).ToString();
                             following.InnerText = dr.GetValue(13).ToString();
