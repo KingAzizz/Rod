@@ -44,7 +44,7 @@ namespace Rod
                 if(dr.HasRows){
                     while (dr.Read())
                     {
-                        profileImage.ImageUrl = dr.GetValue(0).ToString();
+                        profileImage.ImageUrl = "~/" + dr.GetValue(0).ToString();
                     }
                 }
 
