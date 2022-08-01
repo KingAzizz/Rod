@@ -38,7 +38,9 @@
             </div>
     
             <div class="editProfileContainer">
-                <button><i class="fa-solid fa-gear"></i></button>
+                <button style="border: none; background-color: inherit;font-size: 1.2rem;">
+                    <i class="fa-solid fa-gear"></i>
+                </button>
                 <asp:HyperLink ID="editProfile" runat="server" Text="تعديل الملف الشخصي"></asp:HyperLink>
             </div>
         </div>
@@ -73,7 +75,6 @@
                 <asp:HiddenField ID="howManyPostHd" runat="server" Value='<%#Eval("howManyPost") %>' />
                
                          <div id="questionsDivD" runat="server">
-                             <!-- routes.MapPageRoute("postId", "question/{id}", "~/question.aspx");-->
                 <section class="questionContainerD">
                     <div class="votes"><%# Eval("totalVote") %></div>
                     <div class="questionTitleUser">
@@ -161,13 +162,14 @@
           <div id="questionsDivD" runat="server">
             <div><label>الاسئلة</label></div>
             <div id="expectionCss1" runat="server">
-                <asp:DataList ID="QuestionsDataList" runat="server">
+                <asp:DataList ID="QuestionsDataList" runat="server" 
+                    OnItemDataBound ="QuestionsDataList_ItemDataBound">
                     <ItemTemplate>
 
                 <section class="questionContainerD">
                     <div class="votes"><%# Eval("totalVote") %></div>
                     <div class="questionTitleUser">
-                        <asp:HyperLink ID="questionTitleText" runat="server" NavigateUrl='<%# Eval("id","~/question/{0}") %>'><%# Eval("title") %></asp:HyperLink>
+                        <asp:HyperLink ID="questionTitleText" runat="server" NavigateUrl='<%# Eval("id","~/question/{0}") %>' Text='<%# Eval("title") %>'></asp:HyperLink>
                     </div>
                     <div class="date"><%# GetMonthDay(Eval("creationDate").ToString()) %></div>
                 </section>
@@ -183,12 +185,13 @@
           <div id="answersDivD" runat="server">
             <div><label>الأجابات</label></div>
             <div id="expectionCss2" runat="server">
-                <asp:DataList ID="AnswersDataList" runat="server">
+                <asp:DataList ID="AnswersDataList" runat="server" 
+                    OnItemDataBound ="AnswersDataList_ItemDataBound">
                     <ItemTemplate>
 
              <section class="questionContainerD">
                 <div class="votes"><%# Eval("totalVote") %></div>
-                <div class="questionTitleUser"><asp:HyperLink ID="answerTitleText" runat="server" NavigateUrl='<%# Eval("postId","~/question/{0}" + Eval("id","#answerLoc{0}")) %>'><%# Eval("answerText") %></asp:HyperLink></div>
+                <div class="questionTitleUser"><asp:HyperLink ID="answerTitleText" runat="server" NavigateUrl='<%# Eval("postId","~/question/{0}" + Eval("id","#answerLoc{0}")) %>' Text='<%# Eval("answerText") %>'></asp:HyperLink></div>
                 <div class="date"><%# GetMonthDay(Eval("creationDate").ToString()) %></div>
              </section>
 
