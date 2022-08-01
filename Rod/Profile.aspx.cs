@@ -25,6 +25,7 @@ namespace Rod
     }
     public partial class Profile : System.Web.UI.Page
     {
+        
         public string GetMonthDay(string dataValue)
         {
             String sDate = dataValue;
@@ -38,7 +39,10 @@ namespace Rod
             return monthName + "," + dd;
 
         }
-      
+        public string Truncate(string value, int maxChars)
+        {
+            return value.Length <= maxChars ? value : value.Substring(0, maxChars) + "...";
+        }
         protected void Page_Load(object sender, EventArgs e)
         {
             if (!Page.IsPostBack)
@@ -419,6 +423,22 @@ namespace Rod
 
 
         }
+        protected void QuestionsDataList_ItemDataBound(object sender, DataListItemEventArgs e)
+        {
+            HyperLink questionTitle = e.Item.FindControl("questionTitleText") as HyperLink;
+
+            string title = questionTitle.Text;
+            questionTitle.Text = Truncate(title, 40);
+
+        }
+        protected void AnswersDataList_ItemDataBound(object sender, DataListItemEventArgs e)
+        {
+            HyperLink answerTitle = e.Item.FindControl("answerTitleText") as HyperLink;
+            string title = answerTitle.Text;
+            answerTitle.Text = Truncate(title, 40);
+
+        }
+
         protected void TagTabListView_OnItemCommand(object sender, ListViewCommandEventArgs e)
         {
             string cs = @"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=C:\Users\aziz\source\repos\Rod\Rod\App_Data\Rod.mdf;Integrated Security=True";
@@ -439,8 +459,7 @@ namespace Rod
                 con.Close();
             }
         }
-
-            protected void profileNav_Click(object sender, EventArgs e)
+        protected void profileNav_Click(object sender, EventArgs e)
         {
             Response.Redirect("~/profile.aspx");
         }
