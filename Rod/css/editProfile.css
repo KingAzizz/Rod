@@ -1,4 +1,9 @@
-﻿.sidenav {
+﻿
+.display{
+    display:block !important;
+}
+
+.sidenav {
     transition: 2s;
     height: 100%;
     position: fixed;
@@ -187,13 +192,22 @@ ul {
 
     .sidenav {
         display: none;
+        background-color: #4f6bff;
     }
+        .sidenav a {
+            color:#ffff;
+        }
 
     .hamburgerMenu {
         display: block;
     }
 
     .hamburgerButton {
-        top: 70px;
+        background-color: inherit;
+        outline: none;
+        border: none;
+        font-size: 1.4rem;
+        position: absolute;
+        left: 23px;
     }
 }
