@@ -17,11 +17,12 @@ namespace Rod
         }
         public static void RegisterRoutes(RouteCollection routes)
         {
+            routes.MapPageRoute("Home", "", "~/Home.aspx");
             routes.MapPageRoute("postId", "question/{id}", "~/Question.aspx");
             routes.MapPageRoute("editPostId", "question/edit/{id}", "~/EditQuestion.aspx");
             routes.MapPageRoute("profile", "profile", "~/Profile.aspx");
             routes.MapPageRoute("editprofile", "profile/edit/{id}", "~/EditProfile.aspx");
-
+            routes.MapPageRoute("questions", "questions", "~/Questions.aspx");
         }
 
         protected void Session_Start(object sender, EventArgs e)
