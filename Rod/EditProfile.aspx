@@ -9,7 +9,7 @@
         <nav class="sidenav" id="sidenav" runat="server">
             <ul>
                 <li>
-                   <asp:HyperLink ID="homePage" runat="server" NavigateUrl="~/Home.aspx">الصفحة الرئيسية</asp:HyperLink>
+                   <asp:HyperLink ID="homePage" runat="server" NavigateUrl="~/">الصفحة الرئيسية</asp:HyperLink>
                 </li>
                 <li>
                      <asp:HyperLink ID="tags" runat="server" NavigateUrl="~/Tags.aspx">الأقسام</asp:HyperLink>

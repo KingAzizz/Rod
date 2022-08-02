@@ -25,7 +25,7 @@ namespace Rod
             {
                 if (!int.TryParse(id.ToString(), out num))
                 {
-                    Response.Redirect("~/Home.aspx");
+                    Response.Redirect("~/");
 
 
                 }
@@ -45,7 +45,7 @@ namespace Rod
                         bodyText.Text = dr.GetValue(3).ToString();
                         if(Session["id"].ToString() != dr.GetValue(1).ToString())
                         {
-                            Response.Redirect("~/Home.aspx");
+                            Response.Redirect("~/");
                         }
                     }
                     Bind();
@@ -62,7 +62,7 @@ namespace Rod
             {
                 if (!int.TryParse(id.ToString(), out num))
                 {
-                    Response.Redirect("~/Home.aspx");
+                    Response.Redirect("~/");
 
 
                 }
@@ -129,7 +129,7 @@ namespace Rod
             {
                 if (!int.TryParse(id.ToString(), out num))
                 {
-                    Response.Redirect("~/Home.aspx");
+                    Response.Redirect("~/");
 
 
                 }
@@ -207,7 +207,7 @@ namespace Rod
             {
                 if (!int.TryParse(id.ToString(), out num))
                 {
-                    Response.Redirect("~/Home.aspx");
+                    Response.Redirect("~/");
 
 
                 }

@@ -103,7 +103,7 @@ namespace Rod
             {
                 if (!int.TryParse(id.ToString(), out num))
                 {
-                    Response.Redirect("~/Home.aspx");
+                    Response.Redirect("~/");
 
                     
                 }
@@ -273,7 +273,7 @@ namespace Rod
             }
             else
             {
-                Response.Redirect("~/Home.aspx");
+                Response.Redirect("~/");
             }
         }
         protected void Datalist_ItemDataBound(object sender, DataListItemEventArgs e)
@@ -684,7 +684,7 @@ namespace Rod
             {
                 if (!int.TryParse(id.ToString(), out num))
                 {
-                    Response.Redirect("~Home.aspx");
+                    Response.Redirect("~/");
 
 
                 }
@@ -1019,7 +1019,7 @@ namespace Rod
             cmd.Parameters.AddWithValue("@userId", userId.Value);
             cmd.ExecuteNonQuery();
                 con.Close();
-                Response.Redirect("~/Home.aspx");
+                Response.Redirect("~/");
             }
             else
             {

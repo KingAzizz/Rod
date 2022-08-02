@@ -20,7 +20,7 @@ namespace Rod
             {
                 if (!int.TryParse(id.ToString(), out num))
                 {
-                    Response.Redirect("~/Home.aspx");
+                    Response.Redirect("~/");
 
 
                 }
@@ -43,7 +43,7 @@ namespace Rod
                         {
                             if(dr.GetValue(0).ToString() != Session["id"].ToString())
                             {
-                                Response.Redirect("~/Home.aspx");
+                                Response.Redirect("~/");
                             }
                             displayNameInput.Text =dr.GetValue(1).ToString();
                             titleInput.Text = dr.GetValue(2).ToString();

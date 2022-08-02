@@ -14,7 +14,7 @@ namespace Rod
         {
             if(Session["loggedIn"] != null)
             {
-                Response.Redirect("~/Home.aspx");
+                Response.Redirect("~/");
             }
             if (!Page.IsPostBack)
             {
@@ -59,7 +59,7 @@ namespace Rod
                
                 Session["username"] = username;
                 Session["loggedIn"] = "true";
-                Response.Redirect("~/Home.aspx");
+                Response.Redirect("~/");
             }
             else
             {

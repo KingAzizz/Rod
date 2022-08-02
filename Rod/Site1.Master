@@ -18,7 +18,7 @@
     <nav class="navbar">
         <div class="container">
 
-            <asp:HyperLink CssClass="logo" NavigateUrl="~/Home.aspx" runat="server">
+            <asp:HyperLink CssClass="logo" NavigateUrl="~/" runat="server">
                   <span>رد</span>
             </asp:HyperLink>
             
@@ -26,7 +26,7 @@
                 <li> 
                  
                     <i class="fa-solid fa-earth-africa"></i>
-                    <asp:HyperLink ID="questionsLink" runat="server" NavigateUrl="~/Questions.aspx" ForeColor="Black">
+                    <asp:HyperLink ID="questionsLink" runat="server" NavigateUrl="~/Questions" ForeColor="Black">
                          الاسئلة
                     </asp:HyperLink>
                 </li>
