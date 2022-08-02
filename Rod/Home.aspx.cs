@@ -225,8 +225,12 @@ namespace Rod
 
             con.Open();
 
-            string viewByWeek = @"SELECT TOP 40 * FROM [User] INNER JOIN [Post] ON [User].id = [Post].userId Where convert(date, [Post].creationDate , 103)< cast(GETDATE() as date) and[Post].creationDate > DATEADD(DAY, -199, convert(date, GETDATE(), 103))
-                ORDER BY[Post].creationDate ASC; ";
+            string viewByWeek = @"SET DATEFIRST 1 
+        SELECT TOP 40 * from [User]
+        inner join [Post] on[Post].userId = [User].id 
+        where [Post].creationDate >= dateadd(day, 1-datepart(dw, getdate()), CONVERT(date,getdate())) 
+        AND [Post].creationDate <  dateadd(day, 8-datepart(dw, getdate()), CONVERT(date,getdate()))
+        order by [Post].creationDate DESC";
 
 
 
