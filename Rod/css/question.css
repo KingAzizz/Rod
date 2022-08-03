@@ -72,14 +72,7 @@
     color: black;
 }
 
-#selected::before {
-    content: "";
-    width: 8px;
-    height: 30px;
-    background-color: #F48123;
-    right: 0;
-    position: absolute;
-}
+
 
 
 
@@ -99,8 +92,7 @@
 }
 .questionContainer {
     height: fit-content;
-    min-height: 100vh;
-    padding-bottom: 110vh;
+    padding-bottom: 15vh;
     clear: both;
     margin-left: 211px;
     direction: rtl;

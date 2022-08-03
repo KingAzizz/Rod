@@ -13,7 +13,8 @@
     margin-left: 211px;
     display: flex;
     flex-direction: column;
-    box-shadow: rgb(0 0 0 / 35%) 0px 5px 15px;
+    border: 1px solid #babfc4;
+    border-radius: 5px;
     padding: 20px;
     flex-wrap: nowrap;
     gap: 20px;
@@ -83,9 +84,8 @@
     .searchFilters > div:nth-child(3) > div > input:hover {
         color: gray;
     }
-        
+
 .question {
-    box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
     display: grid;
     grid-template-columns: 1fr 1fr 1fr;
     grid-template-rows: 1fr 1fr 1fr;
@@ -96,6 +96,8 @@
         "usernameQuestionDetails questionTitle votesAnswers"
         "usernameQuestionDetails questionTitle votesAnswers";
     padding: 30px;
+    border: 1px solid #babfc4;
+    border-radius: 5px;
 }
 
 .votesAnswers {
@@ -178,8 +180,9 @@
     transition: 2s;
     height: 100%;
     position: fixed;
-    margin-top: 62px;
-    border-right: 2px solid black;
+    margin-top: 61px;
+    border: 1px solid #babfc4;
+    border-radius: 5px;
     z-index: 1;
     top: 0;
     left: 0;

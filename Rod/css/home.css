@@ -170,9 +170,10 @@
 .sidenav {
     transition: 2s;
     height: 100%;
-   position:fixed;
-    margin-top: 62px;
-    border-right: 2px solid black;
+    position: fixed;
+    margin-top: 61px;
+    border: 1px solid #babfc4;
+    border-radius: 5px;
     z-index: 1;
     top: 0;
     left: 0;
@@ -189,21 +190,6 @@
         display: block;
         position: relative;
     }
-
-#selected {
-    color: black;
-}
-
-    #selected::before {
-        content: "";
-        width: 8px;
-        height: 30px;
-        background-color: #F48123;
-        right: 0;
-        position: absolute;
-    }
-
-
 
 
 .sidenav a:hover {
@@ -230,10 +216,11 @@
 }
 
 .content {
-    margin-left: 211px;
     display: flex;
     flex-direction: row;
-    box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+    border: 1px solid #babfc4;
+    border-radius: 5px;
+    margin-left: 211px;
     padding: 20px;
 }
 
@@ -296,19 +283,20 @@
     clear: both;
     }
 
-    .question {
-        box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
-        display: grid;
-        grid-template-columns: 1fr 1fr 1fr;
-        grid-template-rows: 1fr 1fr 1fr;
-        gap: 0px 0px;
-        grid-auto-flow: row;
-        grid-template-areas:
-            "usernameQuestionDetails questionTitle votesAnswers"
-            "usernameQuestionDetails questionTitle votesAnswers"
-            "usernameQuestionDetails questionTitle votesAnswers";
-        padding: 30px;
-    }
+.question {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    grid-template-rows: 1fr 1fr 1fr;
+    gap: 0px 0px;
+    grid-auto-flow: row;
+    grid-template-areas:
+        "usernameQuestionDetails questionTitle votesAnswers"
+        "usernameQuestionDetails questionTitle votesAnswers"
+        "usernameQuestionDetails questionTitle votesAnswers";
+    padding: 30px;
+    border: 1px solid #babfc4;
+    border-radius: 5px;
+}
 
     .votesAnswers {
         grid-area: votesAnswers;
