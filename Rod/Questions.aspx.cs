@@ -7,6 +7,7 @@ using System.Linq;
 using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
+using System.Web.UI.HtmlControls;
 
 namespace Rod
 {
@@ -101,6 +102,33 @@ namespace Rod
         {
             (questionsListView.FindControl("DataPager") as DataPager).SetPageProperties(e.StartRowIndex, e.MaximumRows, false);
             this.Bind();
+        }
+
+        protected void questionsListView_ItemDataBound(object sender, ListViewItemEventArgs e)
+        {
+            HtmlGenericControl tagsDiv = e.Item.FindControl("tags") as HtmlGenericControl;
+            HiddenField questionId = e.Item.FindControl("questionId") as HiddenField;
+            string cs = @"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=C:\Users\aziz\source\repos\Rod\Rod\App_Data\Rod.mdf;Integrated Security=True";
+            SqlConnection con = new SqlConnection(cs);
+            con.Open();
+
+            string queryTags = @"select tagId,tagName from PostTags
+            inner join TagInfo on tagId = TagInfo.id
+            where postId = @postId";
+            SqlCommand cmd = new SqlCommand(queryTags, con);
+            cmd.Parameters.AddWithValue("@postId", questionId.Value);
+
+            SqlDataReader dr = cmd.ExecuteReader();
+
+            if (dr.HasRows)
+            {
+                Response.Write(dr.FieldCount);
+                while (dr.Read())
+                {
+                    tagsDiv.InnerHtml = "<span class='tagplaceholder'> <a href='#" + dr.GetValue(0) +"'>" + dr.GetValue(1).ToString() + "</a></span>";
+                }
+            }
+            con.Close();
         }
     }
 }
