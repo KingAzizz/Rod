@@ -79,7 +79,7 @@ namespace Rod
                 return "امس";
 
             if (delta < 30 * DAY)
-                return "قبل " + ts.Days + " يوم ";
+                return " قبل " + ts.Days + " يوم ";
 
             if (delta < 12 * MONTH)
             {
