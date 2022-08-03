@@ -62,8 +62,7 @@
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    height: fit-content;
-    min-height: 100vh;
+    padding-bottom: 100px;
     clear: both;
 }
 
