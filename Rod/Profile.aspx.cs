@@ -54,51 +54,49 @@ namespace Rod
                     con.Open();
                     string userProfile = @" IF EXISTS( SELECT * from [Post] 
                     inner join [Answer] on Answer.userId = Post.userId
-                    where Post.userId ="+ Session["id"] + 
-                    @"  )
+                    where Post.userId = @userId )
                             BEGIN
-                            SELECT  [User].id,[User].username ,[User].creationDate ,[User].displayName ,CAST([User].aboutMe as nvarchar(1300)) as aboutMe ,[User].education,[User].[location] ,CAST([User].websiteUrl as nvarchar(600)) as websiteUrl,CAST([user].twitterUrl as nvarchar(600)) as twitterUrl,CAST([user].githubUrl as nvarchar(600)) as githubUrl,CAST([User].profileImage as nvarchar(600)) as profileImage,[User].reputation,[User].followers,[User].[following],[User].[views],COUNT([Post].id) as postCount, COUNT([Answer].id) as answerCount
+                            SELECT  [User].id,[User].username ,[User].creationDate ,[User].displayName ,CAST([User].aboutMe as nvarchar(1300)) as aboutMe ,[User].education,[User].[location] ,CAST([User].websiteUrl as nvarchar(600)) as websiteUrl,CAST([user].twitterUrl as nvarchar(600)) as twitterUrl,CAST([user].githubUrl as nvarchar(600)) as githubUrl,CAST([User].profileImage as nvarchar(600)) as profileImage,[User].reputation,[User].followers,[User].[following],[User].[views],
+                            (SELECT COUNT(id) FROM Post where userId = @userId) as postCount,
+                            (SELECT COUNT(id) FROM Answer where userId = @userId) as answerCount
            
 
                             FROM[User]
                                 JOIN[Post]  ON[Post].userId = [User].id
                                 JOIN Answer ON [Answer].userId= [User].id
-                                where[User].id = " + Session["id"] +
-                                @" 
+                                where[User].id = @userId
                                 group by  [User].id,[User].username ,[User].creationDate ,[User].displayName ,CAST([User].aboutMe as nvarchar(1300)) ,[User].education,[User].[location] ,CAST([User].websiteUrl as nvarchar(600)),CAST([User].twitterUrl as nvarchar(600)),CAST([User].githubUrl as nvarchar(600)),CAST([User].profileImage as nvarchar(600)),[User].reputation,[User].followers,[User].[following],[User].[views]
                         END;
-                        ELSE IF EXISTS (select * from [Post] where userId =" + Session["id"] + 
-                        @" )
+                        ELSE IF EXISTS (select * from [Post] where userId = @userId )
                         BEGIN
-                          SELECT  [User].id,[User].username ,[User].creationDate ,[User].displayName ,CAST([User].aboutMe as nvarchar(1300)) as aboutMe ,[User].education,[User].[location] ,CAST([User].websiteUrl as nvarchar(600)) as websiteUrl,CAST([User].twitterUrl as nvarchar(600)) as twitterUrl,CAST([User].githubUrl as nvarchar(600)) as githubUrl,CAST([user].profileImage as nvarchar(600)) as profileImage,[user].reputation,[User].followers,[User].[following],[User].[views],COUNT([Post].id) as postCount
+                          SELECT  [User].id,[User].username ,[User].creationDate ,[User].displayName ,CAST([User].aboutMe as nvarchar(1300)) as aboutMe ,[User].education,[User].[location] ,CAST([User].websiteUrl as nvarchar(600)) as websiteUrl,CAST([User].twitterUrl as nvarchar(600)) as twitterUrl,CAST([User].githubUrl as nvarchar(600)) as githubUrl,CAST([user].profileImage as nvarchar(600)) as profileImage,[user].reputation,[User].followers,[User].[following],[User].[views], 
+                            (SELECT COUNT(id) FROM Post where userId = @userId) as postCount
         
                             FROM[User]
                                 JOIN[Post]  ON[Post].userId = [User].id
             
-                                where[User].id =" + Session["id"] + 
-                                @" 
+                                where[User].id = @userId
                                 
                                 group by  [User].id,[User].username ,[User].creationDate ,[User].displayName ,CAST([User].aboutMe as nvarchar(1300)) ,[User].education,[User].[location] ,CAST([User].websiteUrl as nvarchar(600)),CAST([User].twitterUrl as nvarchar(600)),CAST([User].githubUrl as nvarchar(600)),CAST([User].profileImage as nvarchar(600)),[User].reputation,[User].followers,[User].[following],[User].[views]
                         END
-                             ELSE IF EXISTS (select * from [Answer] where userId =" + Session["id"] + 
-                             @" )
+                             ELSE IF EXISTS (select * from [Answer] where userId = @userId)
                         BEGIN
-                          SELECT  [User].id,[User].username ,[User].creationDate ,[User].displayName ,CAST([User].aboutMe as nvarchar(1300)) as aboutMe ,[User].education,[User].[location] ,CAST([User].websiteUrl as nvarchar(600)) as websiteUrl,CAST([User].twitterUrl as nvarchar(600)) as twitterUrl,CAST([User].githubUrl as nvarchar(600)) as githubUrl,CAST([User].profileImage as nvarchar(600)) as profileImage,[User].reputation,[User].followers,[User].[following],[User].[views],COUNT([Answer].id) as answerCount
+                          SELECT  [User].id,[User].username ,[User].creationDate ,[User].displayName ,CAST([User].aboutMe as nvarchar(1300)) as aboutMe ,[User].education,[User].[location] ,CAST([User].websiteUrl as nvarchar(600)) as websiteUrl,CAST([User].twitterUrl as nvarchar(600)) as twitterUrl,CAST([User].githubUrl as nvarchar(600)) as githubUrl,CAST([User].profileImage as nvarchar(600)) as profileImage,[User].reputation,[User].followers,[User].[following],[User].[views],
+                            (SELECT COUNT(id) FROM Answer where userId = @userId) as answerCount
         
                             FROM[User]
                                 JOIN[Answer]  ON[Answer].userId = [User].id
             
-                                where[User].id =" + Session["id"] + 
-                                @" 
+                                where[User].id = @userId
                                 
                                 group by  [User].id,[User].username ,[User].creationDate ,[User].displayName ,CAST([User].aboutMe as nvarchar(1300)) ,[User].education,[User].[location] ,CAST([User].websiteUrl as nvarchar(600)),CAST([User].twitterUrl as nvarchar(600)),CAST([User].githubUrl as nvarchar(600)),CAST([User].profileImage as nvarchar(600)),[User].reputation,[User].followers,[User].[following],[User].[views]
                         END
                         ELSE
                         BEGIN
-                          SELECT id,username,creationDate,displayName,aboutMe,education,[location],websiteUrl,twitterUrl,githubUrl,profileImage,reputation,followers,[following],[views] from [User] where id =" + Session["id"]+ " END;";
+                          SELECT id,username,creationDate,displayName,aboutMe,education,[location],websiteUrl,twitterUrl,githubUrl,profileImage,reputation,followers,[following],[views] from [User] where id = @userId END;";
 
                     SqlCommand cmd = new SqlCommand(userProfile, con);
-
+                    cmd.Parameters.AddWithValue("@userId", Session["id"]);
                     SqlDataReader dr = cmd.ExecuteReader();
                    
                     if (dr.HasRows)
