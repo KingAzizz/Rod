@@ -208,6 +208,16 @@
     font-weight: 100;
     text-decoration: underline;
 }
+.tagplaceholder {
+    background-color: #E1ECF4;
+  
+    padding: 5px;
+    border-radius: 10px;
+}
+.tagplaceholder > a {
+    color: #39739D;
+    text-decoration:none;
+}
 
 .usernameQuestionDetails {
     grid-area: usernameQuestionDetails;
