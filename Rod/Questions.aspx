@@ -41,7 +41,7 @@
          </div>
         </section>
       <section class="sectionQuestions" id="sectionQuestions" runat="server">
-     <asp:ListView ID="questionsListView" runat="server" OnPagePropertiesChanging="questionsListView_PagePropertiesChanging" ItemPlaceholderID="itemPlaceholder" GroupPlaceholderID="groupPlaceholder">
+     <asp:ListView ID="questionsListView" runat="server" OnPagePropertiesChanging="questionsListView_PagePropertiesChanging" ItemPlaceholderID="itemPlaceholder" GroupPlaceholderID="groupPlaceholder" OnItemDataBound="questionsListView_ItemDataBound">
             <LayoutTemplate>
                             <asp:PlaceHolder runat="server" ID="groupPlaceholder"></asp:PlaceHolder>
 
@@ -61,6 +61,7 @@
             </GroupTemplate>
             <ItemTemplate>
                 <asp:HiddenField ID="questionsCount" runat="server" Value='<%# Eval("totalQuestions") %>' />
+                <asp:HiddenField ID="questionId" runat="server" Value='<%# Eval("id") %>' />
              <div class="question">
                     <div class="votesAnswers">
 
@@ -75,7 +76,9 @@
                         <asp:HyperLink ID="title" runat="server" NavigateUrl='<%# Eval("id","~/question/{0}") %>' Text='<%# Eval("title") %>'></asp:HyperLink>
 
                     </div>
-
+                   <div id="tags" runat="server">
+                   
+                   </div>
                    <div class="usernameQuestionDetails">
                     <h2><span> <%# Eval("username") %></span>   <span> <%# Eval("reputation") %></span></h2> 
                    <p> <%# RelativeDate(Convert.ToDateTime(Eval("creationDate"))) %></p>
