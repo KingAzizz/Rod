@@ -71,8 +71,10 @@
 
 
                     <div class="questionTitle">
-                       <a style="color: #0173CC;" href="/question/">
-                          <%# Eval("title") %></a> </div>
+
+                        <asp:HyperLink ID="title" runat="server" NavigateUrl='<%# Eval("id","~/question/{0}") %>' Text='<%# Eval("title") %>'></asp:HyperLink>
+
+                    </div>
 
                    <div class="usernameQuestionDetails">
                     <h2><span> <%# Eval("username") %></span>   <span> <%# Eval("reputation") %></span></h2> 
