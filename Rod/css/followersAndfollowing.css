@@ -1,2 +1,152 @@
-﻿body {
+﻿.sidenav {
+    transition: 2s;
+    height: 100%;
+    position: fixed;
+    margin-top: 61px;
+    border: 1px solid #babfc4;
+    border-radius: 5px;
+    z-index: 1;
+    top: 0;
+    left: 0;
+    background-color: #ffff;
+    overflow-x: hidden;
+    padding-top: 80px;
+}
+
+ul {
+    list-style-type: none;
+}
+
+.sidenav a {
+    padding: 6px 6px 6px 32px;
+    text-decoration: none;
+    font-size: 25px;
+    color: #818181;
+    display: block;
+    position: relative;
+}
+
+
+    .sidenav a:hover {
+        color: black;
+    }
+
+.hamburgerMenu {
+    display: none;
+    z-index: 9999;
+}
+
+.display {
+    display: block !important;
+    transition: 2s ease-in-out;
+}
+
+.hamburgerButton {
+    outline: none;
+    background-color: white;
+    border: none;
+    position: absolute;
+    margin-left: 30px;
+    cursor: pointer;
+    font-size: 21px;
+    z-index: 9999;
+}
+
+.followContainer {
+    margin-left: 211px;
+}
+
+    .followContainer > div {
+        display: flex;
+        flex-direction: column;
+    }
+
+        .followContainer > div > div:nth-child(1) {
+            display: flex;
+            flex-direction: row;
+            justify-content: center;
+            border: 1px solid #babfc4;
+            padding: 30px;
+            border-radius: 5px;
+            gap: 50px;
+        }
+
+.selectedWindow {
+    border-bottom: 4px solid #4F6BFF;
+}
+
+a {
+    text-decoration: none;
+}
+
+.followProfile {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    border: 1px solid #babfc4;
+    border-radius: 5px;
+}
+
+.followName {
+    height: 20px;
+}
+
+.followProfileImage {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    margin: 10px;
+}
+
+.profileContent {
+    display: flex;
+    flex-direction: row;
+}
+
+.profileDetails {
+    color: black;
+}
+
+.unfollowDiv {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+    .unfollowDiv > input {
+        cursor: pointer;
+        border: none;
+        outline: none;
+        background-color: #4F6BFF;
+        color: #fff;
+        border-radius: 10px;
+        padding: 7px;
+        text-align: center;
+        margin-left: 7px;
+        transition: 0.5s;
+        width: 100px;
+    }
+
+        .unfollowDiv > input:hover {
+            background-color: #274af9;
+        }
+
+
+@media screen and (max-width: 840px) {
+    .sidenav {
+        display: none;
+    }
+
+    .hamburgerMenu {
+        display: block;
+    }
+
+    .hamburgerButton {
+        top: 90px;
+    }
+
+    .followContainer {
+        margin-left: 0;
+    }
+
 }
