@@ -122,7 +122,6 @@ namespace Rod
 
             if (dr.HasRows)
             {
-                Response.Write(dr.FieldCount);
                 while (dr.Read())
                 {
                     tagsDiv.InnerHtml = "<span class='tagplaceholder'> <a href='#" + dr.GetValue(0) +"'>" + dr.GetValue(1).ToString() + "</a></span>";
