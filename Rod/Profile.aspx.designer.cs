@@ -267,6 +267,15 @@ namespace Rod
         protected global::System.Web.UI.HtmlControls.HtmlGenericControl defaultTap;
 
         /// <summary>
+        /// followersPage control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.HyperLink followersPage;
+
+        /// <summary>
         /// followers control.
         /// </summary>
         /// <remarks>
@@ -274,6 +283,15 @@ namespace Rod
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.HtmlControls.HtmlGenericControl followers;
+
+        /// <summary>
+        /// followingPage control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.HyperLink followingPage;
 
         /// <summary>
         /// following control.

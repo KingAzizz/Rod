@@ -119,8 +119,20 @@
             <asp:Label ID="noResult" runat="server" Visible="false" CssClass="noResult">لايوجد نتائج</asp:Label>
             <div id="defaultTap" runat="server" style="width:100%">
         <div class="userFollow">
-            <p>التابعين <span style="font-weight: bold;" id="followers" runat="server"></span></p>
-            <p>المتابعين <span style="font-weight: bold;" id="following" runat="server"></span></p>
+                <asp:HyperLink ID="followersPage" runat="server" NavigateUrl="~/profile/followers">
+            <p>
+                التابعين
+            <span style="font-weight: bold;" id="followers" runat="server"></span>
+
+            </p>
+               </asp:HyperLink>
+            <asp:HyperLink ID="followingPage" runat="server" NavigateUrl="~/profile/following">
+            <p>
+                المتابعين
+            <span style="font-weight: bold;" id="following" runat="server"></span>
+
+            </p>
+               </asp:HyperLink>
         </div>
 
         <div class="aboutUser">
