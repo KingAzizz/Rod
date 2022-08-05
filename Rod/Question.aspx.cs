@@ -205,12 +205,13 @@ namespace Rod
                         }
                     }
                     }
+                        con.Close();
 
                 }
-                else
+                else if(!dr.HasRows)
                 {
-                    
-                    con.Open();
+                        con.Close();
+                        con.Open();
                     Datalist.Visible = false;
                     string viewQuestionIfItDosentHasAnswers = @"SELECT *
                     FROM[Post]
@@ -265,10 +266,14 @@ namespace Rod
                                 </div>";
 
                         }
+                        }else
+                        {
+                            Response.Redirect("~/");
+                        }
                     }
-                }
+                  
 
-                con.Close();
+                    con.Close();
             }
             }
             else
@@ -284,6 +289,8 @@ namespace Rod
             if (Session["id"].ToString() == hiddenUserId.Value.ToString())
             {
                 e.Item.FindControl("deleteAnswer").Visible = true;
+                e.Item.FindControl("followBtn").Visible = false;
+                e.Item.FindControl("unFollowBtn").Visible = false;
             }
             else
             {
@@ -295,7 +302,10 @@ namespace Rod
             Button Button = e.Item.FindControl("followBtn") as Button;
             if(Button.Visible == false)
             {
+                    if(Session["id"].ToString() != hiddenUserId.Value.ToString())
+                    {
                 e.Item.FindControl("unFollowBtn").Visible = true;
+                    }
             }
            
 
@@ -345,9 +355,11 @@ namespace Rod
                 con.Open();
 
                 string followInsert = @"
-         insert into [Following] ([userId],[followingID]) values("+ Session["id"] +"," +e.CommandArgument + ");" +
-            "insert into [Followers] ([userId],[followerID]) values("+e.CommandArgument +"," + Session["id"]+");";
+                insert into [Following] ([userId],[followingID]) values(@userId,@followed);
+                insert into [Followers] ([userId],[followerID]) values(@followed,@userId);";
                 SqlCommand cmd = new SqlCommand(followInsert, con);
+                    cmd.Parameters.AddWithValue("@userId", Session["id"]);
+                    cmd.Parameters.AddWithValue("@followed",e.CommandArgument);
                 cmd.ExecuteNonQuery();
                 e.Item.FindControl("followBtn").Visible = false;
                 e.Item.FindControl("unFollowBtn").Visible = true;
