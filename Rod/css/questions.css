@@ -8,34 +8,28 @@
     z-index: 1;
     top: 0;
     left: 0;
-    width: 210px;
     background-color: #ffff;
     overflow-x: hidden;
     padding-top: 80px;
+    text-align: center;
 }
-    .sidenav ul {
-        display: flex;
-        flex-direction: column;
-        justify-content: center;
-        align-items: center;
-        gap: 10px;
+
+    .sidenav a {
+        padding: 6px 6px 6px 32px;
+        text-decoration: none;
+        font-size: 25px;
+        color: #818181;
+        display: block;
+        position: relative;
     }
 
-    .sidenav a{
-       
-        color:gray;
-        font-size:1.3rem;
-        transition:0.5s;
-    }
+
+        .sidenav a:hover {
+            color: black;
+        }
 
 .display {
     display: block !important;
-}
-
-
-
-.sidenav a:hover {
-    color: black;
 }
 
 .hamburgerMenu {
