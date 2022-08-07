@@ -75,12 +75,12 @@ namespace Rod
 
                 con.Open();
 
-                string viewdata = @"SELECT TOP 40 *
+                string questionsQuery = @"SELECT TOP 40 *
                 FROM [User]
                 INNER JOIN [Post]
                 ON [User].id = [Post].userId;";
 
-                SqlCommand cmd = new SqlCommand(viewdata, con);
+                SqlCommand cmd = new SqlCommand(questionsQuery, con);
 
                 SqlDataReader dr = cmd.ExecuteReader();
              
@@ -126,11 +126,11 @@ namespace Rod
 
             con.Open();
 
-            string viewByMonth = "SELECT TOP 40 * FROM[User] INNER JOIN[Post] ON[User].id = [Post].userId where[Post].creationDate between '" + DateTime.UtcNow.Year.ToString() + "-" + DateTime.UtcNow.Month.ToString() + "-01'" + " and '" + DateTime.UtcNow.Year.ToString() + "-" + DateTime.UtcNow.Month.ToString() + "-30'";
+            string questionsQueryByMonth = "SELECT TOP 40 * FROM[User] INNER JOIN[Post] ON[User].id = [Post].userId where[Post].creationDate between '" + DateTime.UtcNow.Year.ToString() + "-" + DateTime.UtcNow.Month.ToString() + "-01'" + " and '" + DateTime.UtcNow.Year.ToString() + "-" + DateTime.UtcNow.Month.ToString() + "-30'";
 
 
 
-            SqlCommand cmd = new SqlCommand(viewByMonth, con);
+            SqlCommand cmd = new SqlCommand(questionsQueryByMonth, con);
 
             SqlDataReader dr = cmd.ExecuteReader();
 
@@ -175,11 +175,11 @@ namespace Rod
 
             con.Open();
 
-            string viewByCommon = "SELECT TOP 40 * FROM [User] INNER JOIN [Post] ON [User].id = [Post].userId ORDER BY [Post].upvoteCount DESC;";
+            string questionsQueryByCommon = "SELECT TOP 40 * FROM [User] INNER JOIN [Post] ON [User].id = [Post].userId ORDER BY [Post].upvoteCount DESC;";
 
 
 
-            SqlCommand cmd = new SqlCommand(viewByCommon, con);
+            SqlCommand cmd = new SqlCommand(questionsQueryByCommon, con);
 
             SqlDataReader dr = cmd.ExecuteReader();
 
@@ -225,7 +225,7 @@ namespace Rod
 
             con.Open();
 
-            string viewByWeek = @"SET DATEFIRST 1 
+            string questionsQueryByWeek = @"SET DATEFIRST 1 
         SELECT TOP 40 * from [User]
         inner join [Post] on[Post].userId = [User].id 
         where [Post].creationDate >= dateadd(day, 1-datepart(dw, getdate()), CONVERT(date,getdate())) 
@@ -234,7 +234,7 @@ namespace Rod
 
 
 
-            SqlCommand cmd = new SqlCommand(viewByWeek, con);
+            SqlCommand cmd = new SqlCommand(questionsQueryByWeek, con);
 
             SqlDataReader dr = cmd.ExecuteReader();
 
