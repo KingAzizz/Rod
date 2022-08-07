@@ -58,7 +58,7 @@ namespace Rod
         protected void Logout(object sender, EventArgs e)
         {
             Session.Clear();
-            Response.Redirect("~/Login.aspx");
+            Response.Redirect("~/login");
         }
     }
 }
