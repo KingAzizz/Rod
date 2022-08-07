@@ -64,19 +64,27 @@ namespace Rod
         {
             if (!Page.IsPostBack)
             {
-            
-                this.Bind();
+                if(Request.QueryString["tab"] == null)
+                {
+                    Bind("default");
+                }
+                else {
+                    Bind(Request.QueryString["tab"].ToString());  
+                }
             HiddenField questionCount = questionsListView.Items[0].FindControl("questionsCount") as HiddenField;
                 totalQuestion.InnerText = "[" + questionCount.Value + "] سؤال";
             }
         }
 
-        public void Bind()
+        public void Bind(string tab)
         {
             string cs = @"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=C:\Users\aziz\source\repos\Rod\Rod\App_Data\Rod.mdf;Integrated Security=True";
             SqlConnection con = new SqlConnection(cs);
-            con.Open();
-              string questionsQuery = @"select [Post].id,[Post].title,tag,[Post].creationDate,answerCount,
+
+            if(tab == "default")
+            {
+                con.Open();
+                string questionsQuery = @"select [Post].id,[Post].title,tag,[Post].creationDate,answerCount,
                 CONVERT(int ,upvoteCount) + CONVERT(int ,downvoteCount) as totalVote ,username,reputation,
                 (select COUNT(id) from Post) as totalQuestions
                 from Post
@@ -84,24 +92,112 @@ namespace Rod
                 group by  [Post].id,[Post].title,tag,[Post].creationDate,answerCount,
                 upvoteCount ,downvoteCount ,username,reputation
                 order by [Post].creationDate DESC";
-            SqlCommand cmdQuestion = new SqlCommand(questionsQuery, con);
-            SqlDataAdapter daQuestion = new SqlDataAdapter(cmdQuestion);
+                SqlCommand cmd = new SqlCommand(questionsQuery, con);
+                SqlDataAdapter da = new SqlDataAdapter(cmd);
 
-            DataSet dsQuestion = new DataSet();
-            daQuestion.Fill(dsQuestion, "Post");
-            questionsListView.DataSource = dsQuestion.Tables[0];
-            questionsListView.DataBind();
-            /*if (askListView.Items.Count == 0)
+                DataSet ds = new DataSet();
+                da.Fill(ds, "Post");
+                questionsListView.DataSource = ds.Tables[0];
+                questionsListView.DataBind();
+                /*if (askListView.Items.Count == 0)
+                {
+                    questionsDivD.Visible = false;
+                }*/
+                con.Close();
+            }
+            else if(tab == "Month")
             {
-                questionsDivD.Visible = false;
-            }*/
-            con.Close();
+                con.Open();
+                string questionsQueryByMonth = @"select [Post].id,[Post].title,tag,[Post].creationDate,answerCount,
+                CONVERT(int ,upvoteCount) + CONVERT(int ,downvoteCount) as totalVote ,username,reputation,
+                (select COUNT(id) from Post) as totalQuestions
+                from Post
+                inner join [User] on [User].id = [Post].userId
+                where [Post].creationDate between '" + DateTime.UtcNow.Year.ToString() + "-" + DateTime.UtcNow.Month.ToString() + "-01'" + " and '" + DateTime.UtcNow.Year.ToString() + "-" + DateTime.UtcNow.Month.ToString() + "-30'" +
+                @"
+                group by  [Post].id,[Post].title,tag,[Post].creationDate,answerCount,
+                upvoteCount ,downvoteCount ,username,reputation
+                order by [Post].creationDate DESC;";
+                SqlCommand cmd = new SqlCommand(questionsQueryByMonth, con);
+                SqlDataAdapter da = new SqlDataAdapter(cmd);
+
+                DataSet ds = new DataSet();
+                da.Fill(ds, "Post");
+                questionsListView.DataSource = ds.Tables[0];
+                questionsListView.DataBind();
+                /*if (askListView.Items.Count == 0)
+                {
+                    questionsDivD.Visible = false;
+                }*/
+                con.Close();
+            }
+            else if (tab == "Common")
+            {
+                     con.Open();
+                string questionsQuery = @" select[Post].id,[Post].title,tag,[Post].creationDate,answerCount,
+                CONVERT(int, upvoteCount) + CONVERT(int, downvoteCount) as totalVote ,username,reputation,
+                (select COUNT(id) from Post) as totalQuestions
+                from Post
+                inner join [User] on [User].id = [Post].userId
+                group by  [Post].id,[Post].title,tag,[Post].creationDate,answerCount,
+                upvoteCount ,downvoteCount ,username,reputation
+                order by[Post].upvoteCount DESC";
+                SqlCommand cmd = new SqlCommand(questionsQuery, con);
+                SqlDataAdapter da = new SqlDataAdapter(cmd);
+
+                DataSet ds = new DataSet();
+                da.Fill(ds, "Post");
+                questionsListView.DataSource = ds.Tables[0];
+                questionsListView.DataBind();
+                /*if (askListView.Items.Count == 0)
+                {
+                    questionsDivD.Visible = false;
+                }*/
+                con.Close();
+            }
+            else if(tab == "unAnswerd")
+            {
+                con.Open();
+                string questionsQuery = @"select[Post].id,[Post].title,tag,[Post].creationDate,answerCount,
+                CONVERT(int, upvoteCount) + CONVERT(int, downvoteCount) as totalVote ,username,reputation,
+                (select COUNT(id) from Post) as totalQuestions
+                from Post
+                inner join [User] on [User].id = [Post].userId
+                where answerCount = 0
+                group by  [Post].id,[Post].title,tag,[Post].creationDate,answerCount,
+                upvoteCount ,downvoteCount ,username,reputation
+                order by[Post].creationDate DESC";
+                SqlCommand cmd = new SqlCommand(questionsQuery, con);
+                SqlDataAdapter da = new SqlDataAdapter(cmd);
+
+                DataSet ds = new DataSet();
+                da.Fill(ds, "Post");
+                questionsListView.DataSource = ds.Tables[0];
+                questionsListView.DataBind();
+                /*if (askListView.Items.Count == 0)
+                {
+                    questionsDivD.Visible = false;
+                }*/
+                con.Close();
+            }
+            else
+            {
+                Response.Redirect("~/questions");
+            }
+         
 
         }
         protected void questionsListView_PagePropertiesChanging(object sender, PagePropertiesChangingEventArgs e)
         {
             (questionsListView.FindControl("DataPager") as DataPager).SetPageProperties(e.StartRowIndex, e.MaximumRows, false);
-            this.Bind();
+            if(Request.QueryString["tab"] == null)
+            {
+            Bind("default");
+            }
+            else
+            {
+                Bind(Request.QueryString["tab"].ToString());
+            }
         }
 
         protected void questionsListView_ItemDataBound(object sender, ListViewItemEventArgs e)
@@ -128,6 +224,20 @@ namespace Rod
                 }
             }
             con.Close();
+        }
+
+        protected void MonthFilter(object sender, EventArgs e)
+        {
+            Response.Redirect("~/questions?tab=Month");
+        }
+
+        protected void CommonFilter(object sender, EventArgs e)
+        {
+            Response.Redirect("~/questions?tab=Common");
+        }
+        protected void UnanswerdFilter(object sender, EventArgs e)
+        {
+            Response.Redirect("~/questions?tab=unAnswerd");
         }
     }
 }
