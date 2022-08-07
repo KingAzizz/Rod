@@ -31,12 +31,13 @@
                     NavigateUrl="~/profile/followers">
                 </asp:HyperLink>
             </div>
-            <asp:ListView ID="FollowedProfileListView" runat="server" OnItemCommand="FollowedProfileListView_ItemCommand">
+            <asp:ListView ID="FollowedProfileListView" runat="server" OnItemCommand="FollowedProfileListView_ItemCommand" OnItemDataBound="FollowedProfileListView_ItemDataBound">
                 <ItemTemplate>
 
             <div class="followProfile" dir="rtl">
              
-                    <asp:HyperLink ID="linkToProfile" runat="server">
+                    <asp:HyperLink ID="linkToProfile" runat="server" 
+                        NavigateUrl='<%# Eval("followingID","~/users/profile/{0}") %>'>
                 <div class="profileContent">
                     <asp:Image ID="followProfileImage" runat="server" CssClass="followProfileImage" 
                         ImageUrl='<%# Eval("profileImage","~/{0}") %>' />
@@ -47,9 +48,10 @@
                     </div>
                 </div>
             </asp:HyperLink>
+                 <asp:HiddenField ID="followerID" runat="server" Value='<%# Eval("followingID") %>' />
                 <div class="unfollowDiv">
                      <asp:Button ID="unFollow" runat="server" Text="الغاء المتابعة"  
-                         CommandName="unFollow" CommandArgument='<%# Eval("followingID") %>' />
+                         CommandName="unFollow" CommandArgument='<%# Eval("followingID") %>' Visible="false" />
                     <asp:Button ID="follow" runat="server" Text="متابعة" Visible="false" CommandName="follow" CommandArgument='<%# Eval("followingID") %>'/>
                 </div>
             </div>
