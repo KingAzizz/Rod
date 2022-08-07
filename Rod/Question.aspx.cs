@@ -168,7 +168,7 @@ namespace Rod
                             postCreationUser.InnerText = RelativeDate(Convert.ToDateTime(dr.GetValue(5))) + "انسأل قبل";
                             postTagsDiv.InnerHtml = "<a href=#TAGGHERE>" + dr.GetValue(4).ToString() + "</a>";
                             userProfileImagePost.ImageUrl = dr.GetValue(24).ToString();
-                            userLinkProfilePost.NavigateUrl = "#";
+                            userLinkProfilePost.NavigateUrl = "~/users/profile/"+ dr.GetValue(1);
                             userLinkProfilePost.Text = dr.GetValue(11).ToString();
                            
                             Bind();
@@ -255,9 +255,9 @@ namespace Rod
 
                                 postCreationUser.InnerText = RelativeDate(Convert.ToDateTime(drAnswerNotFound.GetValue(5))) + "انسأل قبل";
                                 postTagsDiv.InnerHtml = "<a href=#TAGGHERE>" + drAnswerNotFound.GetValue(4).ToString() + "</a>";
-                                userProfileImagePost.ImageUrl = "https://i.pinimg.com/564x/a1/85/45/a185459b5804d2b96231521f0b333d9b.jpg";
-                                userLinkProfilePost.NavigateUrl = "#";
-                                userLinkProfilePost.Text = drAnswerNotFound.GetValue(11).ToString();
+                                userProfileImagePost.ImageUrl = "~/"+dr.GetValue(24);
+                    userLinkProfilePost.NavigateUrl = "~/users/profile/" + dr.GetValue(1);
+                                    userLinkProfilePost.Text = drAnswerNotFound.GetValue(11).ToString();
                                 postUpvotedown.InnerText = drAnswerNotFound.GetValue(8).ToString();
                             }
                             triggerd = true;
