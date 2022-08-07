@@ -52,7 +52,7 @@
                 <asp:HyperLink ID="inboxLink" runat="server" NavigateUrl="#"><i class="fa-solid fa-inbox icon"></i></asp:HyperLink>
                 </li>
                 <li id="loginLink" runat="server">
-                    <asp:HyperLink ID="loginHyLink" runat="server" NavigateUrl="~/Login.aspx" Text="دخول"></asp:HyperLink>
+                    <asp:HyperLink ID="loginHyLink" runat="server" NavigateUrl="~/login" Text="دخول"></asp:HyperLink>
                 </li>
                 <li id="profile" runat="server">
                <button id="profileMenu" type="button">
