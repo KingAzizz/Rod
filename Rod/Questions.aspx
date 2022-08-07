@@ -81,7 +81,7 @@
                    
                    </div>
                    <div class="usernameQuestionDetails">
-                    <h2><span> <%# Eval("username") %></span>   <span> <%# Eval("reputation") %></span></h2> 
+                    <h2><span><asp:HyperLink runat="server" NavigateUrl='<%# Eval("userId","~/users/profile/{0}") %>'> <%# Eval("username") %></asp:HyperLink></span>   <span> <%# Eval("reputation") %></span></h2> 
                    <p> <%# RelativeDate(Convert.ToDateTime(Eval("creationDate"))) %></p>
 
                    </div>
