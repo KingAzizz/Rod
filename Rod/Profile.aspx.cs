@@ -135,8 +135,8 @@ namespace Rod
                             github.NavigateUrl = dr.GetValue(9).ToString();
                             userProfileImage.ImageUrl = "~/" + dr.GetValue(10).ToString();
                             userReputPoint.InnerText = dr.GetValue(11).ToString();
-                            followers.InnerText = dr.GetValue(12).ToString();
-                            following.InnerText = dr.GetValue(13).ToString();
+                            following.InnerText = dr.GetValue(12).ToString();
+                            followers.InnerText = dr.GetValue(13).ToString();
                             userViews.InnerText = dr.GetValue(14).ToString();
                             userQuestions.InnerText = "0";
                             userAnswers.InnerText = "0";
