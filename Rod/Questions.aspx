@@ -24,8 +24,9 @@
      <section class="content">
             <div>
                 
-           <asp:Button ID="monthFilter" runat="server"  Text="الشهر"  />
-           <asp:Button ID="commonFilter" runat="server" Text="الشائع" />
+           <asp:Button ID="monthFilter" runat="server"  Text="الشهر" OnClick="MonthFilter"  />
+           <asp:Button ID="commonFilter" runat="server" Text="الشائع" OnClick="CommonFilter" />
+           <asp:Button ID="unAnswerdFilter" runat="server" Text="دون إجابة" OnClick="UnanswerdFilter" />
            
 
             </div>
