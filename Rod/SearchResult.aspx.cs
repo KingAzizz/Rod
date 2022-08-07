@@ -63,7 +63,7 @@ namespace Rod
 
                 con.Open();
                 
-                string SearchResult = @"SELECT COUNT(*) OVER(),[User].username,[User].reputation,[Post].id,[Post].title,[Post].creationDate,[Post].upvoteCount,[Post].answerCount
+                string SearchResult = @"SELECT COUNT(*) OVER(),[User].username,[User].reputation,[Post].id,[Post].title,[Post].creationDate,[Post].upvoteCount,[Post].answerCount,[User].id
                     FROM [User]
                     INNER JOIN [Post]
                     ON [User].id = [Post].userId
@@ -98,7 +98,7 @@ namespace Rod
                            "<a style='color: #0173CC;' href='/question/" + dr.GetValue(3) + "'>" + dr.GetValue(4).ToString() + "</a> </div>" +
 
                        " <div class='usernameQuestionDetails'>" +
-                        "<h2><span>" + dr.GetValue(1).ToString() + "</span>   <span>" + dr.GetValue(2).ToString() + "</span></h2>" +
+                        "<h2><span><a href='/users/profile/" + dr.GetValue(8).ToString() + "'>" + dr.GetValue(1).ToString() + "</a></span>   <span>" + dr.GetValue(2).ToString() + "</span></h2>" +
                        " <p>" + RelativeDate(Convert.ToDateTime(dr.GetValue(5))) + "</p></div></div>";
                     }
                 }
@@ -115,13 +115,13 @@ namespace Rod
             SqlConnection con = new SqlConnection(cs);
 
             con.Open();
-            string SearchResultByNewest = @"SELECT COUNT(*) OVER(),[User].username,[User].reputation,[Post].id,[Post].title,[Post].creationDate,[Post].upvoteCount,[Post].answerCount
+            string SearchResultByUpvote = @"SELECT COUNT(*) OVER(),[User].username,[User].reputation,[Post].id,[Post].title,[Post].creationDate,[Post].upvoteCount,[Post].answerCount,[User].id
                     FROM [User]
                     INNER JOIN [Post]
                     ON [User].id = [Post].userId
                     where [Post].title LIKE N'%" + Request.QueryString["searched"].ToString() + "%' order by [Post].upvoteCount DESC;";
 
-            SqlCommand cmd = new SqlCommand(SearchResultByNewest, con);
+            SqlCommand cmd = new SqlCommand(SearchResultByUpvote, con);
 
             SqlDataReader dr = cmd.ExecuteReader();
 
@@ -150,7 +150,7 @@ namespace Rod
                         "<a style='color: #0173CC;' href='/question/" + dr.GetValue(3) + "'>" + dr.GetValue(4).ToString() + "</a> </div>" +
 
                     " <div class='usernameQuestionDetails'>" +
-                     "<h2><span>" + dr.GetValue(1).ToString() + "</span>   <span>" + dr.GetValue(2).ToString() + "</span></h2>" +
+                     "<h2><span><a href='/users/profile/" + dr.GetValue(8).ToString() + "'>" + dr.GetValue(1).ToString() + "</a></span>   <span>" + dr.GetValue(2).ToString() + "</span></h2>" +
                     " <p>" + RelativeDate(Convert.ToDateTime(dr.GetValue(5))) + "</p></div></div>";
                 }
             }
@@ -165,7 +165,7 @@ namespace Rod
             SqlConnection con = new SqlConnection(cs);
 
             con.Open();
-            string SearchResultByNewest = @"SELECT COUNT(*) OVER(),[User].username,[User].reputation,[Post].id,[Post].title,[Post].creationDate,[Post].upvoteCount,[Post].answerCount
+            string SearchResultByNewest = @"SELECT COUNT(*) OVER(),[User].username,[User].reputation,[Post].id,[Post].title,[Post].creationDate,[Post].upvoteCount,[Post].answerCount,[User].id
                     FROM [User]
                     INNER JOIN [Post]
                     ON [User].id = [Post].userId
@@ -200,7 +200,7 @@ namespace Rod
                         "<a style='color: #0173CC;' href='/question/" + dr.GetValue(3) + "'>" + dr.GetValue(4).ToString() + "</a> </div>" +
 
                     " <div class='usernameQuestionDetails'>" +
-                     "<h2><span>" + dr.GetValue(1).ToString() + "</span>   <span>" + dr.GetValue(2).ToString() + "</span></h2>" +
+                     "<h2><span><a href='/users/profile/" + dr.GetValue(8).ToString() + "'>" + dr.GetValue(1).ToString() + "</a></span>   <span>" + dr.GetValue(2).ToString() + "</span></h2>" +
                     " <p>" + RelativeDate(Convert.ToDateTime(dr.GetValue(5))) + "</p></div></div>";
                 }
             }
