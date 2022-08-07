@@ -105,6 +105,20 @@
         position: relative;
         
     }
+.followButton {
+    outline: none;
+    border: none;
+    border-radius: 6px;
+    background-color: #4F6BFF;
+    padding: 7px;
+    color: #ffff;
+    width: 125px;
+    transition:0.5s;
+    cursor:pointer;
+}
+    .followButton:hover {
+        background-color: #274afa;
+    }
 
 .userFollow {
     width: 70%;
@@ -375,7 +389,7 @@
         margin-right: 0;
     }
 
-    .editProfileContainer {
+    .editProfileContainer, .followProfileContainer {
         width: 100%;
         display: flex;
         justify-content: center;
