@@ -81,7 +81,7 @@
                 <div>
                 <asp:Image ID="userProfileImagePost" runat="server" />
                 
-                    <asp:HyperLink ID="userLinkProfilePost" runat="server"></asp:HyperLink>
+               <asp:HyperLink ID="userLinkProfilePost" runat="server"></asp:HyperLink>
                 </div>
 
             </div>
@@ -145,8 +145,10 @@
                 <div>
                
                 
-                    <asp:Image ID="answerImages" runat="server" ImageUrl='<%# Eval("answer_profileImage") %>' AlternateText="no image" />
-                    <asp:HyperLink ID="answerProfileLink" runat="server" Text='<%#Eval("answer_username") %>'></asp:HyperLink>
+                    <asp:Image ID="answerImages" runat="server" ImageUrl='<%# Eval("answer_profileImage","~/{0}") %>' AlternateText="no image" />
+                    <asp:HyperLink ID="answerProfileLink" runat="server" 
+                        NavigateUrl='<%# Eval("userAnswerId","~/users/profile/{0}") %>' 
+                        Text='<%#Eval("answer_username") %>'></asp:HyperLink>
                     
                 </div>
 
