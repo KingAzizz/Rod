@@ -39,7 +39,8 @@
 
             <div class="followProfile" dir="rtl">
              
-                    <asp:HyperLink ID="linkToProfile" runat="server">
+                    <asp:HyperLink ID="linkToProfile" runat="server" 
+                        NavigateUrl='<%# Eval("followerID","~/users/profile/{0}") %>'>
                 <div class="profileContent">
                     <asp:Image ID="followProfileImage" runat="server" CssClass="followProfileImage" 
                         ImageUrl='<%# Eval("profileImage","~/{0}") %>' />
