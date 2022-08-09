@@ -354,17 +354,15 @@
         font-weight: 100;
         text-decoration: underline;
     }
-
+.title, .username {
+    color: #0173CC;
+}
     .usernameQuestionDetails {
         grid-area: usernameQuestionDetails;
         margin: 20px;
         display: flex;
     }
-
-        .usernameQuestionDetails > h2 > span:nth-child(1) {
-            color: #0173CC;
-        }
-
+ 
         .usernameQuestionDetails > h2 > span:nth-child(2) {
             font-size: 1rem;
         }

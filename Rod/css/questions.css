@@ -197,10 +197,12 @@
     justify-content: flex-end;
     cursor: pointer;
     margin: 20px 0 0 0;
-    color: #0173CC;
     font-size: 1.4625rem;
     font-weight: 100;
     text-decoration: underline;
+}
+.title, .username {
+    color: #0173CC;
 }
 .tagplaceholder {
     background-color: #E1ECF4;
@@ -219,9 +221,7 @@
     display: flex;
 }
 
-    .usernameQuestionDetails > h2 > span:nth-child(1) {
-        color: #0173CC;
-    }
+   
 
     .usernameQuestionDetails > h2 > span:nth-child(2) {
         font-size: 1rem;
