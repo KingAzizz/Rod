@@ -46,7 +46,7 @@
         <label>عنوانك</label>
        <asp:TextBox ID="titleInput" runat="server" CssClass="normalInput" ></asp:TextBox>
         <label>عنك</label>
-        <asp:TextBox ID="aboutInput" runat="server" CssClass="normalInput" ></asp:TextBox>
+        <asp:TextBox ID="aboutInput" runat="server" CssClass="bigInput" ></asp:TextBox>
         <div class="linkheader">
           <h1>الروابط</h1>
         </div>
