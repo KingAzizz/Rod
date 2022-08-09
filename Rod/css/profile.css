@@ -39,10 +39,6 @@
     position: relative;
 }
 
-.display {
-    display: block !important;
-    transition: 2s ease-in-out;
-}
 
 .hamburgerButton {
     outline: none;
@@ -54,7 +50,32 @@
     font-size: 21px;
     z-index: 9999;
 }
+#alertDiv {
+    display: none;
+    position: fixed;
+    left: 62%;
+    padding: 10px;
+    transform: translate(-50%, 0);
+    border-radius: 10px;
+    background-color: #ffff;
+    color: #4F6BFF;
+    width: fit-content;
+}
 
+.fadeAway {
+    animation-name: fadeaway;
+    animation-duration: 4s;
+}
+
+@keyframes fadeaway {
+    0% {
+        opacity: 1;
+    }
+
+    100% {
+        opacity: 0;
+    }
+}
 
 .profileContainer {
     margin-left: 211px;
