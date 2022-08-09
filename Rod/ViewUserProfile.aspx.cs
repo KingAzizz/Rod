@@ -77,10 +77,6 @@ namespace Rod
                     {
                         Response.Redirect("~/");
                     }
-                    if(Session["id"] == id)
-                    {
-                        Response.Redirect("~/profile");
-                    }
                     string cs = @"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=C:\Users\aziz\source\repos\Rod\Rod\App_Data\Rod.mdf;Integrated Security=True";
                     SqlConnection con = new SqlConnection(cs);
                     con.Open();
@@ -262,6 +258,10 @@ namespace Rod
                         }
 
 
+                    }
+                    if (Session["id"].ToString() == userId.Value)
+                    {
+                        Response.Redirect("~/profile");
                     }
 
                 }
@@ -527,7 +527,7 @@ namespace Rod
 
         protected void FollowUser(object sender, EventArgs e)
         {
-            if (Session["id"] != null)
+            if (Session["id"] != null && userId.Value != Session["id"].ToString())
             {
 
                 string cs = @"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=C:\Users\aziz\source\repos\Rod\Rod\App_Data\Rod.mdf;Integrated Security=True";
@@ -563,7 +563,7 @@ namespace Rod
 
         protected void UnFollowUser(object sender, EventArgs e)
         {
-            if (Session["id"] != null)
+            if (Session["id"] != null && userId.Value != Session["id"].ToString())
             {
 
                 string cs = @"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=C:\Users\aziz\source\repos\Rod\Rod\App_Data\Rod.mdf;Integrated Security=True";
