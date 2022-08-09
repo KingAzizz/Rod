@@ -85,16 +85,17 @@ ul {
     border: 1px solid #babfc4;
     border-radius: 5px;
     margin-bottom: 30px;
+    font-size:1.2rem;
 }
 
 .bigInput {
     width: 50.8%;
-    padding: 50px 50px 200px 50px;
     border: 1px solid #babfc4;
     border-radius: 5px;
     padding: 0.4em;
     padding-bottom: 190px;
     height: 10px;
+    font-size: 1.2rem;
 }
 
 .linkheader {
