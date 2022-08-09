@@ -47,6 +47,10 @@
                 <div>
                   <label class="tabsLabel" id="tabsLabel" runat="server" visible="false"></label>
                </div>
+              <div id="alertDiv">
+            <h1 id="alertText"></h1>
+        </div>
+
             <asp:DataList ID="questionTabDatalist" CssClass="tabsContent" runat="server" Visible="false">
                 <ItemTemplate>
                 <asp:HiddenField ID="howManyPostHd" runat="server" Value='<%#Eval("howManyPost") %>' />
@@ -118,14 +122,14 @@
             <div id="defaultTap" runat="server" style="width:100%">
         <div class="userFollow">
                 <asp:HyperLink ID="followersPage" runat="server">
-            <p>
+            <p style="color:black">
                 التابعين
             <span style="font-weight: bold;" id="followers" runat="server"></span>
 
             </p>
                </asp:HyperLink>
             <asp:HyperLink ID="followingPage" runat="server">
-            <p>
+            <p style="color:black">
                 المتابعين
             <span style="font-weight: bold;" id="following" runat="server"></span>
 
