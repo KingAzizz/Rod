@@ -100,10 +100,10 @@ namespace Rod
 
 
                        " <div class='questionTitle'>" +
-                           "<a style='color: #0173CC;' href='/question/" + dr.GetValue(24) + "'>" + dr.GetValue(26).ToString() + "</a> </div>" +
+                           "<a class='title' href='/question/" + dr.GetValue(24) + "'>" + dr.GetValue(26).ToString() + "</a> </div>" +
 
                        " <div class='usernameQuestionDetails'>" +
-                        "<h2><span><a href='/users/profile/" +dr.GetValue(0).ToString() +"'>" + dr.GetValue(1).ToString() + "</a></span>   <span>" + dr.GetValue(15).ToString() + "</span></h2>" +
+                        "<h2><span><a class='username' href='/users/profile/" +dr.GetValue(0).ToString() +"'>" + dr.GetValue(1).ToString() + "</a></span>   <span>" + dr.GetValue(15).ToString() + "</span></h2>" +
                        " <p>" + RelativeDate(Convert.ToDateTime(dr.GetValue(29)))  + "</p></div></div>";
                     }
                 }
@@ -150,10 +150,10 @@ namespace Rod
 
 
                    " <div class='questionTitle'>" +
-                       "<a style='color: #0173CC;' href='/question/" + dr.GetValue(24) + "'>" + dr.GetValue(26).ToString() + "</a> </div>" +
+                       "<a class='title' href='/question/" + dr.GetValue(24) + "'>" + dr.GetValue(26).ToString() + "</a> </div>" +
 
                    " <div class='usernameQuestionDetails'>" +
-                    "<h2><span><a href='/users/profile/" + dr.GetValue(0).ToString() + "'>" + dr.GetValue(1).ToString() + "</a></span>   <span>" + dr.GetValue(15).ToString() + "</span></h2>" +
+                    "<h2><span><a class='username' href='/users/profile/" + dr.GetValue(0).ToString() + "'>" + dr.GetValue(1).ToString() + "</a></span>   <span>" + dr.GetValue(15).ToString() + "</span></h2>" +
                    " <p>" + RelativeDate(Convert.ToDateTime(dr.GetValue(29))) + "</p></div></div>";
                 }
             }
@@ -199,10 +199,10 @@ namespace Rod
 
 
                    " <div class='questionTitle'>" +
-                       "<a style='color: #0173CC;' href='/question/" + dr.GetValue(24) + "'>" + dr.GetValue(26).ToString() + "</a> </div>" +
+                       "<a class='title' href='/question/" + dr.GetValue(24) + "'>" + dr.GetValue(26).ToString() + "</a> </div>" +
 
                    " <div class='usernameQuestionDetails'>" +
-                    "<h2><span><a href='/users/profile/" + dr.GetValue(0).ToString() + "'>" + dr.GetValue(1).ToString() + "</a></span>   <span>" + dr.GetValue(15).ToString() + "</span></h2>" +
+                    "<h2><span><a class='username' href='/users/profile/" + dr.GetValue(0).ToString() + "'>" + dr.GetValue(1).ToString() + "</a></span>   <span>" + dr.GetValue(15).ToString() + "</span></h2>" +
                    " <p>" + RelativeDate(Convert.ToDateTime(dr.GetValue(29))) + "</p></div></div>";
                 }
             }
@@ -254,10 +254,10 @@ namespace Rod
 
 
                    " <div class='questionTitle'>" +
-                       "<a style='color: #0173CC;' href='/question/" + dr.GetValue(24) + "'>" + dr.GetValue(26).ToString() + "</a> </div>" +
+                       "<a class='title' href='/question/" + dr.GetValue(24) + "'>" + dr.GetValue(26).ToString() + "</a> </div>" +
 
                    " <div class='usernameQuestionDetails'>" +
-                    "<h2><span><a href='/users/profile/" + dr.GetValue(0).ToString() + "'>" + dr.GetValue(1).ToString() + "</a></span>   <span>" + dr.GetValue(15).ToString() + "</span></h2>" +
+                    "<h2><span><a class='username' href='/users/profile/" + dr.GetValue(0).ToString() + "'>" + dr.GetValue(1).ToString() + "</a></span>   <span>" + dr.GetValue(15).ToString() + "</span></h2>" +
                    " <p>" + RelativeDate(Convert.ToDateTime(dr.GetValue(29))) + "</p></div></div>";
                 }
             }
