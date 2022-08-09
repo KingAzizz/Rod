@@ -127,7 +127,8 @@ namespace Rod
             Button follow = e.Item.FindControl("follow") as Button;
             string cs = @"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=C:\Users\aziz\source\repos\Rod\Rod\App_Data\Rod.mdf;Integrated Security=True";
             SqlConnection con = new SqlConnection(cs);
-          
+          if(e.CommandArgument != Session["id"])
+            {
             if (e.CommandName == "unFollow")
             {
                 con.Open();
@@ -162,6 +163,7 @@ namespace Rod
                 unFollow.Visible = true;
                 }
 
+            }
             }
         }
     }

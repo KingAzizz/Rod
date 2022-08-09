@@ -347,27 +347,29 @@ namespace Rod
             HtmlGenericControl downvote = e.Item.FindControl("downvoteIcon") as HtmlGenericControl;
             HtmlGenericControl totalVotes = e.Item.FindControl("totalVotes") as HtmlGenericControl;
             int votes = Convert.ToInt32(totalVotes.InnerText);
-            if (e.CommandName == "Follow")
+            if (e.CommandArgument != Session["id"])
             {
-                if(Session["id"] != null)
+                if (e.CommandName == "Follow")
                 {
+                    if (Session["id"] != null)
+                    {
 
-                con.Open();
+                        con.Open();
 
-                string followInsert = @"
+                        string followInsert = @"
                 insert into [Following] ([userId],[followingID]) values(@userId,@followed);
                 insert into [Followers] ([userId],[followerID]) values(@followed,@userId);";
-                SqlCommand cmd = new SqlCommand(followInsert, con);
-                    cmd.Parameters.AddWithValue("@userId", Session["id"]);
-                    cmd.Parameters.AddWithValue("@followed",e.CommandArgument);
-                cmd.ExecuteNonQuery();
-                e.Item.FindControl("followBtn").Visible = false;
-                e.Item.FindControl("unFollowBtn").Visible = true;
-                con.Close();
-                }
-                else
-                {
-                    ScriptManager.RegisterStartupScript(this, GetType(), "displayalertmessage", @"
+                        SqlCommand cmd = new SqlCommand(followInsert, con);
+                        cmd.Parameters.AddWithValue("@userId", Session["id"]);
+                        cmd.Parameters.AddWithValue("@followed", e.CommandArgument);
+                        cmd.ExecuteNonQuery();
+                        e.Item.FindControl("followBtn").Visible = false;
+                        e.Item.FindControl("unFollowBtn").Visible = true;
+                        con.Close();
+                    }
+                    else
+                    {
+                        ScriptManager.RegisterStartupScript(this, GetType(), "displayalertmessage", @"
                     let alertDiv = document.getElementById('alertDiv');
                     let alertText = document.getElementById('alertText');
                     alertDiv.style.display = 'block';
@@ -378,30 +380,30 @@ namespace Rod
                     alertText.innerText = '';
                     alertDiv.classList.remove('fadeAway');
                     }, 4000)", true);
+                    }
+
+
                 }
 
-
-            }
-
-            if(e.CommandName == "Unfollow")
-            {
-                if(Session["id"] != null)
+                if (e.CommandName == "Unfollow")
                 {
+                    if (Session["id"] != null)
+                    {
 
-                con.Open();
+                        con.Open();
 
-                string unFollowDelete = @"
-                delete from [Following] where [userId] ="+ Session["id"] + @" and [followingID] ="+ e.CommandArgument + @";
-                delete from [Followers] where [userId] =" + e.CommandArgument + @"and [followerID] =" + Session["id"] +" ;";
-                SqlCommand cmd = new SqlCommand(unFollowDelete, con);
-                cmd.ExecuteNonQuery();
-                e.Item.FindControl("unFollowBtn").Visible = false;
-                e.Item.FindControl("followBtn").Visible = true;
-                con.Close();
-                }
-                else
-                {
-                    ScriptManager.RegisterStartupScript(this, GetType(), "displayalertmessage", @"
+                        string unFollowDelete = @"
+                delete from [Following] where [userId] =" + Session["id"] + @" and [followingID] =" + e.CommandArgument + @";
+                delete from [Followers] where [userId] =" + e.CommandArgument + @"and [followerID] =" + Session["id"] + " ;";
+                        SqlCommand cmd = new SqlCommand(unFollowDelete, con);
+                        cmd.ExecuteNonQuery();
+                        e.Item.FindControl("unFollowBtn").Visible = false;
+                        e.Item.FindControl("followBtn").Visible = true;
+                        con.Close();
+                    }
+                    else
+                    {
+                        ScriptManager.RegisterStartupScript(this, GetType(), "displayalertmessage", @"
                     let alertDiv = document.getElementById('alertDiv');
                     let alertText = document.getElementById('alertText');
                     alertDiv.style.display = 'block';
@@ -412,6 +414,7 @@ namespace Rod
                     alertText.innerText = '';
                     alertDiv.classList.remove('fadeAway');
                     }, 4000)", true);
+                    }
                 }
             }
 
@@ -732,7 +735,7 @@ namespace Rod
 
         protected void PostUserFollower_Click(object sender, EventArgs e)
         {
-            if(Session["id"] != null)
+            if(Session["id"] != null && userId.Value != Session["id"].ToString())
             {
 
             string cs = @"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=C:\Users\aziz\source\repos\Rod\Rod\App_Data\Rod.mdf;Integrated Security=True";
