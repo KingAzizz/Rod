@@ -74,14 +74,14 @@
 
                     <div class="questionTitle">
 
-                        <asp:HyperLink ID="title" runat="server" NavigateUrl='<%# Eval("id","~/question/{0}") %>' Text='<%# Eval("title") %>'></asp:HyperLink>
+                        <asp:HyperLink ID="title" runat="server" CssClass="title" NavigateUrl='<%# Eval("id","~/question/{0}") %>' Text='<%# Eval("title") %>'></asp:HyperLink>
 
                     </div>
                    <div id="tags" runat="server">
                    
                    </div>
                    <div class="usernameQuestionDetails">
-                    <h2><span><asp:HyperLink runat="server" NavigateUrl='<%# Eval("userId","~/users/profile/{0}") %>'> <%# Eval("username") %></asp:HyperLink></span>   <span> <%# Eval("reputation") %></span></h2> 
+                    <h2><span><asp:HyperLink runat="server" CssClass="username" NavigateUrl='<%# Eval("userId","~/users/profile/{0}") %>'> <%# Eval("username") %></asp:HyperLink></span>   <span> <%# Eval("reputation") %></span></h2> 
                    <p> <%# RelativeDate(Convert.ToDateTime(Eval("creationDate"))) %></p>
 
                    </div>
