@@ -154,7 +154,10 @@ namespace Rod
                                 followUser.Visible = Followed(Convert.ToInt32(Session["id"]), Convert.ToInt32(dr.GetValue(0)));
                                 bool userFollower = followUser.Visible;
                                 unFollowUser.Visible = !userFollower;
-                            
+                            }
+                            else
+                            {
+                                unFollowUser.Visible = false;
                             }
                             userId.Value = dr.GetValue(0).ToString();
                             username.InnerText = dr.GetValue(1).ToString() + "@";
@@ -256,14 +259,14 @@ namespace Rod
                             }
 
                         }
-
-
                     }
+                    if(Session["id"] != null)
+                    {
                     if (Session["id"].ToString() == userId.Value)
                     {
                         Response.Redirect("~/profile");
                     }
-
+                    }
                 }
 
 
@@ -545,7 +548,7 @@ namespace Rod
                 unFollowUser.Visible = true;
                 con.Close();
             }
-            /*else
+            else
            {
                ScriptManager.RegisterStartupScript(this, GetType(), "displayalertmessage", @"
                    let alertDiv = document.getElementById('alertDiv');
@@ -558,7 +561,7 @@ namespace Rod
                    alertText.innerText = '';
                    alertDiv.classList.remove('fadeAway');
                    }, 4000)", true);
-           }*/
+           }
         }
 
         protected void UnFollowUser(object sender, EventArgs e)
@@ -581,20 +584,6 @@ namespace Rod
                 unFollowUser.Visible = false;
                 con.Close();
             }
-            /*else
-            {
-                ScriptManager.RegisterStartupScript(this, GetType(), "displayalertmessage", @"
-                    let alertDiv = document.getElementById('alertDiv');
-                    let alertText = document.getElementById('alertText');
-                    alertDiv.style.display = 'block';
-                    alertText.innerText = 'لايمكنك الغاء المتابعة اذ لم تكن مسجل دخول';
-                    alertDiv.classList.add('fadeAway');
-                    setTimeout(() => {
-                    alertDiv.style.display = 'none';
-                    alertText.innerText = '';
-                    alertDiv.classList.remove('fadeAway');
-                    }, 4000)", true);
-            }*/
         }
     }
 }
