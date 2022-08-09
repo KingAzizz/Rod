@@ -120,14 +120,14 @@
             <div id="defaultTap" runat="server" style="width:100%">
         <div class="userFollow">
                 <asp:HyperLink ID="followersPage" runat="server" NavigateUrl="~/profile/followers">
-            <p>
+            <p style="color:black">
                 التابعين
             <span style="font-weight: bold;" id="followers" runat="server"></span>
 
             </p>
                </asp:HyperLink>
             <asp:HyperLink ID="followingPage" runat="server" NavigateUrl="~/profile/following">
-            <p>
+            <p style="color:black">
                 المتابعين
             <span style="font-weight: bold;" id="following" runat="server"></span>
 
