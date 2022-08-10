@@ -11,9 +11,12 @@
     z-index: 1;
     top: 0;
     left: 0;
-    background-color: inherit;
+    background-color: #ffff;
     overflow-x: hidden;
     padding-top: 80px;
+    border: 1px solid #babfc4;
+    border-radius: 5px;
+    text-align: center;
 }
 
     .sidenav a {
