@@ -29,6 +29,7 @@ namespace Rod
             routes.MapPageRoute("questions", "questions", "~/Questions.aspx");
             routes.MapPageRoute("following", "profile/following", "~/Following.aspx");
             routes.MapPageRoute("followers", "profile/followers", "~/Followers.aspx");
+            routes.MapPageRoute("topUsers", "top/users", "~/TopUsers.aspx");
         }
 
         protected void Session_Start(object sender, EventArgs e)
