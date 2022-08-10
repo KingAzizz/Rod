@@ -1,2 +1,116 @@
-﻿body {
+﻿.sidenav {
+    transition: 2s;
+    height: 100%;
+    position: fixed;
+    margin-top: 61px;
+    border: 1px solid #babfc4;
+    border-radius: 5px;
+    z-index: 1;
+    top: 0;
+    left: 0;
+    background-color: #ffff;
+    overflow-x: hidden;
+    padding-top: 80px;
+    text-align: center;
+}
+
+    .sidenav a {
+        padding: 6px 6px 6px 32px;
+        text-decoration: none;
+        font-size: 25px;
+        color: #818181;
+        display: block;
+        position: relative;
+    }
+
+
+        .sidenav a:hover {
+            color: black;
+        }
+
+.hamburgerMenu {
+    display: none;
+    z-index: 9999;
+}
+
+.display {
+    display: block !important;
+    transition: 2s ease-in-out;
+}
+
+.hamburgerButton {
+    outline: none;
+    background-color: white;
+    border: none;
+    position: absolute;
+    margin-left: 30px;
+    cursor: pointer;
+    font-size: 21px;
+    z-index: 9999;
+}
+
+
+
+.topUsersSection {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    align-items: center;
+    justify-content: center;
+    align-content: center;
+    justify-items: center;
+    gap: 30px;
+    margin-left: 211px;
+}
+
+.userContent {
+    display: flex;
+    width: 80%;
+    margin-top: 30px;
+}
+
+.userProfileImage {
+    width: 50px;
+    height: 50px;
+    border-radius: 7px;
+}
+
+.userContent > div:nth-child(2) {
+    margin-right: 5px;
+}
+
+.fitHeight {
+    height: 20px;
+}
+
+    .fitHeight:not(.fitHeight:first-child) {
+        color: #6a737c;
+    }
+
+.tagFollowed {
+    color: #4F6BFF;
+}
+
+@media screen and (max-height: 450px) {
+    .sidenav {
+        padding-top: 15px;
+    }
+
+        .sidenav a {
+            font-size: 18px;
+        }
+}
+
+@media screen and (max-width: 840px) {
+
+    .sidenav {
+        display: none;
+    }
+
+    .hamburgerMenu {
+        display: block;
+    }
+
+    .hamburgerButton {
+        top: 30px;
+    }
 }
