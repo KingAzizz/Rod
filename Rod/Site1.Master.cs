@@ -15,7 +15,7 @@ namespace Rod
             if (!Page.IsPostBack)
             {
    
-            if(Session["loggedIn"] == null)
+            if(Session["id"] == null)
             {
                 profileImage.Visible = false;
              
@@ -36,7 +36,7 @@ namespace Rod
                 SqlConnection con = new SqlConnection(cs);
                 con.Open();
 
-                string getImage = @"select [profileImage] from [User] where [username] = '" + Session["username"].ToString() +"'" ;
+                string getImage = @"select [profileImage] from [User] where [id] =" + Session["id"].ToString();
 
                 SqlCommand cmd = new SqlCommand(getImage, con);
 
