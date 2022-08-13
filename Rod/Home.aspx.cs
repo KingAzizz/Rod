@@ -45,7 +45,7 @@ namespace Rod
             if (delta < 12 * MONTH)
             {
                 int months = Convert.ToInt32(Math.Floor((double)ts.Days / 30));
-                return months <= 1 ? " شهر واحد " : " قبل " + months + " شهور  ";
+                return months <= 1 ? " قبل شهر واحد " : " قبل " + months + " شهور  ";
             }
             else
             {
@@ -58,7 +58,7 @@ namespace Rod
             if (!Page.IsPostBack)
             {
 
-            if (Session["loggedIn"] == null)
+            if (Session["id"] == null)
             {
                 HideIfUserLoggedIn.Visible = true;
                 homeLoggedIn.Visible = false;
