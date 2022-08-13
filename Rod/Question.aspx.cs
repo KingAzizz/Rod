@@ -79,12 +79,12 @@ namespace Rod
                 return "امس";
 
             if (delta < 30 * DAY)
-                return " قبل " + ts.Days + " يوم ";
+                return " قبل " + ts.Days + " ايام ";
 
             if (delta < 12 * MONTH)
             {
                 int months = Convert.ToInt32(Math.Floor((double)ts.Days / 30));
-                return months <= 1 ? " شهر واحد " : " قبل " + months + " شهور  ";
+                return months <= 1 ? " قبل شهر واحد  " : " قبل " + months + " شهور  ";
             }
             else
             {
@@ -165,7 +165,7 @@ namespace Rod
                             postBody.InnerText = dr.GetValue(3).ToString();
                             postCreation.InnerText = RelativeDate(Convert.ToDateTime(dr.GetValue(5)));
 
-                            postCreationUser.InnerText = RelativeDate(Convert.ToDateTime(dr.GetValue(5))) + "انسأل قبل";
+                            postCreationUser.InnerText = " انسأل " + RelativeDate(Convert.ToDateTime(dr.GetValue(5)));
                             postTagsDiv.InnerHtml = "<a href=#TAGGHERE>" + dr.GetValue(4).ToString() + "</a>";
                             userProfileImagePost.ImageUrl = dr.GetValue(24).ToString();
                             userLinkProfilePost.NavigateUrl = "~/users/profile/"+ dr.GetValue(1);
