@@ -12,7 +12,7 @@ namespace Rod
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-            if(Session["loggedIn"] != null)
+            if(Session["id"] != null)
             {
                 Response.Redirect("~/");
             }
@@ -55,10 +55,6 @@ namespace Rod
                     }
                     break;
                 }
-                    
-               
-                Session["username"] = username;
-                Session["loggedIn"] = "true";
                 Response.Redirect("~/");
             }
             else
