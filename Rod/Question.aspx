@@ -140,7 +140,7 @@
             </div>
             <div>
                 <div id='answeCreation'>
-                    <%# RelativeDate(Convert.ToDateTime(Eval("answer_creationDate"))) %>
+                   أجاب <%# RelativeDate(Convert.ToDateTime(Eval("answer_creationDate"))) %>
                 </div>
                 <div>
                
