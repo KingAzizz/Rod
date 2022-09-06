@@ -12,6 +12,8 @@ namespace Rod
 {
     public partial class ViewUserProfile : System.Web.UI.Page
     {
+        public static string cs = @"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=C:\Users\aziz\source\repos\Rod\Rod\App_Data\Rod.mdf;Integrated Security=True";
+
         public string GetMonthDay(string dataValue)
         {
             String sDate = dataValue;
@@ -33,7 +35,6 @@ namespace Rod
         {
             if (HttpContext.Current.Session["id"] != null)
             {
-                string cs = @"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=C:\Users\aziz\source\repos\Rod\Rod\App_Data\Rod.mdf;Integrated Security=True";
                 SqlConnection con = new SqlConnection(cs);
                 con.Open();
 
@@ -77,7 +78,6 @@ namespace Rod
                     {
                         Response.Redirect("~/");
                     }
-                    string cs = @"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=C:\Users\aziz\source\repos\Rod\Rod\App_Data\Rod.mdf;Integrated Security=True";
                     SqlConnection con = new SqlConnection(cs);
                     con.Open();
                     string userProfile = @" IF EXISTS( SELECT * from [Post] 
@@ -298,7 +298,6 @@ namespace Rod
         {
             var id = Page.RouteData.Values["id"];
 
-            string cs = @"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=C:\Users\aziz\source\repos\Rod\Rod\App_Data\Rod.mdf;Integrated Security=True";
             SqlConnection con = new SqlConnection(cs);
             if (tab == "default")
             {
@@ -533,7 +532,6 @@ namespace Rod
             if (Session["id"] != null && userId.Value != Session["id"].ToString())
             {
 
-                string cs = @"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=C:\Users\aziz\source\repos\Rod\Rod\App_Data\Rod.mdf;Integrated Security=True";
                 SqlConnection con = new SqlConnection(cs);
                 con.Open();
 
@@ -569,7 +567,6 @@ namespace Rod
             if (Session["id"] != null && userId.Value != Session["id"].ToString())
             {
 
-                string cs = @"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=C:\Users\aziz\source\repos\Rod\Rod\App_Data\Rod.mdf;Integrated Security=True";
                 SqlConnection con = new SqlConnection(cs);
                 con.Open();
 

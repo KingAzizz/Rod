@@ -14,11 +14,12 @@ namespace Rod
 {
     public partial class Question : System.Web.UI.Page
     {
+        public static string cs = @"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=C:\Users\aziz\source\repos\Rod\Rod\App_Data\Rod.mdf;Integrated Security=True";
         public static bool Followed(int user1, int user2)
         {
           if(HttpContext.Current.Session["id"] != null)
             {
-                string cs = @"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=C:\Users\aziz\source\repos\Rod\Rod\App_Data\Rod.mdf;Integrated Security=True";
+                
                 SqlConnection con = new SqlConnection(cs);
                 con.Open();
 
@@ -116,7 +117,6 @@ namespace Rod
             if (!Page.IsPostBack)
             {
                 
-                string cs = @"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=C:\Users\aziz\source\repos\Rod\Rod\App_Data\Rod.mdf;Integrated Security=True";
                 SqlConnection con = new SqlConnection(cs);
               
                 con.Open();
@@ -310,7 +310,6 @@ namespace Rod
            
 
            
-            string cs = @"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=C:\Users\aziz\source\repos\Rod\Rod\App_Data\Rod.mdf;Integrated Security=True";
             SqlConnection con = new SqlConnection(cs);
             con.Open();
 
@@ -340,7 +339,6 @@ namespace Rod
         }
         protected void Datalist_ItemCommand(object source, DataListCommandEventArgs e)
         {
-            string cs = @"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=C:\Users\aziz\source\repos\Rod\Rod\App_Data\Rod.mdf;Integrated Security=True";
             SqlConnection con = new SqlConnection(cs);
 
             HtmlGenericControl upvote = e.Item.FindControl("upvoteIcon") as HtmlGenericControl;
@@ -703,7 +701,6 @@ namespace Rod
 
 
                 }
-                string cs = @"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=C:\Users\aziz\source\repos\Rod\Rod\App_Data\Rod.mdf;Integrated Security=True";
                 SqlConnection con = new SqlConnection(cs);
                 string answersQuery = @"SELECT  Post.*, Answer.*,
             [User].id as userPostId,
@@ -738,7 +735,6 @@ namespace Rod
             if(Session["id"] != null && userId.Value != Session["id"].ToString())
             {
 
-            string cs = @"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=C:\Users\aziz\source\repos\Rod\Rod\App_Data\Rod.mdf;Integrated Security=True";
             SqlConnection con = new SqlConnection(cs);
             con.Open();
 
@@ -774,7 +770,6 @@ namespace Rod
             if(Session["id"] != null)
             {
 
-            string cs = @"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=C:\Users\aziz\source\repos\Rod\Rod\App_Data\Rod.mdf;Integrated Security=True";
             SqlConnection con = new SqlConnection(cs);
             con.Open();
             
@@ -809,7 +804,6 @@ namespace Rod
         {
             if (Session["id"] != null)
             {
-                string cs = @"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=C:\Users\aziz\source\repos\Rod\Rod\App_Data\Rod.mdf;Integrated Security=True";
                 SqlConnection con = new SqlConnection(cs);
                 con.Open();
                 string checkifUseAlreadyUpvoted = @"select * from [Vote] where [postId] =" + Convert.ToInt32(postId.Value) + " and [userId] =" + Convert.ToInt32(Session["id"]) + "and [voteTypeId] = 1";
@@ -913,7 +907,6 @@ namespace Rod
         {
             if (Session["id"] != null)
             {
-                string cs = @"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=C:\Users\aziz\source\repos\Rod\Rod\App_Data\Rod.mdf;Integrated Security=True";
                 SqlConnection con = new SqlConnection(cs);
 
                 con.Open();
@@ -1021,7 +1014,6 @@ namespace Rod
             if(Session["id"].ToString() == userId.Value.ToString())
             {
 
-            string cs = @"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=C:\Users\aziz\source\repos\Rod\Rod\App_Data\Rod.mdf;Integrated Security=True";
             SqlConnection con = new SqlConnection(cs);
 
             con.Open();
@@ -1059,7 +1051,6 @@ namespace Rod
             {
 
             
-            string cs = @"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=C:\Users\aziz\source\repos\Rod\Rod\App_Data\Rod.mdf;Integrated Security=True";
             SqlConnection con = new SqlConnection(cs);
 
             DateTime myDateTime = DateTime.Now;

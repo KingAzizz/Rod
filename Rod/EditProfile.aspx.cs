@@ -10,6 +10,7 @@ namespace Rod
 {
     public partial class EditProfile : System.Web.UI.Page
     {
+        public static string cs = @"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=C:\Users\aziz\source\repos\Rod\Rod\App_Data\Rod.mdf;Integrated Security=True";
         protected void Page_Load(object sender, EventArgs e)
         {
             if (!Page.IsPostBack) { 
@@ -26,7 +27,7 @@ namespace Rod
                 }
                 if(Session["id"] != null)
                 {
-                    string cs = @"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=C:\Users\aziz\source\repos\Rod\Rod\App_Data\Rod.mdf;Integrated Security=True";
+                   
                     SqlConnection con = new SqlConnection(cs);
                     con.Open();
 
@@ -64,7 +65,6 @@ namespace Rod
 
         protected void SaveEdit(object sender, EventArgs e)
         {
-            string cs = @"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=C:\Users\aziz\source\repos\Rod\Rod\App_Data\Rod.mdf;Integrated Security=True";
             SqlConnection con = new SqlConnection(cs);
           
            

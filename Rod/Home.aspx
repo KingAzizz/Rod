@@ -95,7 +95,42 @@
            
         </section>
           <section class="sectionQuestions" id="sectionQuestions" runat="server">
-        
+         <asp:ListView ID="HomePageListView" runat="server">
+             <ItemTemplate>
+                   <div class="question">
+                         <div class="votesAnswers">
+
+                         <h3><span><%# Eval("totalVote") %></span> التقييم</h3>
+                        <div class="answersContainer">
+                        <h3><span><%# Eval("answerCount") %> </span> الأجابات</h3>
+                        </div>  </div>
+
+
+                       <div class="questionTitle">
+                         
+                           <asp:HyperLink ID="title" runat="server" CssClass="title" NavigateUrl='<%# Eval("questionId","~/question/{0}") %>'>
+                               <%# Eval("questionTitle") %>
+                           </asp:HyperLink>
+                        </div> 
+
+                       <div class="usernameQuestionDetails">
+                       <h2><span>
+                           <asp:HyperLink ID="username"  runat="server" CssClass="username" NavigateUrl='<%# Eval("idUser","~/users/profile/{0}") %>'>
+                               <%# Eval("username") %>
+                                    </asp:HyperLink>
+                           </span> 
+                           <span><%# Eval("reputation") %></span></h2>
+                       <p>
+                           <%# RelativeDate(Convert.ToDateTime(Eval("postCreationDate"))) %>
+                          
+                       </p>
+
+                       </div>
+
+                   </div>
+             </ItemTemplate>
+         </asp:ListView>
+             
         </section>
     </section>
 

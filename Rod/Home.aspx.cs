@@ -5,6 +5,7 @@ using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 using System.Data.SqlClient;
+using System.Data;
 
 namespace Rod
 {
@@ -53,6 +54,7 @@ namespace Rod
                 return years <= 1 ? "قبل سنة" : " قبل " + years + " سنوات  ";
             }
         }
+        public string cs = @"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=C:\Users\pc\Documents\Rod\Rod\App_Data\Rod.mdf;Integrated Security=True";
         protected void Page_Load(object sender, EventArgs e)
         {
             if (!Page.IsPostBack)
@@ -62,6 +64,7 @@ namespace Rod
             {
                 HideIfUserLoggedIn.Visible = true;
                 homeLoggedIn.Visible = false;
+                  
                 
             }
             else
@@ -69,202 +72,118 @@ namespace Rod
                 homeLoggedIn.Visible = true;
                 HideIfUserLoggedIn.Visible = false;
 
-                string cs = @"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=C:\Users\aziz\source\repos\Rod\Rod\App_Data\Rod.mdf;Integrated Security=True";
+                    if(Request.QueryString["tab"] != null)
+                    {
+                        Bind(Request.QueryString["tab"]);
+                    }
+                    else
+                    {
+                        Bind("default");
+                    }
+            
 
+            }
+            }
+        }
+
+        public void Bind(string tab)
+        {
                 SqlConnection con = new SqlConnection(cs);
-
+            if (tab == "default")
+            {
                 con.Open();
 
-                string questionsQuery = @"SELECT TOP 40 *
+                string questionsQuery = @"SELECT TOP 40 *,[User].id as idUser,[Post].id as questionId,[Post].title as questionTitle,[Post].creationDate as postCreationDate ,CONVERT(int ,upvoteCount) + CONVERT(int ,downvoteCount) as totalVote
                 FROM [User]
                 INNER JOIN [Post]
                 ON [User].id = [Post].userId;";
-
                 SqlCommand cmd = new SqlCommand(questionsQuery, con);
+                SqlDataAdapter da = new SqlDataAdapter(cmd);
 
-                SqlDataReader dr = cmd.ExecuteReader();
-             
-                if (dr.HasRows)
-                {
-                    while (dr.Read())
-                    {
-                            int totalVotePost = Convert.ToInt32(dr.GetValue(32)) + Convert.ToInt32(dr.GetValue(33));
-                            sectionQuestions.InnerHtml += " " +
-                       " <div class='question'>" +
-                         "<div class='votesAnswers'>" +
-
-                          "<h3><span>" + totalVotePost.ToString() + "</span> التقييم</h3>" +
-                        "<div class='answersContainer'>" +
-                        "<h3><span>" + dr.GetValue(31).ToString() + "</span> الأجابات</h3>" +
-                         "</div>  </div>" +
-
-
-                       " <div class='questionTitle'>" +
-                           "<a class='title' href='/question/" + dr.GetValue(24) + "'>" + dr.GetValue(26).ToString() + "</a> </div>" +
-
-                       " <div class='usernameQuestionDetails'>" +
-                        "<h2><span><a class='username' href='/users/profile/" +dr.GetValue(0).ToString() +"'>" + dr.GetValue(1).ToString() + "</a></span>   <span>" + dr.GetValue(15).ToString() + "</span></h2>" +
-                       " <p>" + RelativeDate(Convert.ToDateTime(dr.GetValue(29)))  + "</p></div></div>";
-                    }
-                }
+                DataSet ds = new DataSet();
+                da.Fill(ds, "Post");
+                HomePageListView.DataSource = ds.Tables[0];
+                HomePageListView.DataBind();
                 con.Close();
+            }
+            if (tab == "Month")
+            {
+                commonFilter.Style.Remove("border-top");
+                weekFilter.Style.Remove("border-top");
+                monthFilter.Style.Add("border-top", "3px solid #4F6BFF");
+                con.Open();
+                string questionsQueryByMonth = @"SELECT TOP 40 *,[User].id as idUser,[Post].id as questionId,[Post].title as questionTitle,[Post].creationDate as postCreationDate ,CONVERT(int ,upvoteCount) + CONVERT(int ,downvoteCount) as totalVote FROM[User] INNER JOIN[Post] ON[User].id = [Post].userId where[Post].creationDate between '" + DateTime.UtcNow.Year.ToString() + "-" + DateTime.UtcNow.Month.ToString() + "-01'" + " and '" + DateTime.UtcNow.Year.ToString() + "-" + DateTime.UtcNow.Month.ToString() + "-30'";
+                SqlCommand cmd = new SqlCommand(questionsQueryByMonth, con);
+                SqlDataAdapter da = new SqlDataAdapter(cmd);
 
+                DataSet ds = new DataSet();
+                da.Fill(ds, "Post");
+                HomePageListView.DataSource = ds.Tables[0];
+                HomePageListView.DataBind();
+
+
+                con.Close();
             }
+            if(tab == "Common")
+            {
+                monthFilter.Style.Remove("border-top");
+                weekFilter.Style.Remove("border-top");
+                commonFilter.Style.Add("border-top", "3px solid #4F6BFF");
+                con.Open();
+                string questionsQueryByCommon = @"SELECT TOP 40 *,[User].id as idUser,[Post].id as questionId,[Post].title as questionTitle,[Post].creationDate as postCreationDate ,CONVERT(int ,upvoteCount) + CONVERT(int ,downvoteCount) as totalVote FROM [User] INNER JOIN [Post] ON [User].id = [Post].userId ORDER BY [Post].upvoteCount DESC;";
+                SqlCommand cmd = new SqlCommand(questionsQueryByCommon, con);
+                SqlDataAdapter da = new SqlDataAdapter(cmd);
+
+                DataSet ds = new DataSet();
+                da.Fill(ds, "Post");
+                HomePageListView.DataSource = ds.Tables[0];
+                HomePageListView.DataBind();
+
+                con.Close();
             }
+
+            if(tab == "Week")
+            {
+                monthFilter.Style.Remove("border-top");
+                commonFilter.Style.Remove("border-top");
+                weekFilter.Style.Add("border-top", "3px solid #4F6BFF");
+
+                con.Open();
+
+                string questionsQueryByWeek = @"SET DATEFIRST 1 
+                SELECT TOP 40 *,[User].id as idUser,[Post].id as questionId,[Post].title as questionTitle,[Post].creationDate as postCreationDate ,CONVERT(int ,upvoteCount) + CONVERT(int ,downvoteCount) as totalVote from [User]
+                inner join [Post] on[Post].userId = [User].id 
+                where [Post].creationDate >= dateadd(day, 1-datepart(dw, getdate()), CONVERT(date,getdate())) 
+                AND [Post].creationDate <  dateadd(day, 8-datepart(dw, getdate()), CONVERT(date,getdate()))
+                order by [Post].creationDate DESC";
+                SqlCommand cmd = new SqlCommand(questionsQueryByWeek, con);
+                SqlDataAdapter da = new SqlDataAdapter(cmd);
+
+                DataSet ds = new DataSet();
+                da.Fill(ds, "Post");
+                HomePageListView.DataSource = ds.Tables[0];
+                HomePageListView.DataBind();
+
+                con.Close();
+            }
+            
+
         }
 
         protected void MonthFilter(object sender, EventArgs e)
         {
-            sectionQuestions.InnerHtml = "";
-            commonFilter.Style.Remove("border-top");
-            weekFilter.Style.Remove("border-top");
-            monthFilter.Style.Add("border-top", "3px solid #4F6BFF");
-
-            string cs = @"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=C:\Users\aziz\source\repos\Rod\Rod\App_Data\Rod.mdf;Integrated Security=True";
-
-            SqlConnection con = new SqlConnection(cs);
-
-            con.Open();
-
-            string questionsQueryByMonth = "SELECT TOP 40 * FROM[User] INNER JOIN[Post] ON[User].id = [Post].userId where[Post].creationDate between '" + DateTime.UtcNow.Year.ToString() + "-" + DateTime.UtcNow.Month.ToString() + "-01'" + " and '" + DateTime.UtcNow.Year.ToString() + "-" + DateTime.UtcNow.Month.ToString() + "-30'";
-
-
-
-            SqlCommand cmd = new SqlCommand(questionsQueryByMonth, con);
-
-            SqlDataReader dr = cmd.ExecuteReader();
-
-            if (dr.HasRows)
-            {
-                while (dr.Read())
-                {
-                   
-                    sectionQuestions.InnerHtml += " " +
-                   " <div class='question'>" +
-                     "<div class='votesAnswers'>" +
-
-                      "<h3><span>" + dr.GetValue(32).ToString() + "</span> التقييم</h3>" +
-                    "<div class='answersContainer'>" +
-                    "<h3><span>" + dr.GetValue(31).ToString() + "</span> الأجابات</h3>" +
-                     "</div>  </div>" +
-
-
-                   " <div class='questionTitle'>" +
-                       "<a class='title' href='/question/" + dr.GetValue(24) + "'>" + dr.GetValue(26).ToString() + "</a> </div>" +
-
-                   " <div class='usernameQuestionDetails'>" +
-                    "<h2><span><a class='username' href='/users/profile/" + dr.GetValue(0).ToString() + "'>" + dr.GetValue(1).ToString() + "</a></span>   <span>" + dr.GetValue(15).ToString() + "</span></h2>" +
-                   " <p>" + RelativeDate(Convert.ToDateTime(dr.GetValue(29))) + "</p></div></div>";
-                }
-            }
-           
-
-            con.Close();
+            Response.Redirect("/?tab=Month");
         }
 
         protected void CommonFilter(object sender, EventArgs e)
         {
-            sectionQuestions.InnerHtml = "";
-            monthFilter.Style.Remove("border-top");
-            weekFilter.Style.Remove("border-top");
-            commonFilter.Style.Add("border-top", "3px solid #4F6BFF");
 
-            string cs = @"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=C:\Users\aziz\source\repos\Rod\Rod\App_Data\Rod.mdf;Integrated Security=True";
-
-            SqlConnection con = new SqlConnection(cs);
-
-            con.Open();
-
-            string questionsQueryByCommon = "SELECT TOP 40 * FROM [User] INNER JOIN [Post] ON [User].id = [Post].userId ORDER BY [Post].upvoteCount DESC;";
-
-
-
-            SqlCommand cmd = new SqlCommand(questionsQueryByCommon, con);
-
-            SqlDataReader dr = cmd.ExecuteReader();
-
-            if (dr.HasRows)
-            {
-                while (dr.Read())
-                {
-                    
-                    sectionQuestions.InnerHtml += " " +
-                   " <div class='question'>" +
-                     "<div class='votesAnswers'>" +
-
-                      "<h3><span>" + dr.GetValue(32).ToString() + "</span> التقييم</h3>" +
-                    "<div class='answersContainer'>" +
-                    "<h3><span>" + dr.GetValue(31).ToString() + "</span> الأجابات</h3>" +
-                     "</div>  </div>" +
-
-
-                   " <div class='questionTitle'>" +
-                       "<a class='title' href='/question/" + dr.GetValue(24) + "'>" + dr.GetValue(26).ToString() + "</a> </div>" +
-
-                   " <div class='usernameQuestionDetails'>" +
-                    "<h2><span><a class='username' href='/users/profile/" + dr.GetValue(0).ToString() + "'>" + dr.GetValue(1).ToString() + "</a></span>   <span>" + dr.GetValue(15).ToString() + "</span></h2>" +
-                   " <p>" + RelativeDate(Convert.ToDateTime(dr.GetValue(29))) + "</p></div></div>";
-                }
-            }
-
-
-            con.Close();
-
+            Response.Redirect("/?tab=Common");
         }
 
         protected void WeekFilter(object sender, EventArgs e)
         {
-            sectionQuestions.InnerHtml = "";
-            monthFilter.Style.Remove("border-top");
-            commonFilter.Style.Remove("border-top");
-            weekFilter.Style.Add("border-top", "3px solid #4F6BFF");
-
-            string cs = @"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=C:\Users\aziz\source\repos\Rod\Rod\App_Data\Rod.mdf;Integrated Security=True";
-
-            SqlConnection con = new SqlConnection(cs);
-
-            con.Open();
-
-            string questionsQueryByWeek = @"SET DATEFIRST 1 
-        SELECT TOP 40 * from [User]
-        inner join [Post] on[Post].userId = [User].id 
-        where [Post].creationDate >= dateadd(day, 1-datepart(dw, getdate()), CONVERT(date,getdate())) 
-        AND [Post].creationDate <  dateadd(day, 8-datepart(dw, getdate()), CONVERT(date,getdate()))
-        order by [Post].creationDate DESC";
-
-
-
-            SqlCommand cmd = new SqlCommand(questionsQueryByWeek, con);
-
-            SqlDataReader dr = cmd.ExecuteReader();
-
-            if (dr.HasRows)
-            {
-                while (dr.Read())
-                {
-
-                    sectionQuestions.InnerHtml += " " +
-                   " <div class='question'>" +
-                     "<div class='votesAnswers'>" +
-
-                      "<h3><span>" + dr.GetValue(32).ToString() + "</span> التقييم</h3>" +
-                    "<div class='answersContainer'>" +
-                    "<h3><span>" + dr.GetValue(31).ToString() + "</span> الأجابات</h3>" +
-                     "</div>  </div>" +
-
-
-                   " <div class='questionTitle'>" +
-                       "<a class='title' href='/question/" + dr.GetValue(24) + "'>" + dr.GetValue(26).ToString() + "</a> </div>" +
-
-                   " <div class='usernameQuestionDetails'>" +
-                    "<h2><span><a class='username' href='/users/profile/" + dr.GetValue(0).ToString() + "'>" + dr.GetValue(1).ToString() + "</a></span>   <span>" + dr.GetValue(15).ToString() + "</span></h2>" +
-                   " <p>" + RelativeDate(Convert.ToDateTime(dr.GetValue(29))) + "</p></div></div>";
-                }
-            }
-
-
-            con.Close();
-
+            Response.Redirect("/?tab=Week");
         }
     }
 }

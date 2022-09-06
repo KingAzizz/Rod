@@ -11,6 +11,8 @@ namespace Rod
 {
     public partial class Followers : System.Web.UI.Page
     {
+        public static string cs = @"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=C:\Users\aziz\source\repos\Rod\Rod\App_Data\Rod.mdf;Integrated Security=True";
+
         protected void Page_Load(object sender, EventArgs e)
         {
             if (!Page.IsPostBack)
@@ -49,7 +51,6 @@ namespace Rod
 
                 }
             }
-            string cs = @"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=C:\Users\aziz\source\repos\Rod\Rod\App_Data\Rod.mdf;Integrated Security=True";
             SqlConnection con = new SqlConnection(cs);
             con.Open();
             string followersQuery = @"select userId,followerID,username,displayName,aboutMe, profileImage 
@@ -94,7 +95,6 @@ namespace Rod
                     unFollow.Visible = false;
                 }
                 else { 
-                string cs = @"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=C:\Users\aziz\source\repos\Rod\Rod\App_Data\Rod.mdf;Integrated Security=True";
             SqlConnection con = new SqlConnection(cs);
             con.Open();
             string checkIfUserFollow = @"select * from [Following]
@@ -125,7 +125,6 @@ namespace Rod
         {
             Button unFollow = e.Item.FindControl("unFollow") as Button;
             Button follow = e.Item.FindControl("follow") as Button;
-            string cs = @"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=C:\Users\aziz\source\repos\Rod\Rod\App_Data\Rod.mdf;Integrated Security=True";
             SqlConnection con = new SqlConnection(cs);
           if(e.CommandArgument != Session["id"])
             {

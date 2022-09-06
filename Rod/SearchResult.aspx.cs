@@ -9,6 +9,8 @@ namespace Rod
 {
     public partial class SearchResult : System.Web.UI.Page
     {
+        public static string cs = @"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=C:\Users\aziz\source\repos\Rod\Rod\App_Data\Rod.mdf;Integrated Security=True";
+
         public static string RelativeDate(DateTime theDate)
         {
             const int SECOND = 1;
@@ -57,7 +59,6 @@ namespace Rod
             if (!Page.IsPostBack)
             {
                 searchedItemText.InnerText = " النتائج " +  "[" + Request.QueryString["searched"].ToString() +"]";
-                string cs = @"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=C:\Users\aziz\source\repos\Rod\Rod\App_Data\Rod.mdf;Integrated Security=True";
 
                 SqlConnection con = new SqlConnection(cs);
 
@@ -110,7 +111,6 @@ namespace Rod
         {
             searchResult.InnerHtml = "";
             searchedItemText.InnerText = " النتائج " + "[" + Request.QueryString["searched"].ToString() + "]";
-            string cs = @"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=C:\Users\aziz\source\repos\Rod\Rod\App_Data\Rod.mdf;Integrated Security=True";
 
             SqlConnection con = new SqlConnection(cs);
 
@@ -160,7 +160,6 @@ namespace Rod
         {
             searchResult.InnerHtml = "";
             searchedItemText.InnerText = " النتائج " + "[" + Request.QueryString["searched"].ToString() + "]";
-            string cs = @"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=C:\Users\aziz\source\repos\Rod\Rod\App_Data\Rod.mdf;Integrated Security=True";
 
             SqlConnection con = new SqlConnection(cs);
 
