@@ -5,6 +5,8 @@ using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 using System.Data.SqlClient;
+using System.Data;
+
 namespace Rod
 {
     public partial class SearchResult : System.Web.UI.Page
@@ -19,7 +21,7 @@ namespace Rod
             const int DAY = 24 * HOUR;
             const int MONTH = 30 * DAY;
 
-            var ts = new TimeSpan(DateTime.UtcNow.Ticks - theDate.Ticks);
+            var ts = new TimeSpan(DateTime.Now.Ticks - theDate.Ticks);
             double delta = Math.Abs(ts.TotalSeconds);
 
             if (delta < 1 * MINUTE)
@@ -58,152 +60,88 @@ namespace Rod
         {
             if (!Page.IsPostBack)
             {
-                searchedItemText.InnerText = " النتائج " +  "[" + Request.QueryString["searched"].ToString() +"]";
-
-                SqlConnection con = new SqlConnection(cs);
-
+                if(Request.QueryString["tab"] != null)
+                {
+                    Bind(Request.QueryString["tab"].ToString());
+                }
+                else
+                {
+                    Bind("default");
+                }
+            }
+        }
+        public void Bind(string tab)
+        {
+            SqlConnection con = new SqlConnection(cs);
+            if (tab == "default")
+            {
                 con.Open();
-                
-                string SearchResult = @"SELECT COUNT(*) OVER(),[User].username,[User].reputation,[Post].id,[Post].title,[Post].creationDate,[Post].upvoteCount,[Post].answerCount,[User].id
+                string searchedItemQuery = @"SELECT COUNT(*) OVER(),[User].username,[User].reputation,[Post].id,[Post].title,[Post].creationDate,CONVERT(int ,[Post].upvoteCount) + CONVERT(int ,[Post].downvoteCount) as totalVote,[Post].answerCount,[User].id
                     FROM [User]
                     INNER JOIN [Post]
                     ON [User].id = [Post].userId
                     where [Post].title LIKE N'%" + Request.QueryString["searched"].ToString() + "%'";
-               
-                SqlCommand cmd = new SqlCommand(SearchResult, con);
+                SqlCommand cmd = new SqlCommand(searchedItemQuery, con);
+                SqlDataAdapter da = new SqlDataAdapter(cmd);
 
-                SqlDataReader dr = cmd.ExecuteReader();
+                DataSet ds = new DataSet();
+                da.Fill(ds, "Post");
+                searchResultListView.DataSource = ds.Tables[0];
+                searchResultListView.DataBind();
+                searchedItemText.InnerText = " النتائج " + "[" + Request.QueryString["searched"].ToString() + "]";
+                resultCount.InnerText = "[" + searchResultListView.Items.Count + "]" + " النتائج";
+                con.Close();
+            }
+            if(tab == "Rating")
+            {
+                con.Open();
 
-                bool count = false;
-                if (dr.HasRows)
-                {
-                    while (dr.Read())
-                    {
-                        if(count == false)
-                        {
-                            resultCount.InnerText = "["+dr.GetValue(0).ToString()+"]" + " النتائج";
-                        }
-                        count = true;
-                       
-                        searchResult.InnerHtml +=  " " +
-                       " <div class='question'>" +
-                         "<div class='votesAnswers'>" +
+                string searchedItemQuery = @"SELECT COUNT(*) OVER(),[User].username,[User].reputation,[Post].id,[Post].title,[Post].creationDate,CONVERT(int ,[Post].upvoteCount) + CONVERT(int ,[Post].downvoteCount) as totalVote,[Post].answerCount,[User].id
+                    FROM [User]
+                    INNER JOIN [Post]
+                    ON [User].id = [Post].userId
+                    where [Post].title LIKE N'%" + Request.QueryString["searched"].ToString() + "%' order by [Post].upvoteCount DESC;";
+                SqlCommand cmd = new SqlCommand(searchedItemQuery, con);
+                SqlDataAdapter da = new SqlDataAdapter(cmd);
 
-                          "<h3><span>" + dr.GetValue(6).ToString() + "</span> التقييم</h3>" +
-                        "<div class='answersContainer'>" +
-                        "<h3><span>" + dr.GetValue(7).ToString() + "</span> الأجابات</h3>" +
-                         "</div>  </div>" +
+                DataSet ds = new DataSet();
+                da.Fill(ds, "Post");
+                searchResultListView.DataSource = ds.Tables[0];
+                searchResultListView.DataBind();
+                searchedItemText.InnerText = " النتائج " + "[" + Request.QueryString["searched"].ToString() + "]";
+                resultCount.InnerText = "[" + searchResultListView.Items.Count + "]" + " النتائج";
+                con.Close();
+            }
+            if(tab == "Newest")
+            {
+                con.Open();
 
+                string searchedItemQuery = @"SELECT COUNT(*) OVER(),[User].username,[User].reputation,[Post].id,[Post].title,[Post].creationDate,CONVERT(int ,[Post].upvoteCount) + CONVERT(int ,[Post].downvoteCount) as totalVote,[Post].answerCount,[User].id as userIdU
+                    FROM [User]
+                    INNER JOIN [Post]
+                    ON [User].id = [Post].userId
+                    where [Post].title LIKE N'%" + Request.QueryString["searched"].ToString() + "%' order by [Post].creationDate DESC;";
+                SqlCommand cmd = new SqlCommand(searchedItemQuery, con);
+                SqlDataAdapter da = new SqlDataAdapter(cmd);
 
-                       " <div class='questionTitle'>" +
-                           "<a style='color: #0173CC;' href='/question/" + dr.GetValue(3) + "'>" + dr.GetValue(4).ToString() + "</a> </div>" +
+                DataSet ds = new DataSet();
+                da.Fill(ds, "Post");
+                searchResultListView.DataSource = ds.Tables[0];
+                searchResultListView.DataBind();
+                searchedItemText.InnerText = " النتائج " + "[" + Request.QueryString["searched"].ToString() + "]";
+                resultCount.InnerText = "[" + searchResultListView.Items.Count + "]" + " النتائج";
 
-                       " <div class='usernameQuestionDetails'>" +
-                        "<h2><span><a href='/users/profile/" + dr.GetValue(8).ToString() + "'>" + dr.GetValue(1).ToString() + "</a></span>   <span>" + dr.GetValue(2).ToString() + "</span></h2>" +
-                       " <p>" + RelativeDate(Convert.ToDateTime(dr.GetValue(5))) + "</p></div></div>";
-                    }
-                }
                 con.Close();
             }
         }
 
         protected void HighRatingFilter(object sender, EventArgs e)
         {
-            searchResult.InnerHtml = "";
-            searchedItemText.InnerText = " النتائج " + "[" + Request.QueryString["searched"].ToString() + "]";
-
-            SqlConnection con = new SqlConnection(cs);
-
-            con.Open();
-            string SearchResultByUpvote = @"SELECT COUNT(*) OVER(),[User].username,[User].reputation,[Post].id,[Post].title,[Post].creationDate,[Post].upvoteCount,[Post].answerCount,[User].id
-                    FROM [User]
-                    INNER JOIN [Post]
-                    ON [User].id = [Post].userId
-                    where [Post].title LIKE N'%" + Request.QueryString["searched"].ToString() + "%' order by [Post].upvoteCount DESC;";
-
-            SqlCommand cmd = new SqlCommand(SearchResultByUpvote, con);
-
-            SqlDataReader dr = cmd.ExecuteReader();
-
-            bool count = false;
-            if (dr.HasRows)
-            {
-                while (dr.Read())
-                {
-                    if (count == false)
-                    {
-                        resultCount.InnerText = "[" + dr.GetValue(0).ToString() + "]" + " النتائج";
-                    }
-                    count = true;
-
-                    searchResult.InnerHtml += " " +
-                    " <div class='question'>" +
-                      "<div class='votesAnswers'>" +
-
-                       "<h3><span>" + dr.GetValue(6).ToString() + "</span> التقييم</h3>" +
-                     "<div class='answersContainer'>" +
-                     "<h3><span>" + dr.GetValue(7).ToString() + "</span> الأجابات</h3>" +
-                      "</div>  </div>" +
-
-
-                    " <div class='questionTitle'>" +
-                        "<a style='color: #0173CC;' href='/question/" + dr.GetValue(3) + "'>" + dr.GetValue(4).ToString() + "</a> </div>" +
-
-                    " <div class='usernameQuestionDetails'>" +
-                     "<h2><span><a href='/users/profile/" + dr.GetValue(8).ToString() + "'>" + dr.GetValue(1).ToString() + "</a></span>   <span>" + dr.GetValue(2).ToString() + "</span></h2>" +
-                    " <p>" + RelativeDate(Convert.ToDateTime(dr.GetValue(5))) + "</p></div></div>";
-                }
-            }
-            con.Close();
+            Response.Redirect("~/SearchResult.aspx?searched=" + Request.QueryString["searched"].ToString() + "&tab=Rating");
         }
         protected void NewestFilter(object sender, EventArgs e)
         {
-            searchResult.InnerHtml = "";
-            searchedItemText.InnerText = " النتائج " + "[" + Request.QueryString["searched"].ToString() + "]";
-
-            SqlConnection con = new SqlConnection(cs);
-
-            con.Open();
-            string SearchResultByNewest = @"SELECT COUNT(*) OVER(),[User].username,[User].reputation,[Post].id,[Post].title,[Post].creationDate,[Post].upvoteCount,[Post].answerCount,[User].id
-                    FROM [User]
-                    INNER JOIN [Post]
-                    ON [User].id = [Post].userId
-                    where [Post].title LIKE N'%" + Request.QueryString["searched"].ToString() + "%' order by [Post].creationDate DESC;";
-
-            SqlCommand cmd = new SqlCommand(SearchResultByNewest, con);
-
-            SqlDataReader dr = cmd.ExecuteReader();
-
-            bool count = false;
-            if (dr.HasRows)
-            {
-                while (dr.Read())
-                {
-                    if (count == false)
-                    {
-                        resultCount.InnerText = "[" + dr.GetValue(0).ToString() + "]" + " النتائج";
-                    }
-                    count = true;
-
-                    searchResult.InnerHtml += " " +
-                    " <div class='question'>" +
-                      "<div class='votesAnswers'>" +
-
-                       "<h3><span>" + dr.GetValue(6).ToString() + "</span> التقييم</h3>" +
-                     "<div class='answersContainer'>" +
-                     "<h3><span>" + dr.GetValue(7).ToString() + "</span> الأجابات</h3>" +
-                      "</div>  </div>" +
-
-
-                    " <div class='questionTitle'>" +
-                        "<a style='color: #0173CC;' href='/question/" + dr.GetValue(3) + "'>" + dr.GetValue(4).ToString() + "</a> </div>" +
-
-                    " <div class='usernameQuestionDetails'>" +
-                     "<h2><span><a href='/users/profile/" + dr.GetValue(8).ToString() + "'>" + dr.GetValue(1).ToString() + "</a></span>   <span>" + dr.GetValue(2).ToString() + "</span></h2>" +
-                    " <p>" + RelativeDate(Convert.ToDateTime(dr.GetValue(5))) + "</p></div></div>";
-                }
-            }
-            con.Close();
+            Response.Redirect("~/SearchResult.aspx?searched=" + Request.QueryString["searched"].ToString() + "&tab=Newest");
         }
     }
 }
