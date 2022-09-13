@@ -44,6 +44,40 @@
            
     </section>
     <section class="searchResult" id="searchResult" runat="server">
-      
+        <asp:ListView ID="searchResultListView" runat="server">
+            <ItemTemplate>
+       <div class="question">
+                         <div class="votesAnswers">
+
+                          <h3><span><%# Eval("totalVote") %></span> التقييم</h3>
+                        <div class="answersContainer">
+                        <h3><span><%# Eval("answerCount") %></span> الأجابات</h3>
+                         </div>
+
+                         </div>
+
+
+                       <div class="questionTitle">
+                           <!--<a style='color: #0173CC;' href='/question/" + dr.GetValue(3) + "'>" + dr.GetValue(4).ToString() + "</a>-->
+                           
+                            <asp:HyperLink ID="questionLink" runat="server" NavigateUrl='<%# Eval("id","~/question/{0}") %>' ForeColor="#0173CC">
+                                <%# Eval("title") %>
+                            </asp:HyperLink>
+                       </div>
+                       <div class="usernameQuestionDetails">
+                        <h2>
+                            <span>
+                                <!--<a href='/users/profile/" + dr.GetValue(8).ToString() + "'> + dr.GetValue(1).ToString()</a>-->
+                                    <asp:HyperLink ID="profileLink" runat="server" NavigateUrl='<%# Eval("userIdU","~/users/profile/{0}") %>'>
+                                        <%# Eval("username") %>
+                                    </asp:HyperLink>
+                            </span>   
+                            <span><%# Eval("reputation") %></span> 
+                        </h2>
+                       <p>RelativeDate(Convert.ToDateTime(dr.GetValue(5)))
+                           <%# RelativeDate(Convert.ToDateTime(Eval("creationDate"))) %>
+                       </p></div></div>
+                 </ItemTemplate>
+        </asp:ListView>
     </section>
 </asp:Content>
