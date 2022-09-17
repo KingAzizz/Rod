@@ -481,7 +481,7 @@ namespace Rod
                         con.Close();
                         con.Open();
                     DateTime myDateTime = DateTime.Now;
-                    string sqlFormattedDate = myDateTime.ToString("yyyy -MM-dd HH:mm:ss.fff");
+                    string sqlFormattedDate = myDateTime.ToString("yyyy-MM-dd HH:mm:ss.fff");
                    
                 string upVoteInsert = @"update [Answer]
                     set [upvoteCount] = [upvoteCount] + 1
