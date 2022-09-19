@@ -21,7 +21,7 @@ namespace Rod
         public void Bind()
         {
            
-                string cs = @"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=C:\Users\aziz\source\repos\Rod\Rod\App_Data\Rod.mdf;Integrated Security=True";
+                string cs = @"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=C:\Users\USER\source\repos\Rod\Rod\App_Data\Database1.mdf;Integrated Security=True";
                 SqlConnection con = new SqlConnection(cs);
 
             string topUsersQuery = @"SELECT id,username,displayName,CAST(profileImage as nvarchar(255)) as profileImage,[location],[reputation],

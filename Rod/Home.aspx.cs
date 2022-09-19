@@ -54,7 +54,7 @@ namespace Rod
                 return years <= 1 ? "قبل سنة" : " قبل " + years + " سنوات  ";
             }
         }
-        public string cs = @"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=C:\Users\pc\Documents\Rod\Rod\App_Data\Rod.mdf;Integrated Security=True";
+        public string cs = @"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=C:\Users\USER\source\repos\Rod\Rod\App_Data\Database1.mdf;Integrated Security=True";
         protected void Page_Load(object sender, EventArgs e)
         {
             if (!Page.IsPostBack)

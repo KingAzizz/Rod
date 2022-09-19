@@ -78,7 +78,7 @@ namespace Rod
 
         public void Bind(string tab)
         {
-            string cs = @"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=C:\Users\aziz\source\repos\Rod\Rod\App_Data\Rod.mdf;Integrated Security=True";
+            string cs = @"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=C:\Users\USER\source\repos\Rod\Rod\App_Data\Database1.mdf;Integrated Security=True";
             SqlConnection con = new SqlConnection(cs);
 
             if(tab == "default")

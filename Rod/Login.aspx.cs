@@ -4,7 +4,9 @@ using System.Linq;
 using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
+using System.Security.Cryptography;
 using System.Data.SqlClient;
+using System.Text;
 
 namespace Rod
 {
@@ -27,12 +29,19 @@ namespace Rod
             }
             }
         }
+        public static string hashPassword(string password)
+        {
+            SHA1CryptoServiceProvider SHA1 = new SHA1CryptoServiceProvider();
+            byte[] password_bytes = Encoding.ASCII.GetBytes(password);
+            byte[] encrypted_bytes = SHA1.ComputeHash(password_bytes);
+            return Convert.ToBase64String(encrypted_bytes);
+        }
         protected void Login_Click(object sender, EventArgs e)
         {
             string username = usernameTxt.Text;
-            string password = passwordTxt.Text;
+            string password = hashPassword(passwordTxt.Text);
 
-            string cs = @"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=C:\Users\pc\Documents\Rod\Rod\App_Data\Rod.mdf;Integrated Security=True";
+            string cs = @"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=C:\Users\USER\source\repos\Rod\Rod\App_Data\Database1.mdf;Integrated Security=True";
             SqlConnection con = new SqlConnection(cs);
             con.Open();
 
