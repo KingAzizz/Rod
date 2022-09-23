@@ -1,2 +1,121 @@
-﻿body {
+﻿* {
+    direction: rtl;
 }
+
+body {
+}
+
+.div {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.placenav {
+    width: 55%;
+    height: 90%;
+}
+
+.nav {
+    display: flex;
+    justify-content: right;
+}
+
+.control {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.askform {
+    box-shadow: rgba(0, 0, 0, 0.25) 0px 14px 28px, rgba(0, 0, 0, 0.22) 0px 10px 10px;
+    width: 55%;
+    height: 90%;
+    padding: 15px;
+}
+
+.subject {
+    text-align: right;
+    height: 10px;
+}
+
+.Movesubjecttxt {
+    display: flex;
+    justify-content: right;
+}
+
+.subinfo {
+    text-align: right;
+    padding: 0px;
+    margin-right: 0px;
+    margin-bottom: 10px;
+    margin-top: 30px;
+    font-size: 10px;
+    color: gray;
+}
+
+.titletxt {
+    outline: none;
+    border: none;
+    border-radius: 4px;
+    padding: 8px;
+    border-color: lavender;
+    width: 400px;
+    height: 20px;
+    background-color: rgb(238, 238, 238);
+    transition: .3s ease-in-out;
+}
+
+    .titletxt:focus {
+        border: 0.5px solid cornflowerblue;
+        background-color: white;
+    }
+
+.subjecttxt {
+    outline: none;
+    border: none;
+    border-radius: 4px;
+    border-color: lavender;
+    background-color: rgb(238, 238, 238);
+    transition: .3s ease-in-out;
+    padding: 0.4em;
+    padding-bottom: 140px;
+    width: 400px;
+    height: 10px;
+}
+
+    .subjecttxt:focus {
+        border: 0.5px solid cornflowerblue;
+        background-color: white;
+    }
+
+.btncontrol {
+    width: 55%;
+    height: 90%;
+    padding: 20px;
+}
+
+.reviewbtn {
+    display: flex;
+    justify-content: right;
+    width: 100px;
+    text-align: center;
+    border: none;
+    color: white;
+    border-radius: 4px;
+    transition: ease-in-out 0.3s;
+    font-size: 15px;
+    outline: none;
+    border: 3px solid #4F6BFF;
+    z-index: 1;
+    position: relative;
+    padding: 9px;
+    transition: 0.5s;
+    background-color: #4F6BFF;
+}
+
+    .reviewbtn:hover {
+        color: black;
+        cursor: pointer;
+        box-shadow: inset 0px 0px 0px 200px #4F6BFF;
+    }

@@ -1,2 +1,55 @@
-﻿body {
+﻿* {
+    direction: rtl;
 }
+
+.secations {
+    margin-top: 50px;
+}
+
+.controlserch {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding-top: 20px;
+}
+
+.serhtxt {
+    border-radius: 10px;
+    height: 20px;
+    border: solid 1px black;
+}
+
+.tagsSection {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    align-items: center;
+    justify-content: center;
+    align-content: center;
+    justify-items: center;
+    gap: 30px;
+}
+
+.sectionbtn {
+    margin: 10px;
+    width: 140px;
+    text-align: center;
+    border: none;
+    color: white;
+    text-decoration: none;
+    border-radius: 8px;
+    transition: ease-in-out 0.3s;
+    font-size: 20px;
+    outline: none;
+    border: 3px solid #4F6BFF;
+    z-index: 1;
+    position: relative;
+    padding: 9px;
+    transition: 0.5s;
+    background-color: #4F6BFF;
+}
+
+    .sectionbtn:hover {
+        color: black;
+        cursor: pointer;
+        box-shadow: inset 0px 0px 0px 200px #4F6BFF;
+    }
