@@ -11,7 +11,7 @@ namespace Rod
 {
     public partial class SearchResult : System.Web.UI.Page
     {
-        public static string cs = @"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=C:\Users\USER\source\repos\Rod\Rod\App_Data\Database1.mdf;Integrated Security=True";
+        public static string cs = @"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=C:\Users\pc\Documents\Rod\Rod\App_Data\Rod.mdf;Integrated Security=True";
 
         public static string RelativeDate(DateTime theDate)
         {
@@ -76,7 +76,7 @@ namespace Rod
             if (tab == "default")
             {
                 con.Open();
-                string searchedItemQuery = @"SELECT COUNT(*) OVER(),[User].username,[User].reputation,[Post].id,[Post].title,[Post].creationDate,CONVERT(int ,[Post].upvoteCount) + CONVERT(int ,[Post].downvoteCount) as totalVote,[Post].answerCount,[User].id
+                string searchedItemQuery = @"SELECT COUNT(*) OVER(),[User].username,[User].reputation,[Post].id,[Post].title,[Post].creationDate,CONVERT(int ,[Post].upvoteCount) + CONVERT(int ,[Post].downvoteCount) as totalVote,[Post].answerCount,[User].id as userIdU
                     FROM [User]
                     INNER JOIN [Post]
                     ON [User].id = [Post].userId
