@@ -5,7 +5,7 @@
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
     
         
-        <h1 class="secations">الأقسام</h1>
+        <h1 class="sectionHeader">الأقسام</h1>
       
         <div class="controlserch">
             
