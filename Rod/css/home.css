@@ -254,7 +254,7 @@
             .content > div:nth-child(1) input:hover {
                 color: gray;
             }
-    .content > div > button {
+    .content > div > a {
         border-radius: 500px;
         outline: none;
         border: none;
@@ -266,6 +266,7 @@
         border-radius: 10px;
         margin-top: 30px;
         cursor:pointer;
+        text-align:center;
     }
 
     .content > div:nth-child(2) {
