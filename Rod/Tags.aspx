@@ -7,11 +7,11 @@
         
         <h1 class="sectionHeader">الأقسام</h1>
       
-        <div class="controlserch">
+        <!--<div class="controlserch">
             
             <asp:TextBox ID="TextBox1" CssClass="serhtxt" runat="server" placeholder="ابحث عن القسم"></asp:TextBox>
             <i class="fa-solid fa-magnifying-glass"></i>
-        </div>
+        </div>-->
 
         <hr />
         <div class="tagsSection" runat="server">
