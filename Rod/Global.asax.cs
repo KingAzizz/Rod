@@ -20,6 +20,7 @@ namespace Rod
             routes.MapPageRoute("Login", "login", "~/Login.aspx");
             routes.MapPageRoute("Registration", "register", "~/Registration.aspx");
             routes.MapPageRoute("Home", "", "~/Home.aspx");
+            routes.MapPageRoute("askquestion", "ask/question", "~/QuestionForm.aspx");
             routes.MapPageRoute("postId", "question/{id}", "~/Question.aspx");
             routes.MapPageRoute("editPostId", "question/edit/{id}", "~/EditQuestion.aspx");
             routes.MapPageRoute("Tags", "tags", "~/Tags.aspx");
