@@ -1070,6 +1070,7 @@ namespace Rod
 
             cmd.ExecuteNonQuery();
             con.Close();
+            Response.Redirect(Request.RawUrl);
             }
             else
             {
