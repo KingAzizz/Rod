@@ -13,6 +13,9 @@ namespace Rod
 {
     public partial class Questions : System.Web.UI.Page
     {
+
+        public static string cs = @"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=C:\Users\pc\Documents\Rod\Rod\App_Data\Rod.mdf;Integrated Security=True";
+
         public static string RelativeDate(DateTime theDate)
         {
             const int SECOND = 1;
@@ -78,7 +81,6 @@ namespace Rod
 
         public void Bind(string tab)
         {
-            string cs = @"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=C:\Users\USER\source\repos\Rod\Rod\App_Data\Database1.mdf;Integrated Security=True";
             SqlConnection con = new SqlConnection(cs);
 
             if(tab == "default")
@@ -204,7 +206,6 @@ namespace Rod
         {
             HtmlGenericControl tagsDiv = e.Item.FindControl("tags") as HtmlGenericControl;
             HiddenField questionId = e.Item.FindControl("questionId") as HiddenField;
-            string cs = @"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=C:\Users\aziz\source\repos\Rod\Rod\App_Data\Rod.mdf;Integrated Security=True";
             SqlConnection con = new SqlConnection(cs);
             con.Open();
 

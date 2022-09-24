@@ -20,7 +20,7 @@ namespace Rod
                 profileImage.Visible = false;
              
                 inboxLink.Text = "تسجيل";
-                inboxLink.NavigateUrl = "Registration.aspx";
+                inboxLink.NavigateUrl = "~/register";
                 inboxLink.Style.Add("color", "#4F6BFF");
 
                 loginLink.Visible = true;
@@ -32,7 +32,7 @@ namespace Rod
             else {
                     loginLink.Visible = false;
                     profile.Visible = true;
-                    string cs = @"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=C:\Users\USER\source\repos\Rod\Rod\App_Data\Database1.mdf;Integrated Security=True";
+                    string cs = @"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=C:\Users\pc\Documents\Rod\Rod\App_Data\Rod.mdf;Integrated Security=True";
                 SqlConnection con = new SqlConnection(cs);
                 con.Open();
 

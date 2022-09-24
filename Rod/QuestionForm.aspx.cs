@@ -10,7 +10,7 @@ namespace Rod
 {
     public partial class QuestionForm : System.Web.UI.Page
     {
-        public static string cs = "";
+        public static string cs = @"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=C:\Users\pc\Documents\Rod\Rod\App_Data\Rod.mdf;Integrated Security=True";
         protected void Page_Load(object sender, EventArgs e)
         {
 

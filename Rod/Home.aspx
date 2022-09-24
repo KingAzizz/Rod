@@ -14,7 +14,7 @@
             <div class="RodJoin">
                 <h1> ُرد</h1>
                 <p>اسأل او جاوب لمساعدة مجتمع المتعلمين كافه</p>
-                <asp:HyperLink ID="joinLink" runat="server" NavigateUrl="~/Registration.aspx">انضم</asp:HyperLink>
+                <asp:HyperLink ID="joinLink" runat="server" NavigateUrl="~/register">انضم</asp:HyperLink>
 
                 <asp:HyperLink ID="questionsLink" runat="server" NavigateUrl="~/Questions.aspx">ابحث عن الأسئلة</asp:HyperLink>
             </div>
@@ -69,7 +69,7 @@
                    <asp:HyperLink ID="selected" runat="server" NavigateUrl="~/">الصفحة الرئيسية</asp:HyperLink>
                 </li>
                 <li>
-                     <asp:HyperLink ID="TagsLink" runat="server" NavigateUrl="~/Tags.aspx">الأقسام</asp:HyperLink>
+                     <asp:HyperLink ID="TagsLink" runat="server" NavigateUrl="~/tags">الأقسام</asp:HyperLink>
                     </li>
                 <li>
                      <asp:HyperLink ID="HyperLink1" runat="server" NavigateUrl="~/top/users">

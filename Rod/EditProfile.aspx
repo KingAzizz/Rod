@@ -12,7 +12,7 @@
                    <asp:HyperLink ID="homePage" runat="server" NavigateUrl="~/">الصفحة الرئيسية</asp:HyperLink>
                 </li>
                 <li>
-                     <asp:HyperLink ID="tags" runat="server" NavigateUrl="~/Tags.aspx">الأقسام</asp:HyperLink>
+                     <asp:HyperLink ID="tags" runat="server" NavigateUrl="~/tags">الأقسام</asp:HyperLink>
                     </li>
                 <li>
                      <asp:HyperLink ID="topUsers" runat="server" NavigateUrl="~/top/users">
