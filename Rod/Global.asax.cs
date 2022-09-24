@@ -18,9 +18,12 @@ namespace Rod
         public static void RegisterRoutes(RouteCollection routes)
         {
             routes.MapPageRoute("Login", "login", "~/Login.aspx");
+            routes.MapPageRoute("Registration", "register", "~/Registration.aspx");
             routes.MapPageRoute("Home", "", "~/Home.aspx");
             routes.MapPageRoute("postId", "question/{id}", "~/Question.aspx");
             routes.MapPageRoute("editPostId", "question/edit/{id}", "~/EditQuestion.aspx");
+            routes.MapPageRoute("Tags", "tags", "~/Tags.aspx");
+            routes.MapPageRoute("tagged", "tagged/{id}", "~/Tagged.aspx");
             routes.MapPageRoute("profile", "profile", "~/Profile.aspx");
             routes.MapPageRoute("editprofile", "profile/edit/{id}", "~/EditProfile.aspx");
             routes.MapPageRoute("viewUserProfile", "users/profile/{id}", "~/ViewUserProfile.aspx");
