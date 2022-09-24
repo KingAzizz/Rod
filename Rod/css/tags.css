@@ -3,7 +3,8 @@
 
 .sectionHeader {
     text-align: center;
-    margin-top: 50px;
+    margin:50px 0 40px 0;
+    color: #4F6BFF;
 }
 .controlserch {
     display: flex;
@@ -19,7 +20,9 @@
 }
 
 .tagsSection {
+    margin-top:10px;
     display: grid;
+    direction:rtl;
     grid-template-columns: 1fr 1fr 1fr;
     align-items: center;
     justify-content: center;
