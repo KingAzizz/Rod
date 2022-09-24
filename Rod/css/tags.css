@@ -1,11 +1,10 @@
-﻿* {
-    direction: rtl;
-}
+﻿
 
-.secations {
+
+.sectionHeader {
+    text-align: center;
     margin-top: 50px;
 }
-
 .controlserch {
     display: flex;
     align-items: center;
