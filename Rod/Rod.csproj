@@ -93,6 +93,9 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="App_Data\Rod.mdf" />
+    <Content Include="App_Data\Rod_log.ldf">
+      <DependentUpon>Rod.mdf</DependentUpon>
+    </Content>
     <Content Include="css\editProfile.css" />
     <Content Include="css\editQuestion.css" />
     <Content Include="css\followersAndfollowing.css" />
