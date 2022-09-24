@@ -88,7 +88,8 @@
             </div>
             <div>
                 <h1>أفضل ألاسئلة</h1>
-                <button id="askQuestion" runat="server">إسأل</button>
+                <asp:HyperLink  runat="server" NavigateUrl="~/ask/question" Text="إسأل"></asp:HyperLink>
+            
              
 
             </div>

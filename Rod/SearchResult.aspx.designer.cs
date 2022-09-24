@@ -60,15 +60,6 @@ namespace Rod
         protected global::System.Web.UI.HtmlControls.HtmlGenericControl searchFilters;
 
         /// <summary>
-        /// navToAskForm control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.HyperLink navToAskForm;
-
-        /// <summary>
         /// searchedItemText control.
         /// </summary>
         /// <remarks>

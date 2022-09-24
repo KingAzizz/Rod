@@ -25,7 +25,7 @@
                
          <div>
                 <h1>نتائج البحث</h1>
-                <asp:HyperLink ID="navToAskForm" runat="server" NavigateUrl="~/QuestionForm.aspx" Text="اسأل"></asp:HyperLink>
+                <asp:HyperLink runat="server" NavigateUrl="~/ask/question" Text="اسأل"></asp:HyperLink>
              
             </div>
 

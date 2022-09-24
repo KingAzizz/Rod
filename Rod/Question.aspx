@@ -31,7 +31,7 @@
             <div class="questionHead">
                 <h1 id="postTitle" runat="server"></h1>
                 <div>
-                    <asp:HyperLink ID="askformLink" runat="server" NavigateUrl="~/QuestionForm.aspx" Text="اسأل"></asp:HyperLink>
+                    <asp:HyperLink ID="askformLink" runat="server" NavigateUrl="~/ask/question" Text="اسأل"></asp:HyperLink>
                 </div>
                 
             </div>
