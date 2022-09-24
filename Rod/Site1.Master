@@ -10,6 +10,8 @@
     <script src="https://kit.fontawesome.com/f933819f72.js" crossorigin="anonymous"></script>
     <link href="./css/masterPage.css" rel="stylesheet" type="text/css" />
     <script defer src='<%= Page.ResolveUrl("~/js/master.js")%>' charset="utf-8"></script>
+    <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1" />
+
 </head>
 <body>
     <form id="form1" runat="server">
