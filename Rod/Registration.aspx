@@ -1,6 +1,6 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Site1.Master" AutoEventWireup="true" CodeBehind="Registration.aspx.cs" Inherits="Rod.Registration" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
-   <link href="css/registration.css" rel="stylesheet" />
+    <link href='<%= Page.ResolveUrl("~/css/registration.css")%>'rel="stylesheet" type="text/css">
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
     <section class="login">
@@ -19,7 +19,7 @@
 
              <asp:TextBox ID="EmailTxt" runat="server" TextMode="Email"></asp:TextBox>
             <asp:RegularExpressionValidator ID="RegularExpressionValidator1" runat="server" ControlToValidate="EmailTxt"   
-                ErrorMessage="الرجاء ادخال بريد الإلكتروني صحيح!" ForeColor="Red"ValidationExpression="\w+([-+.']\w+)*@\w+([-.]\w+)*\.\w+([-.]\w+)*">  
+                ErrorMessage="الرجاء ادخال بريد الإلكتروني صحيح!" ForeColor="Red" ValidationExpression="\w+([-+.']\w+)*@\w+([-.]\w+)*\.\w+([-.]\w+)*">  
                 </asp:RegularExpressionValidator>  
              <asp:RequiredFieldValidator  ID="EmailVal" ControlToValidate="EmailTxt" runat="server" ErrorMessage="ss"></asp:RequiredFieldValidator>
             

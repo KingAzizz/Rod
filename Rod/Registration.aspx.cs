@@ -28,7 +28,7 @@ namespace Rod
         protected void Reg(object sender, EventArgs e)
         {
            
-            string cs = @"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=C:\Users\USER\source\repos\Rod\Rod\App_Data\Database1.mdf;Integrated Security=True";
+            string cs = @"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=C:\Users\pc\Documents\Rod\Rod\App_Data\Rod.mdf;Integrated Security=True";
             using (SqlConnection connection = new SqlConnection(cs))
             {
                 try
