@@ -4,13 +4,9 @@
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
     
-        <div class="div">
-            <div class="placenav">
-            <h1 class="nav">اسأل</h1>
-        </div>
-        </div>
  
-        <div class="control">
+        <div class="askContainer">
+             <h1 class="nav">اسأل</h1>
              <div class="askform">
             <h1 class="subject">العنوان</h1>
             <h6 class="subinfo">دقة العنوان تساعد على إيجاد الأجابه</h6>
@@ -18,7 +14,7 @@
                      <asp:TextBox ID="titletxt" CssClass="titletxt" runat="server"></asp:TextBox>
                      
                  </div>
-                 <asp:RegularExpressionValidator runat="server" ControlToValidate="titletxt" ValidationExpression="\w{15,30}" ErrorMessage="err" ForeColor="Red" Font-Size="X-Small">
+                 <asp:RegularExpressionValidator runat="server" ControlToValidate="titletxt" ValidationExpression="^\s*(?:\S\s*){15,50}$" ErrorMessage="يجب ان يكون طول العنوان مابين 15 حرف الى 50" ForeColor="Red" Font-Size="X-Small">
                      </asp:RegularExpressionValidator>
 
             <h1 class="subject">الموضوع</h1>
@@ -27,7 +23,7 @@
                      <asp:TextBox ID="subjecttxt" CssClass="subjecttxt" runat="server"></asp:TextBox>
       
                  </div>
-                 <asp:RegularExpressionValidator runat="server" ControlToValidate="titletxt" ValidationExpression="\w{30,80}" ErrorMessage="err" ForeColor="Red" Font-Size="X-Small">
+                 <asp:RegularExpressionValidator runat="server" ControlToValidate="subjecttxt" ValidationExpression="^\s*(?:\S\s*){30,80}$" ErrorMessage="يجب ان يكون طول الموضوع مابين 30 حرف الى 80" ForeColor="Red" Font-Size="X-Small">
                      </asp:RegularExpressionValidator>
 
             <h1 class="subject">القسم</h1>
