@@ -136,14 +136,14 @@ namespace Rod
             else if (tab == "Common")
             {
                      con.Open();
-                string questionsQuery = @" select[Post].id,[Post].title,tag,[Post].creationDate,answerCount,
+                string questionsQuery = @"select[Post].id,[Post].title,tag,[Post].creationDate,answerCount,
                 CONVERT(int, upvoteCount) + CONVERT(int, downvoteCount) as totalVote,[User].id as userId,username,reputation,
                 (select COUNT(id) from Post) as totalQuestions
                 from Post
                 inner join [User] on [User].id = [Post].userId
                 group by  [Post].id,[Post].title,tag,[Post].creationDate,answerCount,
                 upvoteCount ,downvoteCount,[User].id,username,reputation
-                order by[Post].upvoteCount DESC";
+                order by[Post].upvoteCount DESC,[Post].answerCount DESC";
                 SqlCommand cmd = new SqlCommand(questionsQuery, con);
                 SqlDataAdapter da = new SqlDataAdapter(cmd);
 
