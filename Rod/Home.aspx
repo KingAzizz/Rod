@@ -16,7 +16,7 @@
                 <p>اسأل او جاوب لمساعدة مجتمع المتعلمين كافه</p>
                 <asp:HyperLink ID="joinLink" runat="server" NavigateUrl="~/register">انضم</asp:HyperLink>
 
-                <asp:HyperLink ID="questionsLink" runat="server" NavigateUrl="~/Questions.aspx">ابحث عن الأسئلة</asp:HyperLink>
+                <asp:HyperLink ID="questionsLink" runat="server" NavigateUrl="~/questions">ابحث عن الأسئلة</asp:HyperLink>
             </div>
         </div>
         
