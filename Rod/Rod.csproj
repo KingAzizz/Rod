@@ -282,6 +282,7 @@
     </None>
   </ItemGroup>
   <ItemGroup>
+    <Folder Include="tagsImages\" />
     <Folder Include="uploads\" />
   </ItemGroup>
   <ItemGroup>
