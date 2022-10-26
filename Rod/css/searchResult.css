@@ -176,6 +176,13 @@
         margin-top: 10px;
         margin: 10px 0 0 10px;
     }
+
+.noResult {
+    display: flex;
+    justify-content: center;
+    font-size: 30px;
+    margin-top: 15px;
+}
 .sidenav {
     transition: 2s;
     height: 100%;
