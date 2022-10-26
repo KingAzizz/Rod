@@ -91,6 +91,16 @@ namespace Rod
                 searchedItemText.InnerText = " النتائج " + "[" + Request.QueryString["searched"].ToString() + "]";
                 resultCount.InnerText = "[" + searchResultListView.Items.Count + "]" + " النتائج";
                 con.Close();
+                if(searchResultListView.Items.Count == 0)
+                {
+                  
+                    noresultLbl.Visible = true;
+                    noresultLbl.InnerText = "لايوجد نتائج";
+                }
+                else
+                {
+                    noresultLbl.Visible = false;
+                }
             }
             if(tab == "Rating")
             {
