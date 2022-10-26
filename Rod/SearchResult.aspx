@@ -44,6 +44,7 @@
            
     </section>
     <section class="searchResult" id="searchResult" runat="server">
+        <label class="noResult" id="noresultLbl" runat="server" visible="false"></label>
         <asp:ListView ID="searchResultListView" runat="server">
             <ItemTemplate>
        <div class="question">
