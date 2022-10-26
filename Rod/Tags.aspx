@@ -14,19 +14,33 @@
         </div>-->
 
         <hr />
-        <div class="tagsSection" runat="server">
-        <asp:ListView ID="tagsListView" runat="server">
+       <div class="main">
+            <asp:ListView ID="tagsListView" runat="server">
+                <ItemTemplate>
+                        <div class="cards_item">
+                            <div class="card">
+                                <div class="card_image">
 
-            <ItemTemplate>
-                
-                    <asp:HyperLink CssClass="sectionbtn" runat="server"
-                        NavigateUrl='<%# Eval("id","~/tagged/{0}")%>'>
-                        <%#Eval("tagName") %>
-                    </asp:HyperLink>
+                                    <img src="<%#Eval("image")%>"/>
 
-            </ItemTemplate>
-            
-        </asp:ListView>
-        </div> 
+
+                                </div>
+                                <div class="card_content">
+                                    <h2 class="card_title">
+                                        <%#Eval("tagName") %>
+                                    </h2>
+                                    <p class="card_text">
+                                        <%#Eval("description") %>
+                                    </p>
+                                    <asp:HyperLink runat="server" CssClass="tagbtn"
+                                        NavigateUrl='<%# Eval("id","~/tagged/{0}")%>'>
+                                        أنتقل
+                                    </asp:HyperLink>
+                                </div>
+                            </div>
+                        </div>
+                </ItemTemplate>
+            </asp:ListView>
+        </div>
      
 </asp:Content>
