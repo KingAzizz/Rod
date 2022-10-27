@@ -4,16 +4,9 @@
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
     
-        
-        <h1 class="sectionHeader">الأقسام</h1>
-      
-        <!--<div class="controlserch">
-            
-            <asp:TextBox ID="TextBox1" CssClass="serhtxt" runat="server" placeholder="ابحث عن القسم"></asp:TextBox>
-            <i class="fa-solid fa-magnifying-glass"></i>
-        </div>-->
-
-        <hr />
+        <div class="sectionHeader">
+            <h1>الأقسام</h1>
+        </div>
        <div class="main">
             <asp:ListView ID="tagsListView" runat="server">
                 <ItemTemplate>
@@ -21,7 +14,7 @@
                             <div class="card">
                                 <div class="card_image">
 
-                                    <img src="<%#Eval("image")%>"/>
+                                    <img src="<%#Eval("TagImage")%>"/>
 
 
                                 </div>
@@ -30,7 +23,7 @@
                                         <%#Eval("tagName") %>
                                     </h2>
                                     <p class="card_text">
-                                        <%#Eval("description") %>
+                                        <%#Eval("tagDescription") %>
                                     </p>
                                     <asp:HyperLink runat="server" CssClass="tagbtn"
                                         NavigateUrl='<%# Eval("id","~/tagged/{0}")%>'>

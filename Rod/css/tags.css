@@ -21,11 +21,17 @@ html {
     max-width: 1200px;
     margin: 0 auto;
 }
+.sectionHeader {
+    padding: 10px 0 40px 0;
+    border-bottom: 4px solid #4F6BFF;
+}
 
 h1 {
-    font-size: 24px;
-    font-weight: 400;
+    font-size: 29px;
+    font-weight: 700;
     text-align: center;
+    padding-top:40px;
+    
 }
 
 img {
@@ -33,23 +39,6 @@ img {
     max-width: 100%;
     vertical-align: middle;
 }
-
-.btn_card_btn {
-    letter-spacing: 0.1em;
-    cursor: pointer;
-    font-size: 14px;
-    font-weight: 400;
-    line-height: 45px;
-    max-width: 160px;
-    position: relative;
-    text-decoration: none;
-    text-transform: uppercase;
-    width: 100%;
-}
-
-    .btn_card_btn:hover {
-        text-decoration: none;
-    }
 
 .cards {
     list-style: none;
