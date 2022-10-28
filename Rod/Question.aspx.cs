@@ -14,7 +14,7 @@ namespace Rod
 {
     public partial class Question : System.Web.UI.Page
     {
-        public static string cs = @"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=C:\Users\User\source\repos\Rodgit\Rod\App_Data\Rod.mdf;Integrated Security=True";
+        public static string cs = @"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=C:\Users\pc\Documents\Rod\Rod\App_Data\Rod.mdf;Integrated Security=True";
         public static bool Followed(int user1, int user2)
         {
           if(HttpContext.Current.Session["id"] != null)
@@ -344,6 +344,7 @@ namespace Rod
             HtmlGenericControl upvote = e.Item.FindControl("upvoteIcon") as HtmlGenericControl;
             HtmlGenericControl downvote = e.Item.FindControl("downvoteIcon") as HtmlGenericControl;
             HtmlGenericControl totalVotes = e.Item.FindControl("totalVotes") as HtmlGenericControl;
+            HiddenField userAnswerIdHD = e.Item.FindControl("userAnswerIdHD") as HiddenField;
             int votes = Convert.ToInt32(totalVotes.InnerText);
             if (e.CommandArgument != Session["id"])
             {
@@ -438,10 +439,18 @@ namespace Rod
                       + @"delete from [Vote] where [answerId] ="+ e.CommandArgument + " and [userId] =" + Session["id"] +";";
                         SqlCommand cmdRemoveUpvote = new SqlCommand(removeUpvote, con);
                         cmdRemoveUpvote.ExecuteNonQuery();
-                        totalVotes.InnerText = Convert.ToString(votes - 1);
+                       
                         upvote.Attributes.Add("style", "color:black");
-                        
                         con.Close();
+                        con.Open();
+                        string updateReputation = @"update [User]
+                        set reputation = reputation - 2
+                        where id = @userId; ";
+                        SqlCommand updateReputCMD = new SqlCommand(updateReputation, con);
+                        updateReputCMD.Parameters.AddWithValue("@userId", userAnswerIdHD.Value);
+                        updateReputCMD.ExecuteNonQuery();
+                        con.Close();
+                        Response.Redirect(Request.RawUrl);
                     }
                     else
                     {
@@ -473,8 +482,6 @@ namespace Rod
                            
 
                             downvote.Attributes.Add("style","color:black");
-                            
-                            
 
                         }
 
@@ -493,11 +500,20 @@ namespace Rod
                     cmd.Parameters.AddWithValue("@userId", Convert.ToInt32(Session["id"]));
                     cmd.Parameters.AddWithValue("@creationDate", sqlFormattedDate);
                     cmd.ExecuteNonQuery();
-                        totalVotes.InnerText = Convert.ToString(votes + 1);
-                        upvote.Attributes.Add("style", "color:orange");
-
-                    con.Close();
                         
+                        upvote.Attributes.Add("style", "color:orange");
+                    con.Close();
+                        con.Open();
+                        string updateReputation = @"update [User]
+                        set reputation = reputation + 2
+                        where id = @userId; ";
+                        SqlCommand updateReputCMD = new SqlCommand(updateReputation, con);
+                        updateReputCMD.Parameters.AddWithValue("@userId", userAnswerIdHD.Value);
+                        updateReputCMD.ExecuteNonQuery();
+                        con.Close();
+                       
+                        Response.Redirect(Request.RawUrl);
+
                     }
                 }
                 else
@@ -538,10 +554,19 @@ namespace Rod
                       + @"delete from [Vote] where [answerId] =" + e.CommandArgument + " and [userId] =" + Session["id"] + ";";
                         SqlCommand cmdRemoveUpvote = new SqlCommand(removeDownvote, con);
                         cmdRemoveUpvote.ExecuteNonQuery();
-                        totalVotes.InnerText = Convert.ToString(votes + 1);
+                     
                         downvote.Attributes.Add("style", "color:black");
 
                         con.Close();
+                        con.Open();
+                        string updateReputation = @"update [User]
+                        set reputation = reputation + 3
+                        where id = @userId; ";
+                        SqlCommand updateReputCMD = new SqlCommand(updateReputation, con);
+                        updateReputCMD.Parameters.AddWithValue("@userId", userAnswerIdHD.Value);
+                        updateReputCMD.ExecuteNonQuery();
+                        con.Close();
+                        Response.Redirect(Request.RawUrl);
                     }
                     else
                     {
@@ -593,12 +618,19 @@ namespace Rod
                         cmd.Parameters.AddWithValue("@userId", Convert.ToInt32(Session["id"]));
                         cmd.Parameters.AddWithValue("@creationDate", sqlFormattedDate);
                         cmd.ExecuteNonQuery();
-                        totalVotes.InnerText = Convert.ToString(votes - 1);
+                        //totalVotes.InnerText = Convert.ToString(votes - 1); edited here
                         downvote.Attributes.Add("style", "color:orange");
                         upvote.Attributes.Add("style", "color:black");
-
-
                         con.Close();
+                        con.Open();
+                        string updateReputation = @"update [User]
+                        set reputation = reputation - 3
+                        where id = @userId; ";
+                        SqlCommand updateReputCMD = new SqlCommand(updateReputation, con);
+                        updateReputCMD.Parameters.AddWithValue("@userId", userAnswerIdHD.Value);
+                        updateReputCMD.ExecuteNonQuery();
+                        con.Close();
+                        Response.Redirect(Request.RawUrl);
 
                     }
                 }
@@ -1070,6 +1102,14 @@ namespace Rod
 
             cmd.ExecuteNonQuery();
             con.Close();
+            con.Open();
+            string updateReputation = @"update [User]
+            set reputation = reputation + 1
+            where id = @userId; ";
+              SqlCommand updateReputCMD = new SqlCommand(updateReputation, con);
+                updateReputCMD.Parameters.AddWithValue("@userId", Session["id"]);
+                updateReputCMD.ExecuteNonQuery();
+                con.Close();
             Response.Redirect(Request.RawUrl);
             }
             else
