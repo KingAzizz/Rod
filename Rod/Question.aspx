@@ -127,7 +127,7 @@
                 
             </div>
           </section>
-          
+          <asp:HiddenField ID="userAnswerIdHD" runat="server" Value='<%# Eval("userAnswerId") %>' />
           <div class='userPostDetails'>
               <div>
               
