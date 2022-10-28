@@ -86,6 +86,7 @@
                 <li>الأسئلة</li>
                 <li>تواصل</li>
                 <li>حول</li>
+                <li><asp:HyperLink ID="helpNav" runat="server" NavigateUrl="~/help" ForeColor="white">مساعدة</asp:HyperLink></li>
                 <li><i class="fa-brands fa-twitter"></i></li>
             </ul>
         </div>
