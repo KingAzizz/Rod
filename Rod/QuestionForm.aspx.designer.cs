@@ -24,6 +24,15 @@ namespace Rod
         protected global::System.Web.UI.WebControls.TextBox titletxt;
 
         /// <summary>
+        /// reqTitle control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.RequiredFieldValidator reqTitle;
+
+        /// <summary>
         /// subjecttxt control.
         /// </summary>
         /// <remarks>
@@ -33,12 +42,30 @@ namespace Rod
         protected global::System.Web.UI.WebControls.TextBox subjecttxt;
 
         /// <summary>
-        /// sectiontxt control.
+        /// reqSubject control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox sectiontxt;
+        protected global::System.Web.UI.WebControls.RequiredFieldValidator reqSubject;
+
+        /// <summary>
+        /// tagsDropDownList control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.DropDownList tagsDropDownList;
+
+        /// <summary>
+        /// tagMissing control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label tagMissing;
     }
 }
