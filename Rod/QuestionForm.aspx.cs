@@ -10,19 +10,33 @@ namespace Rod
 {
     public partial class QuestionForm : System.Web.UI.Page
     {
-        public static string cs = @"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=C:\Users\User\source\repos\Rodgit\Rod\App_Data\Rod.mdf;Integrated Security=True";
+        public static string cs = @"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=C:\Users\pc\Documents\Rod\Rod\App_Data\Rod.mdf;Integrated Security=True";
 
-        protected void Page_Load(object sender, EventArgs e) { }
+        protected void Page_Load(object sender, EventArgs e) {
+
+            if (Session["id"] == null) {
+
+                Response.Redirect("~/login");
+            
+            }
+        
+        }
 
         protected void submitQuestion_Click(object sender, EventArgs e)
         {
-            if(Session["id"] != null)
+            if (Session["id"] != null)
             {
-               
-          
-            string title = titletxt.Text;
-            string subject = subjecttxt.Text;
-            string section = sectiontxt.Text;
+
+                string title = titletxt.Text;
+                string subject = subjecttxt.Text;
+                if (tagsDropDownList.SelectedValue == "0") {
+                    tagMissing.Visible = true;
+                }
+                else
+                {
+
+                    tagMissing.Visible = false;
+                    string section = tagsDropDownList.SelectedValue;
 
             SqlConnection con = new SqlConnection(cs);
 
@@ -88,15 +102,15 @@ namespace Rod
                 }
                 con.Close();
                 }
-                else
+                /*else
                 {
                     Response.Write("nope");
-                }
+                }*/
             }
 
 
 
-
+            }
         }
     }
 }
