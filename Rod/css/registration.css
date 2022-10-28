@@ -1,5 +1,5 @@
 ﻿.login {
-    min-height: 82.8vh;
+    min-height: 85.8vh;
     margin-bottom: 70px;
     clear: both;
     direction: rtl;
@@ -29,11 +29,11 @@
     gap: 4px;
     border-radius: 10px;
     padding: 30px;
-    height: 415px;
+    height: 475px;
     width: 300px;
 }
 
-    .loginContainer > input:not(input:nth-child(16)) {
+    .loginContainer > .grayInput {
         border: 1px #ebebeb;
         background-color: #ebebeb;
         border-radius: 10px;
@@ -41,10 +41,17 @@
         transition: 0.3s;
     }
 
-    .loginContainer > input:focus-within:not(input:nth-child(16)) {
-        background-color: #ffff;
-    }
+        .loginContainer > .grayInput:focus-within {
+            background-color: #ffff;
+        }
 
+.badReg {
+    color: red;
+    height:10px;
+    Font-Size:20px;
+    position:relative;
+    bottom:9px;
+}
 
 .loginBtn {
     border: none;
