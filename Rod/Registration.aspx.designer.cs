@@ -42,6 +42,15 @@ namespace Rod
         protected global::System.Web.UI.WebControls.TextBox usernameTxt;
 
         /// <summary>
+        /// rgxUsername control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.RegularExpressionValidator rgxUsername;
+
+        /// <summary>
         /// requsername control.
         /// </summary>
         /// <remarks>
@@ -105,6 +114,15 @@ namespace Rod
         protected global::System.Web.UI.WebControls.TextBox passwordTxt;
 
         /// <summary>
+        /// rgxPassword control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.RegularExpressionValidator rgxPassword;
+
+        /// <summary>
         /// reqpassword control.
         /// </summary>
         /// <remarks>
@@ -148,6 +166,15 @@ namespace Rod
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.CompareValidator CompareValidator1;
+
+        /// <summary>
+        /// badReg control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label badReg;
 
         /// <summary>
         /// loginBtn control.
