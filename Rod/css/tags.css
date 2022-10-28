@@ -2,11 +2,11 @@
 @import url('https://fonts.googleapis.com/css?family=Quicksand:400,700');
 
 /* Design */
-*,
-*::before,
-*::after {
-    box-sizing: border-box;
-}
+    *,
+    *::before,
+    *::after {
+        box-sizing: border-box;
+    }
 
 html {
     background-color: #ecf9ff;
@@ -20,6 +20,7 @@ html {
     padding: 10px;
     max-width: 1200px;
     margin: 0 auto;
+    margin-bottom:140px;
 }
 .sectionHeader {
     padding: 10px 0 40px 0;
