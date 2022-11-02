@@ -84,6 +84,7 @@
     width: 400px;
     height: 10px;
     direction: rtl;
+    resize:none;
 }
 
     .subjecttxt:focus {

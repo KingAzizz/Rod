@@ -89,6 +89,8 @@ label {
     padding-bottom: 190px;
     width: 400px;
     height: 10px;
+    direction: rtl;
+    resize: none;
 }
 
 .editContainer > div {

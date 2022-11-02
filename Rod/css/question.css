@@ -301,6 +301,7 @@
     border-radius: 5px;
     width: 51.1%;
     padding: 10px 10px 230px;
+    resize:none;
 }
 
 .giveAnswerContainer > label {

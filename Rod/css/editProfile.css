@@ -99,6 +99,7 @@ ul {
     padding-bottom: 190px;
     height: 10px;
     font-size: 1.2rem;
+    resize:none;
 }
 
 .linkheader {
