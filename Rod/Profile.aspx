@@ -121,7 +121,7 @@
         <div class="userFollow">
                 <asp:HyperLink ID="followersPage" runat="server" NavigateUrl="~/profile/followers">
             <p style="color:black">
-                التابعين
+                المتابعون
             <span style="font-weight: bold;" id="followers" runat="server"></span>
 
             </p>
