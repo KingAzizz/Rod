@@ -80,12 +80,11 @@ namespace Rod
                 string linkedPath = "uploads/" + System.IO.Path.GetFileName(imageUpload.FileName);
 
                 string updateProfile = @"update [User]
-             set displayName = @displayName, title = @title,aboutMe =@aboutMe ,education = @education,
+             set displayName = @displayName,aboutMe =@aboutMe ,education = @education,
              [location] = @location, websiteUrl = @websiteUrl,twitterUrl = @twitterUrl,githubUrl = @githubUrl,profileImage=@profileImage
              where id = @userId;";
                 SqlCommand cmd = new SqlCommand(updateProfile, con);
                 cmd.Parameters.AddWithValue("@displayName", displayNameInput.Text);
-                cmd.Parameters.AddWithValue("@title", titleInput.Text);
                 cmd.Parameters.AddWithValue("@aboutMe", aboutInput.Text);
                 cmd.Parameters.AddWithValue("@education", educationInput.Text);
                 cmd.Parameters.AddWithValue("@location", locationInput.Text);
@@ -101,12 +100,12 @@ namespace Rod
             {
                 con.Open();
                 string updateProfile = @"update [User]
-             set displayName = @displayName, title = @title,aboutMe = @aboutMe ,education = @education,
+             set displayName = @displayName,aboutMe = @aboutMe ,education = @education,
              [location] = @location, websiteUrl = @websiteUrl,twitterUrl = @twitterUrl,githubUrl = @githubUrl
              where id = @userId;";
                 SqlCommand cmd = new SqlCommand(updateProfile, con);
                 cmd.Parameters.AddWithValue("@displayName", displayNameInput.Text);
-                cmd.Parameters.AddWithValue("@title", titleInput.Text);
+           
                 cmd.Parameters.AddWithValue("@aboutMe", aboutInput.Text);
                 cmd.Parameters.AddWithValue("@education", educationInput.Text);
                 cmd.Parameters.AddWithValue("@location", locationInput.Text);
