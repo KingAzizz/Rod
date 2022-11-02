@@ -32,25 +32,24 @@
             <p></p>
         </div>
         <label>الأقسام</label>
+        <div style="display:flex; justify-content:center; align-items:center; flex-direction:row;">
+            <span> القسم المختار حاليا:&nbsp  </span> 
+            <asp:Label ID="currentTag" runat="server"></asp:Label>
+        </div>
         <div class="tags">
-            <span class="tagContainer">
-            
-                    <asp:DataList id="Tags" runat="server" onItemCommand ="Tags_ItemCommand" >
-            <ItemTemplate>
-                <span id="existingTags" runat="server">
-                    <%# Eval("tagName") %>
-                </span>
-                <asp:HiddenField ID="tagNameHidden" runat="server" Value='<%# Eval("tagName") %>' />
-                <span id="deleteButton" runat="server">
-                <asp:LinkButton ID="deleteTag" runat="server" CommandName="DeleteTag"
-                CommandArgument='<%# Eval("id") %>' ForeColor="DarkRed"><i class="fa-solid fa-x"></i>
-              </asp:LinkButton>
-
-                </span>
-            </ItemTemplate>
-                        </asp:DataList>
-            </span>
-            <asp:TextBox ID="tagText" runat="server"></asp:TextBox>
+          <asp:DropDownList ID="tagseditDropdownlist" runat="server" CssClass="dropdownlistTags">
+                    <asp:ListItem Value="0">اختر قسم</asp:ListItem>
+                     <asp:ListItem Value="برمجة الحاسب الآلي">برمجة الحاسب الآلي</asp:ListItem>
+                     <asp:ListItem Value="شبكات الحاسب الآلي">شبكات الحاسب الآلي</asp:ListItem>
+                      <asp:ListItem Value="التسويق و المبيعات">التسويق و المبيعات</asp:ListItem>
+                      <asp:ListItem Value="إدارة سلاسل الإمداد">إدارة سلاسل الإمداد</asp:ListItem>
+                      <asp:ListItem Value="الأعمال البنكية">الأعمال البنكية</asp:ListItem>
+                      <asp:ListItem Value="إدارة المستشفيات">إدارة المستشفيات</asp:ListItem>
+                      <asp:ListItem Value="المحاسبة">المحاسبة</asp:ListItem>
+                      <asp:ListItem Value="السكرتير التنفيذي">السكرتير التنفيذي</asp:ListItem>
+                      <asp:ListItem Value="إدارة الموارد البشرية">إدارة الموارد البشرية</asp:ListItem>
+                      <asp:ListItem Value="خدمة العملاء">خدمة العملاء</asp:ListItem>
+          </asp:DropDownList>
         </div>
         <asp:Label ID="debug" runat="server"></asp:Label>
         <div class="editButtons">
