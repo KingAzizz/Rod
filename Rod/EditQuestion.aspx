@@ -26,7 +26,7 @@
    
         <asp:TextBox ID="titleText" CssClass="titleInput" runat="server"></asp:TextBox>
         <label>الموضوع</label>
-         <asp:TextBox ID="bodyText" CssClass="bodyInput" runat="server"></asp:TextBox>
+         <asp:TextBox ID="bodyText" CssClass="bodyInput" runat="server" TextMode="MultiLine"></asp:TextBox>
        
         <div>
             <p></p>

@@ -161,7 +161,7 @@
          </section>
           <section class="giveAnswerContainer">
             <label>جوابك</label>
-              <asp:TextBox ID="answerText" runat="server" CssClass="answerText"></asp:TextBox>
+              <asp:TextBox ID="answerText" runat="server" CssClass="answerText" TextMode="MultiLine"></asp:TextBox>
             <div>
                 <p id="answerTextShow"></p>
             </div>

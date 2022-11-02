@@ -49,7 +49,6 @@ namespace Rod
                                 Response.Redirect("~/");
                             }
                             displayNameInput.Text =dr.GetValue(1).ToString();
-                            titleInput.Text = dr.GetValue(2).ToString();
                             aboutInput.Text = dr.GetValue(3).ToString();
                             educationInput.Text = dr.GetValue(4).ToString();
                             locationInput.Text = dr.GetValue(5).ToString();

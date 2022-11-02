@@ -43,10 +43,8 @@
         <asp:TextBox ID="educationInput" runat="server" CssClass="normalInput" ></asp:TextBox>
         <label>موقعك</label>
         <asp:TextBox ID="locationInput" runat="server" CssClass="normalInput" ></asp:TextBox>
-        <label>عنوانك</label>
-       <asp:TextBox ID="titleInput" runat="server" CssClass="normalInput" ></asp:TextBox>
         <label>عنك</label>
-        <asp:TextBox ID="aboutInput" runat="server" CssClass="bigInput" ></asp:TextBox>
+        <asp:TextBox ID="aboutInput" runat="server" CssClass="bigInput" TextMode="MultiLine" ></asp:TextBox>
         <div class="linkheader">
           <h1>الروابط</h1>
         </div>

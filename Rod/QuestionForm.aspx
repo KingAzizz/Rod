@@ -20,7 +20,7 @@
             <h1 class="subject">الموضوع</h1>
                  <h6 class="subinfo">يرجى ارفاق كل المعلومات المطلوبه</h6>
              <div class="Movesubjecttxt">
-                     <asp:TextBox ID="subjecttxt" CssClass="subjecttxt" runat="server"></asp:TextBox>
+                     <asp:TextBox ID="subjecttxt" CssClass="subjecttxt" runat="server" TextMode="MultiLine"></asp:TextBox>
 
                  </div>
                       <asp:RequiredFieldValidator ID="reqSubject" runat="server" ControlToValidate="subjecttxt" ErrorMessage="حقل الموضوع ألزامي" Display="Dynamic" ForeColor="Red"  Font-Size="Medium"></asp:RequiredFieldValidator>
