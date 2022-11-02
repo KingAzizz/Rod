@@ -1,5 +1,4 @@
-﻿
-function copyToClipboard(text) {
+﻿function copyToClipboard(text) {
     if (window.clipboardData && window.clipboardData.setData) {
        
         return window.clipboardData.setData("Text", text);

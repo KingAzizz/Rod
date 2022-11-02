@@ -1,7 +1,7 @@
 ﻿let uploadImageButton = document.getElementById("uploadImageLabel");
 let inputFile = document.getElementById("ContentPlaceHolder1_imageUpload")
 
-console.log("up and running");
+console.log('%c Developed By: Abdulaziz Fahad Alsunaydi ', 'background: #222; color: #bada55; font-size:15px;');
 
 uploadImageButton.addEventListener("click", () => {
     inputFile.click();

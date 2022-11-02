@@ -10,7 +10,9 @@
     <script src="https://kit.fontawesome.com/f933819f72.js" crossorigin="anonymous"></script>
         <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1" />
         <link rel="shortcut icon" type="image/x-icon" href="./images\favicon-modified.png" />
-
+    <script>
+        console.log('%c Developed By: Abdulaziz Fahad Alsunaydi ', 'background: #222; color: #bada55; font-size:15px;');
+    </script>
 </head>
 <body>
     <form id="form1" runat="server">
