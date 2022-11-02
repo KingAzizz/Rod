@@ -546,6 +546,7 @@ namespace Rod
 
                 unFollowUser.Visible = true;
                 con.Close();
+                Response.Redirect(Request.RawUrl);
             }
             else
            {
@@ -581,6 +582,7 @@ namespace Rod
 
                 unFollowUser.Visible = false;
                 con.Close();
+                Response.Redirect(Request.RawUrl);
             }
         }
     }
