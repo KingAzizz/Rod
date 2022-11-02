@@ -11,7 +11,7 @@
     <link href="./css/masterPage.css" rel="stylesheet" type="text/css" />
     <script defer src='<%= Page.ResolveUrl("~/js/master.js")%>' charset="utf-8"></script>
     <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1" />
-
+    <link rel="shortcut icon" type="image/x-icon" href="./images\favicon-modified.png" />
 </head>
 <body>
     <form id="form1" runat="server">
