@@ -66,12 +66,14 @@
 label {
     width: 50%;
     display: flex;
-    margin-bottom: 7px;
+    justify-content:center;
+    margin-bottom: 15px;
+    font-size:1.4rem;
 }
 
 .titleInput {
     width: 50%;
-    padding: 5px;
+    padding: 9px;
     border: 1px solid #babfc4;
     border-radius: 5px;
     margin-bottom: 30px;
@@ -99,7 +101,18 @@ label {
     padding: 10px;
 }
 
+.dropdownlistTags {
+    direction: rtl;
+    font-size: 21px;
+    border: none;
+    background-color: rgb(238, 238, 238);
+    padding: 8px;
+    border-radius: 4px;
+}
+
 .tags {
+    display:flex;
+    justify-content:center;
     padding: 0px 9.1px;
     box-sizing: border-box;
     margin-top: 0px;
@@ -159,6 +172,9 @@ label {
 
 .editButtons {
     margin-bottom: 30px;
+    display:flex;
+    justify-content:center;
+    
 }
 
     .editButtons > input:nth-child(1) {
