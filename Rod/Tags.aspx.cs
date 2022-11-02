@@ -30,6 +30,7 @@ namespace Rod
         }
         protected void Page_Load(object sender, EventArgs e)
         {
+            Page.Title = string.Format("الاقسام");
             if (!Page.IsPostBack)
             {
                 Bind();

@@ -13,6 +13,7 @@ namespace Rod
     {
         protected void Page_Load(object sender, EventArgs e)
         {
+            Page.Title = string.Format("افضل المستخدمين");
             if (!Page.IsPostBack)
             {
                 Bind();

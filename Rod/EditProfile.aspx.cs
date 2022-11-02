@@ -13,6 +13,8 @@ namespace Rod
         public static string cs = @"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=C:\Users\pc\Documents\Rod\Rod\App_Data\Rod.mdf;Integrated Security=True";
         protected void Page_Load(object sender, EventArgs e)
         {
+            Page.Title = string.Format("تعديل الملف الشخصي");
+
             if (!Page.IsPostBack) { 
             var id = Page.RouteData.Values["id"];
 
@@ -58,6 +60,10 @@ namespace Rod
                         }
                     }
                     con.Close();
+                    }
+                    else
+                    {
+                        Response.Redirect("~/login");
                     }
                 }
             }

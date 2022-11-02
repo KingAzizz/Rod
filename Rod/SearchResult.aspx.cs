@@ -58,6 +58,7 @@ namespace Rod
         }
         protected void Page_Load(object sender, EventArgs e)
         {
+            Page.Title = string.Format("بحثك عن: {0}",Request.QueryString["searched"].ToString());
             if (!Page.IsPostBack)
             {
                 if(Request.QueryString["tab"] != null)

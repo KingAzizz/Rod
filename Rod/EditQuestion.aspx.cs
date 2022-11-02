@@ -16,6 +16,7 @@ namespace Rod
 
         protected void Page_Load(object sender, EventArgs e)
         {
+            Page.Title = string.Format("تعديل السؤال");
             if (!Page.IsPostBack)
             {
 

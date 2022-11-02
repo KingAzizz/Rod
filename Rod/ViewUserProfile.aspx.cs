@@ -67,6 +67,7 @@ namespace Rod
         }
         protected void Page_Load(object sender, EventArgs e)
         {
+            Page.Title = string.Format("مشاهدة ملف مستخدم");
             var id = Page.RouteData.Values["id"];
 
             int num = -1;

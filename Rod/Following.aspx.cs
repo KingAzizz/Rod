@@ -15,6 +15,7 @@ namespace Rod
 
         protected void Page_Load(object sender, EventArgs e)
         {
+            Page.Title = string.Format("المتابعين");
             if (!Page.IsPostBack)
             {
                 var id = Page.RouteData.Values["id"];

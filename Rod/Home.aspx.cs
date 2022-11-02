@@ -57,6 +57,7 @@ namespace Rod
         public string cs = @"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=C:\Users\pc\Documents\Rod\Rod\App_Data\Rod.mdf;Integrated Security=True";
         protected void Page_Load(object sender, EventArgs e)
         {
+            Page.Title = string.Format("الصفحة الرئيسية");
             if (!Page.IsPostBack)
             {
 
