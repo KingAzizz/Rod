@@ -1046,7 +1046,19 @@ namespace Rod
             if(Session["id"].ToString() == userId.Value.ToString())
             {
 
-            SqlConnection con = new SqlConnection(cs);
+                SqlConnection con = new SqlConnection(cs);
+
+                con.Open();
+
+                string deleteUserPostAnswers = @"delete from [Answer] where [postId] = @postId;";
+
+                SqlCommand cmdAnswer = new SqlCommand(deleteUserPostAnswers, con);
+
+                cmdAnswer.Parameters.AddWithValue("@postId", postId.Value);
+
+                cmdAnswer.ExecuteNonQuery();
+                con.Close();
+
 
             con.Open();
 
