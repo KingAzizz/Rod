@@ -4,6 +4,12 @@ using System.Linq;
 using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Web;
+using System.Web.UI;
+using System.Web.UI.WebControls;
 using System.Security.Cryptography;
 using System.Data.SqlClient;
 using System.Text;
@@ -14,19 +20,19 @@ namespace Rod
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-            if(Session["id"] != null)
+            if (Session["id"] != null)
             {
                 Response.Redirect("~/");
             }
             if (!Page.IsPostBack)
             {
 
-            if(Request.Cookies["userCredentials"] != null)
-            {
-                usernameTxt.Text = Request.Cookies["userCredentials"]["username"];
+                if (Request.Cookies["userCredentials"] != null)
+                {
+                    usernameTxt.Text = Request.Cookies["userCredentials"]["username"];
 
                     rememberMe.Checked = true;
-            }
+                }
             }
         }
         public static string hashPassword(string password)
@@ -36,6 +42,7 @@ namespace Rod
             byte[] encrypted_bytes = SHA1.ComputeHash(password_bytes);
             return Convert.ToBase64String(encrypted_bytes);
         }
+
         protected void Login_Click(object sender, EventArgs e)
         {
             string username = usernameTxt.Text;
