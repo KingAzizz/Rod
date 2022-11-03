@@ -1,6 +1,10 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Site1.Master" AutoEventWireup="true" CodeBehind="HelpCenter.aspx.cs" Inherits="Rod.HelpCenter" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
          <link href='<%= Page.ResolveUrl("~/css/helpCenter.css")%>'rel="stylesheet" type="text/css">
+    <script>
+        console.log('%c Developed By: Turki Faisal Alotaibi & Waleed Khaild Almalki', 'background: #000b42; color: #FFFFF;font-size:15px;');
+
+    </script>
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
     <section class="main">

@@ -1,6 +1,10 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Site1.Master" AutoEventWireup="true" CodeBehind="QuestionForm.aspx.cs" Inherits="Rod.QuestionForm" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
     <link href='<%= Page.ResolveUrl("~/css/questionForm.css")%>'rel="stylesheet" type="text/css">
+      <script>
+        console.log('%c Developed By: Turki Faisal Alotaibi', 'background: #000b42; color: #FFFFF;font-size:15px;');
+
+      </script>
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
     
