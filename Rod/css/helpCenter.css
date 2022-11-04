@@ -1,11 +1,13 @@
 ﻿.main {
     display: flex;
-    justify-content: center;
+    justify-content:center;
     flex-direction: row;
     flex-wrap: wrap;
     padding: 10px;
     max-width: 1200px;
-    margin: 0 auto;
+   height:100vh;
+   margin: 0 auto;
+  
 }
 
 
