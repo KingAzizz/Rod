@@ -132,6 +132,15 @@ namespace Rod
         protected global::System.Web.UI.WebControls.ContentPlaceHolder ContentPlaceHolder1;
 
         /// <summary>
+        /// questionsNav control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.HyperLink questionsNav;
+
+        /// <summary>
         /// helpNav control.
         /// </summary>
         /// <remarks>
