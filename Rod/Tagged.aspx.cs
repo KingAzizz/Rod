@@ -58,7 +58,6 @@ namespace Rod
         }
         protected void Page_Load(object sender, EventArgs e)
         {
-            Page.Title = string.Format("القسم");
             Bind();
         }
     
@@ -99,10 +98,10 @@ namespace Rod
                 da.Fill(ds, "Post");
                 questionsListView.DataSource = ds.Tables[0];
                 questionsListView.DataBind();
-                /*if (askListView.Items.Count == 0)
+                if (questionsListView.Items.Count == 0)
                 {
-                    questionsDivD.Visible = false;
-                }*/
+                noResult.Visible = true;
+                }
                 con.Close();
         }
         protected void questionsListView_PagePropertiesChanging(object sender, PagePropertiesChangingEventArgs e)
@@ -119,6 +118,9 @@ namespace Rod
         {
             HtmlGenericControl tagsDiv = e.Item.FindControl("tags") as HtmlGenericControl;
             HiddenField questionId = e.Item.FindControl("questionId") as HiddenField;
+            HiddenField tagName = e.Item.FindControl("tagNameHiddenField") as HiddenField;
+            Page.Title = string.Format(tagName.Value.ToString());
+            tagNameH2.InnerText = tagName.Value.ToString();
             SqlConnection con = new SqlConnection(cs);
             con.Open();
 
