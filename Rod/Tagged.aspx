@@ -26,13 +26,14 @@
             <div>
                 <asp:HyperLink  runat="server" NavigateUrl="~/ask/question" Text="إسأل"></asp:HyperLink>
              
-
+                
             </div>
-            <div id="totalQuestion" class="totalQuestion" runat="server">
-
+            <div id="totalQuestion" class="totalQuestion" runat="server" style="width:100%; height:100%;">
+                <h2 id="tagNameH2" runat="server" style=" margin-top:10px; margin-right:43px;"></h2>
          </div>
         </section>
       <section class="sectionQuestions" id="sectionQuestions" runat="server">
+          <h1 id="noResult" runat="server" visible="false" style="display:flex; justify-content:center; margin-top:50px;">لاتوجد نتائج</h1>
      <asp:ListView ID="questionsListView" runat="server" OnPagePropertiesChanging="questionsListView_PagePropertiesChanging" ItemPlaceholderID="itemPlaceholder" GroupPlaceholderID="groupPlaceholder" OnItemDataBound="questionsListView_ItemDataBound">
             <LayoutTemplate>
                             <asp:PlaceHolder runat="server" ID="groupPlaceholder"></asp:PlaceHolder>
@@ -52,6 +53,7 @@
 
             </GroupTemplate>
             <ItemTemplate>
+                <asp:HiddenField ID="tagNameHiddenField" runat="server" Value='<%# Eval("tagName") %>' />
                 <asp:HiddenField ID="questionId" runat="server" Value='<%# Eval("PostId") %>' />
              <div class="question">
                     <div class="votesAnswers">
