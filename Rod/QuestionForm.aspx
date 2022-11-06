@@ -50,7 +50,7 @@
                  </div>
                  <asp:Label ID="tagMissing" runat="server" Visible="false" ForeColor="Red" >حقل القسم ألزامي</asp:Label>
                  <div class="btncontrol">
-            <asp:Button CssClass="reviewbtn" Text="مراجعة السؤال" runat="server" OnClick="submitQuestion_Click"/>
+            <asp:Button CssClass="reviewbtn" Text="ارسل السؤال" runat="server" OnClick="submitQuestion_Click"/>
                      
         </div>
         </div>
