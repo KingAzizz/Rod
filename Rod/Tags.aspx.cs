@@ -6,6 +6,7 @@ using System.Web.UI;
 using System.Web.UI.WebControls;
 using System.Data.SqlClient;
 using System.Data;
+using System.Configuration;
 
 namespace Rod
 {
@@ -13,7 +14,7 @@ namespace Rod
     {
         public void Bind()
         {
-            string cs = @"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=C:\Users\pc\Documents\Rod\Rod\App_Data\Rod.mdf;Integrated Security=True";
+            string cs = ConfigurationManager.ConnectionStrings["dbconnection"].ConnectionString;
             SqlConnection con = new SqlConnection(cs);
             con.Open();
             string viewTags = "select * from [TagInfo]";

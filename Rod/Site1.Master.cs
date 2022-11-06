@@ -5,6 +5,7 @@ using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 using System.Data.SqlClient;
+using System.Configuration;
 
 namespace Rod
 {
@@ -32,8 +33,8 @@ namespace Rod
             else {
                     loginLink.Visible = false;
                     profile.Visible = true;
-                    string cs = @"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=C:\Users\pc\Documents\Rod\Rod\App_Data\Rod.mdf;Integrated Security=True";
-                SqlConnection con = new SqlConnection(cs);
+                    string cs = ConfigurationManager.ConnectionStrings["dbconnection"].ConnectionString;
+                    SqlConnection con = new SqlConnection(cs);
                 con.Open();
 
                 string getImage = @"select [profileImage] from [User] where [id] =" + Session["id"].ToString();

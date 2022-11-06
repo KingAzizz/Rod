@@ -6,6 +6,7 @@ using System.Web.UI;
 using System.Web.UI.WebControls;
 using System.Data;
 using System.Data.SqlClient;
+using System.Configuration;
 
 namespace Rod
 {
@@ -22,8 +23,8 @@ namespace Rod
         public void Bind()
         {
            
-                string cs = @"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=C:\Users\pc\Documents\Rod\Rod\App_Data\Rod.mdf;Integrated Security=True";
-                SqlConnection con = new SqlConnection(cs);
+                string cs = ConfigurationManager.ConnectionStrings["dbconnection"].ConnectionString;
+            SqlConnection con = new SqlConnection(cs);
 
             string topUsersQuery = @"SELECT id,username,displayName,CAST(profileImage as nvarchar(255)) as profileImage,[location],[reputation],
               (SELECT TOP 2 tagName + ',' FROM TagFollowers 

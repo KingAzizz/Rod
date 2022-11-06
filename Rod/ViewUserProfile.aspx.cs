@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Configuration;
 using System.Data;
 using System.Data.SqlClient;
 using System.Globalization;
@@ -12,7 +13,7 @@ namespace Rod
 {
     public partial class ViewUserProfile : System.Web.UI.Page
     {
-        public static string cs = @"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=C:\Users\pc\Documents\Rod\Rod\App_Data\Rod.mdf;Integrated Security=True";
+        public static string cs = ConfigurationManager.ConnectionStrings["dbconnection"].ConnectionString;
 
         public string GetMonthDay(string dataValue)
         {

@@ -9,6 +9,7 @@ using System.Web.UI;
 using System.Web.UI.WebControls;
 using System.Windows.Forms;
 using System.Net.Mail;
+using System.Configuration;
 
 namespace Rod
 {
@@ -28,7 +29,7 @@ namespace Rod
         protected void Reg(object sender, EventArgs e)
         {
            
-            string cs = @"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=C:\Users\pc\Documents\Rod\Rod\App_Data\Rod.mdf;Integrated Security=True";
+            string cs = ConfigurationManager.ConnectionStrings["dbconnection"].ConnectionString;
             using (SqlConnection connection = new SqlConnection(cs))
             {
                 try

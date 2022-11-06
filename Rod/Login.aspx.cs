@@ -13,6 +13,7 @@ using System.Web.UI.WebControls;
 using System.Security.Cryptography;
 using System.Data.SqlClient;
 using System.Text;
+using System.Configuration;
 
 namespace Rod
 {
@@ -48,7 +49,7 @@ namespace Rod
             string username = usernameTxt.Text;
             string password = hashPassword(passwordTxt.Text);
 
-            string cs = @"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=C:\Users\pc\Documents\Rod\Rod\App_Data\Rod.mdf;Integrated Security=True";
+            string cs = ConfigurationManager.ConnectionStrings["dbconnection"].ConnectionString;
             SqlConnection con = new SqlConnection(cs);
             con.Open();
 

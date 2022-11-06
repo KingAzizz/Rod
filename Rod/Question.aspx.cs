@@ -9,12 +9,13 @@ using System.Data;
 using System.Web.UI.HtmlControls;
 using System.Timers;
 using System.Threading;
+using System.Configuration;
 
 namespace Rod
 {
     public partial class Question : System.Web.UI.Page
     {
-        public static string cs = @"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=C:\Users\pc\Documents\Rod\Rod\App_Data\Rod.mdf;Integrated Security=True";
+        public static string cs = ConfigurationManager.ConnectionStrings["dbconnection"].ConnectionString;
         public static bool Followed(int user1, int user2)
         {
           if(HttpContext.Current.Session["id"] != null)

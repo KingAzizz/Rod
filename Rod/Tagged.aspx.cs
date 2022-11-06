@@ -7,12 +7,13 @@ using System.Web.UI.WebControls;
 using System.Data.SqlClient;
 using System.Data;
 using System.Web.UI.HtmlControls;
+using System.Configuration;
 
 namespace Rod
 {
     public partial class Tagged : System.Web.UI.Page
     {
-        public static string cs = @"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=C:\Users\pc\Documents\Rod\Rod\App_Data\Rod.mdf;Integrated Security=True";
+        public static string cs = ConfigurationManager.ConnectionStrings["dbconnection"].ConnectionString;
         public static string RelativeDate(DateTime theDate)
         {
             const int SECOND = 1;

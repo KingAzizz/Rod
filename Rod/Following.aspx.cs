@@ -6,12 +6,13 @@ using System.Web.UI;
 using System.Web.UI.WebControls;
 using System.Data;
 using System.Data.SqlClient;
+using System.Configuration;
 
 namespace Rod
 {
     public partial class Following : System.Web.UI.Page
     {
-        public static string cs = @"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=C:\Users\pc\Documents\Rod\Rod\App_Data\Rod.mdf;Integrated Security=True";
+        public static string cs = ConfigurationManager.ConnectionStrings["dbconnection"].ConnectionString;
 
         protected void Page_Load(object sender, EventArgs e)
         {

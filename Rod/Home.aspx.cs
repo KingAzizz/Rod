@@ -6,6 +6,7 @@ using System.Web.UI;
 using System.Web.UI.WebControls;
 using System.Data.SqlClient;
 using System.Data;
+using System.Configuration;
 
 namespace Rod
 {
@@ -54,7 +55,7 @@ namespace Rod
                 return years <= 1 ? "قبل سنة" : " قبل " + years + " سنوات  ";
             }
         }
-        public string cs = @"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=C:\Users\pc\Documents\Rod\Rod\App_Data\Rod.mdf;Integrated Security=True";
+        public string cs = ConfigurationManager.ConnectionStrings["dbconnection"].ConnectionString;
         protected void Page_Load(object sender, EventArgs e)
         {
             Page.Title = string.Format("الصفحة الرئيسية");
